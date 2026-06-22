@@ -106,7 +106,7 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:8000/api/contact/submit', {
+      const response = await fetch('https://api.3dreamprint.cloud/api/contact/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

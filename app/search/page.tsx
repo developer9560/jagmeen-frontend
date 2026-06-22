@@ -22,7 +22,7 @@ function SearchPageContent() {
       if (!q) return setResults([]);
       setIsLoading(true);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'}/api/products/search?q=${encodeURIComponent(q)}&size=100`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud'}/api/products/search?q=${encodeURIComponent(q)}&size=100`);
         const data = await res.json();
         if (data.success) {
           setResults(data.data?.data || []);
