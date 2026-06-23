@@ -324,21 +324,24 @@ export const BRANDS = [
 export const FOOTER_LINKS = {
   company: [
     { label: 'About Us', href: '/about' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Press', href: '/press' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms & Conditions', href: '/terms' },
+    // { label: 'Careers', href: '/careers' },
+    // { label: 'Press', href: '/press' },
+    // { label: 'Blog', href: '/blog' },
   ],
   help: [
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Customer Service', href: '/support' },
-    { label: 'Shipping & Returns', href: '/shipping' },
-    { label: 'Size Guide', href: '/size-guide' },
-    { label: 'FAQs', href: '/faqs' },
+    // { label: 'Customer Service', href: '/support' },
+    // { label: 'Shipping & Returns', href: '/shipping' },
+    // { label: 'Size Guide', href: '/size-guide' },
+    // { label: 'FAQs', href: '/faqs' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms & Conditions', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' },
+    // { label: 'Cookie Policy', href: '/cookies' },
   ],
 };
 
