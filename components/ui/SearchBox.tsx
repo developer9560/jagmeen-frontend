@@ -36,7 +36,7 @@ export default function SearchBox({ initial = '' }: { initial?: string }) {
       }
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'}/api/products/suggest?q=${encodeURIComponent(query)}&limit=8`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud'}/api/products/suggest?q=${encodeURIComponent(query)}&limit=8`);
         const data = await res.json();
         if (!cancelled && data.success) {
           setSuggestions(data.data || []);
