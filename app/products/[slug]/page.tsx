@@ -9,6 +9,10 @@ import { productApi } from '@/lib/api';
 import type { ProductDetailData } from '@/types/product';
 import Link from 'next/link';
 
+
+
+
+
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
@@ -54,6 +58,8 @@ export default function ProductDetailPage() {
       cancelled = true;
     };
   }, [slug]);
+
+  
 
   return (
     <>

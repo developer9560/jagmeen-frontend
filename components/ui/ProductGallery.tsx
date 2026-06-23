@@ -60,14 +60,14 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
+              className="absolute  left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary  opecity-100  md:opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
               aria-label="Previous image"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={20}  />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
               aria-label="Next image"
             >
               <ChevronRight size={20} />

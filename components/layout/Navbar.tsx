@@ -239,8 +239,8 @@ export default function Navbar() {
         </div>
 
         {/* Mobile search bar — slides down */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-out border-t border-gray-50 ${isMobileSearchOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0 border-t-0'}`}>
-          <div className="px-4 py-3">
+        <div className={`md:hidden transition-all duration-300 ease-out border-t border-gray-50 ${isMobileSearchOpen ? 'max-h-[600px] opacity-100 overflow-visible' : 'max-h-0 opacity-0 overflow-hidden border-t-0'}`}>
+          <div className="px-4 py-3 relative z-50">
             {/* @ts-ignore */}
             <SearchBox />
           </div>
@@ -374,19 +374,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Drawer search */}
-          <form onSubmit={handleSearch} className="px-5 py-4 border-b border-gray-50 flex-shrink-0">
-            <div className="relative">
-              <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search styles..."
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-cream/60 border border-gray-100 focus:outline-none focus:border-gold/60"
-              />
-            </div>
-          </form>
 
           {/* Scrollable nav */}
           <div className="flex-1 overflow-y-auto py-2">

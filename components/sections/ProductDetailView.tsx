@@ -42,7 +42,18 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
           {/* Left Column - Gallery */}
-          <div className="w-full">
+          <div className="w-full relative">
+            {/* Mobile Wishlist Overlay */}
+            <button 
+              onClick={handleToggleWishlist}
+              disabled={isTogglingWishlist}
+              className={`absolute top-4 left-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-sm flex md:hidden items-center justify-center transition-all duration-300 ${
+                isWishlisted ? 'text-rose' : 'text-primary hover:text-rose'
+              } disabled:opacity-50`}
+            >
+              <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
+            </button>
+
             <ProductGallery images={product.images} productName={product.name} />
           </div>
 
@@ -86,20 +97,20 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             )}
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <div className="flex items-center border border-gray-200 h-14">
+            <div className="flex flex-row gap-2 sm:gap-4 mb-10">
+              <div className="flex items-center border border-gray-200 h-14 flex-shrink-0">
                 <button 
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
+                  className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
                 >
                   -
                 </button>
-                <span className="w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
+                <span className="w-8 sm:w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
                   {quantity}
                 </span>
                 <button 
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
+                  className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
                 >
                   +
                 </button>
@@ -108,7 +119,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <button 
                 onClick={handleAddToCart}
                 disabled={isAddingToCart || !product.stock_quantity}
-                className="flex-1 h-14 bg-primary text-white text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
               >
                 <ShoppingBag size={18} />
                 {isAddingToCart ? 'Adding...' : product.stock_quantity ? 'Add to Bag' : 'Out of Stock'}
@@ -117,7 +128,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <button 
                 onClick={handleToggleWishlist}
                 disabled={isTogglingWishlist}
-                className={`w-14 h-14 border flex items-center justify-center transition-colors ${
+                className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${
                   isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
                 } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
@@ -125,21 +136,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </button>
             </div>
 
-            {/* Service Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
-                <Truck size={24} className="text-gold" />
-                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Free Shipping</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
-                <RotateCcw size={24} className="text-gold" />
-                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">14 Days Return</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
-                <Shield size={24} className="text-gold" />
-                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Secure Payment</span>
-              </div>
-            </div>
+            
 
             {/* Tabs for Details / Shipping */}
             <div className="border-b border-gray-200 flex gap-8 mb-6">
@@ -194,6 +191,21 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <p><strong>Returns:</strong> You can return any item within 14 days of receipt for a full refund or exchange. Items must be unworn, unwashed, and have original tags attached.</p>
                 </div>
               )}
+            </div>
+            {/* Service Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
+                <Truck size={24} className="text-gold" />
+                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Free Shipping</span>
+              </div>
+              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
+                <RotateCcw size={24} className="text-gold" />
+                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">14 Days Return</span>
+              </div>
+              <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
+                <Shield size={24} className="text-gold" />
+                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Secure Payment</span>
+              </div>
             </div>
 
           </div>
