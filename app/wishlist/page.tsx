@@ -115,7 +115,7 @@ export default function WishlistPage() {
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {wishlistData.items.map((item) => (
                 <div key={item.id} className="bg-white border border-gray-100 group flex flex-col">
                   {/* Image Area */}

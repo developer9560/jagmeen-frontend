@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, MapPin, LogOut, PackageCheck } from 'lucide-react';
+import { User, MapPin, LogOut, PackageCheck , Heart } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 const ACCOUNT_LINKS = [
   { label: 'My Profile', href: '/account/profile', icon: User },
   { label: 'My Addresses', href: '/account/addresses', icon: MapPin },
   { label: 'My Orders', href: '/account/orders', icon: PackageCheck },
+  {label: 'Wishlist', href: '/wishlist', icon: Heart },
 ];
 
 export default function AccountSidebar() {
