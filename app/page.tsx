@@ -47,8 +47,8 @@ export default function Home() {
         </section>
 
         {/* ── Best Seller Products Grid ── */}
-         <FeaturedProducts />
-        <BestSeller />
+         {/* <FeaturedProducts />
+        <BestSeller /> */}
 
       </main>
       <Footer />
