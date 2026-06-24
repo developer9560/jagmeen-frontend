@@ -109,6 +109,8 @@ export interface ToggleWishlistResponse {
   product_name?: string;
 }
 
+export type BannerType = 'HOME' | 'TRENDING' | 'FEATURED' | 'BESTSELLER';
+
 export interface Banner {
   id: number;
   title: string;
@@ -118,6 +120,7 @@ export interface Banner {
   is_active: boolean;
   is_for_desktop: boolean | null;
   is_for_mobile: boolean | null;
+  banner_type: BannerType;
 }
 
 export interface BannerListData {
@@ -400,6 +403,9 @@ export const bannerApi = {
 
   getMobile: () =>
     request<ApiResponse<BannerListData>>('/api/banners/mobile', { method: 'GET' }),
+
+  getByType: (type: BannerType) =>
+    request<ApiResponse<BannerListData>>(`/api/banners/type/${type}`, { method: 'GET' }),
 };
 
 export const orderApi = {

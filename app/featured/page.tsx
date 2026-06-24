@@ -11,7 +11,7 @@ export default function FeaturedPage() {
       <Header />
       <main className="flex-1">
         <InfiniteProductGrid 
-          title="Featured Collection" 
+          title="Trending Collections" 
           fetchPage={productApi.getFeatured} 
           pageSize={12} 
         />

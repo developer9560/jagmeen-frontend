@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { bannerApi, type Banner } from '@/lib/api';
+import { bannerApi, type Banner, type BannerType } from '@/lib/api';
 
 const DESKTOP_MEDIA_QUERY = '(min-width: 768px)';
 
@@ -14,7 +14,11 @@ const getBannerHref = (banner: Banner) => {
   return null;
 };
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  bannerType?: BannerType;
+}
+
+export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
   const [slides, setSlides] = useState<Banner[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -43,12 +47,11 @@ export default function HeroSection() {
       setIsLoading(true);
 
       try {
-        const response = isDesktop
-          ? await bannerApi.getDesktop()
-          : await bannerApi.getMobile();
+        const response = await bannerApi.getByType(bannerType);
         if (!isMounted) return;
 
         const banners = response.data?.banners ?? [];
+        // Further filter by device type
         setSlides(
           banners.filter((banner) =>
             isDesktop ? banner.is_for_desktop === true : banner.is_for_mobile === true
@@ -56,7 +59,7 @@ export default function HeroSection() {
         );
         setCurrentSlide(0);
       } catch (error) {
-        console.error('Failed to load hero banners:', error);
+        console.error(`Failed to load ${bannerType} banners:`, error);
         if (isMounted) {
           setSlides([]);
         }
@@ -72,7 +75,7 @@ export default function HeroSection() {
     return () => {
       isMounted = false;
     };
-  }, [isDesktop]);
+  }, [isDesktop, bannerType]);
 
   // Auto-play slider
   useEffect(() => {
@@ -105,14 +108,12 @@ export default function HeroSection() {
 
   const nextSlide = () => {
     if (slides.length <= 1) return;
-
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     pauseAutoPlay();
   };
 
   const prevSlide = () => {
     if (slides.length <= 1) return;
-
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     pauseAutoPlay();
   };
@@ -146,14 +147,29 @@ export default function HeroSection() {
     />
   );
 
+  const getHeroLink = () => {
+    switch (bannerType) {
+      case "TRENDING":
+        return "/featured";
+
+      case "BESTSELLER":
+        return "/best-sellers";
+
+      default:
+        return slideHref; // product/category/home
+    }
+  };
+
+  const heroHref = getHeroLink();
+
   return (
-    <section className="w-full px-4 md:px-0 ">
-      {/* Image Slider Container - Centered */}
-      <div className="w-full  mx-auto relative">
+    <section className="w-full">
+      <div className="w-full mx-auto relative">
         {/* Image */}
-        <div className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden  bg-gray-200">
-          {slideHref ? (
-            <Link href={slideHref} aria-label={slide.title}>
+        <div className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden bg-gray-200">
+
+          {heroHref ? (
+            <Link href={heroHref} aria-label={slide.title}>
               {image}
             </Link>
           ) : (
@@ -192,11 +208,10 @@ export default function HeroSection() {
                   setCurrentSlide(index);
                   pauseAutoPlay();
                 }}
-                className={`transition-all duration-300 rounded-full ${
-                  index === safeCurrentSlide
+                className={`transition-all duration-300 rounded-full ${index === safeCurrentSlide
                     ? 'bg-white w-6 h-2'
                     : 'bg-white/50 w-2 h-2 hover:bg-white/75'
-                }`}
+                  }`}
                 aria-label={`Go to ${banner.title}`}
               />
             ))}
