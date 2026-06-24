@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
 import { FOOTER_LINKS } from '@/lib/constants';
 import { categoryApi, CategoryNode } from '@/lib/api';
+import { SiInstagram, SiFacebook, SiX } from '@icons-pack/react-simple-icons';
+
 
 export default function Footer() {
   const [categories, setCategories] = useState<CategoryNode[]>([]);
@@ -105,9 +107,9 @@ export default function Footer() {
             <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
 
             <div className="space-y-3 mb-8">
-              <a href="mailto:support@jagmeenfashion.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
+              <a href="mailto:Jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
                 <Mail size={16} className="text-gold" />
-                support@jagmeenfashion.com
+                jagmeensupportteam@gmail.com
               </a>
               <a href="https://wa.me/918809578544" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
                 <Phone size={16} className="text-gold" />
@@ -116,9 +118,15 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4">
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">IG</a>
-              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">TW</a>
-              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">FB</a>
+              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+               <SiInstagram color="#E1306C" size={24} title="Instagram" />
+              </a>
+              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <SiX color="#000000" size={24} title="X (formerly Twitter)" />
+              </a>
+              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <SiFacebook color="#1877F2" size={24} title="Facebook" />
+              </a>
             </div>
 
             
