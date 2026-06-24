@@ -19,8 +19,16 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex flex-col w-full overflow-hidden mt-2 md:mt-3 ">
+      <main className="flex-1 flex flex-col w-full overflow-hidden  ">
         <HeroSection />
+        <h2 className="font-heading italic ml-20 text-4xl md:text-5xl text-primary mb-4">
+              Trending Products
+         </h2>
+         <HeroSection />
+         <h2 className="font-heading italic ml-20 text-4xl md:text-5xl text-primary mb-4">
+              Best Sellers
+         </h2>
+          <HeroSection />
         {/* <CategoryStrip /> */}
         <FeaturedProducts />
          <BestSeller />

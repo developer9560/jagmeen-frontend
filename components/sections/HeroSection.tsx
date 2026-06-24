@@ -149,9 +149,9 @@ export default function HeroSection() {
   return (
     <section className="w-full px-4 md:px-0 ">
       {/* Image Slider Container - Centered */}
-      <div className="w-full max-w-7xl mx-auto relative">
+      <div className="w-full  mx-auto relative">
         {/* Image */}
-        <div className="relative w-full h-64 sm:h-96 md:h-[500px] overflow-hidden rounded-lg bg-gray-200">
+        <div className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden  bg-gray-200">
           {slideHref ? (
             <Link href={slideHref} aria-label={slide.title}>
               {image}

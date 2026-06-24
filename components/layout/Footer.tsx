@@ -26,7 +26,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-primary text-white pt-20 pb-8 mt-20">
+    <footer className="bg-white text-black pt-20 pb-8 mt-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
@@ -35,7 +35,7 @@ export default function Footer() {
             <h2 className="font-heading italic text-3xl font-bold tracking-wide mb-6">
               Jagmeen Fashion
             </h2>
-            <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-black text-sm leading-relaxed mb-6 max-w-sm">
               Redefining luxury fashion for the modern era. Curated collections of designer clothing and accessories.
             </p>
             
@@ -64,7 +64,7 @@ export default function Footer() {
               {categories.length > 0 ? (
                 categories.map((cat) => (
                   <li key={cat.id}>
-                    <Link href={`/category/${cat.slug}`} className="text-white/70 hover:text-white transition-colors text-sm capitalize">
+                    <Link href={`/category/${cat.slug}`} className="text-black hover:text-white transition-colors text-sm capitalize">
                       {cat.name}
                     </Link>
                   </li>
@@ -85,7 +85,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-white/70 hover:text-white transition-colors text-sm">
+                  <Link href={link.href} className="text-black hover:text-white transition-colors text-sm">
                     {link.label}
                   </Link>
                 </li>
@@ -105,11 +105,11 @@ export default function Footer() {
             <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
 
             <div className="space-y-3 mb-8">
-              <a href="mailto:support@jagmeenfashion.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-gold transition-colors">
+              <a href="mailto:support@jagmeenfashion.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
                 <Mail size={16} className="text-gold" />
                 support@jagmeenfashion.com
               </a>
-              <a href="https://wa.me/918809578544" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-white/80 hover:text-gold transition-colors">
+              <a href="https://wa.me/918809578544" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
                 <Phone size={16} className="text-gold" />
                 +91  8809578544
               </a>

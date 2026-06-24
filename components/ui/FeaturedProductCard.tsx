@@ -105,7 +105,7 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
               </span>
             )} */}
             {discount && (
-              <span className="bg-gold text-primary text-[10px] tracking-[0.15em] uppercase font-bold px-2.5 py-1">
+              <span className="bg-white text-primary text-[10px] tracking-[0.15em] uppercase font-bold px-2.5 py-1">
                 {discount}% Off
               </span>
             )}

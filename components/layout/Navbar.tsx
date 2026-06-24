@@ -115,8 +115,8 @@ export default function Navbar() {
         }`}
       >
         <div
-          className={`max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
-            isScrolled ? 'py-2' : 'py-2.5 lg:py-3.5'
+          className={`w-full mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
+            isScrolled ? 'py-2' : 'py-2 lg:py-2'
           }`}
         >
           {/* Left Section: Mobile menu + Logo */}
@@ -269,7 +269,7 @@ export default function Navbar() {
 
       {/* Floating Menu - Main Categories with Hover Submenu */}
       {isFloatingMenuOpen && (
-        <div className="fixed top-20 left-4 z-40 flex items-start gap-1 animate-fade-in-down">
+        <div className="fixed top-20 left-4 z-40 flex items-start gap-0.3 animate-fade-in-down">
           {/* Main Categories List */}
           <div className="bg-white border border-gray-100 rounded-lg shadow-2xl w-[200px] max-h-[calc(100vh-120px)] overflow-y-auto">
             <div className="p-0">

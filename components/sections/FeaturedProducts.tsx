@@ -46,7 +46,7 @@ export default function FeaturedProducts() {
             {/* <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-3">
               Curated Selection
             </p> */}
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">
+            <h2 className="font-heading text-4xl md:text-5xl text-primary mb-4">
               Trending Products
             </h2>
             <div className="w-24 h-[2px] bg-gold" />
