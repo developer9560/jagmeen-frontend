@@ -50,11 +50,11 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
-            {discountPercent > 0 && (
+            {/* {discountPercent > 0 && (
               <span className="bg-rose-500 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm shadow-sm">
                 -{discountPercent}%
               </span>
-            )}
+            )} */}
             {product.is_best_seller && (
               <span className="bg-gold text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm shadow-sm">
                 Best Seller
