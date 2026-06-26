@@ -25,6 +25,8 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
   const resumeAutoPlayTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
@@ -51,7 +53,6 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
         if (!isMounted) return;
 
         const banners = response.data?.banners ?? [];
-        // Further filter by device type
         setSlides(
           banners.filter((banner) =>
             isDesktop ? banner.is_for_desktop === true : banner.is_for_mobile === true
@@ -118,6 +119,26 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
     pauseAutoPlay();
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+
+    if (touchStartX.current === null || touchEndX.current === null) return;
+
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide(); // swiped left → next
+      else prevSlide();          // swiped right → prev
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   const safeCurrentSlide = slides.length ? Math.min(currentSlide, slides.length - 1) : 0;
   const slide = slides[safeCurrentSlide];
   const slideHref = slide ? getBannerHref(slide) : null;
@@ -151,12 +172,10 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
     switch (bannerType) {
       case "TRENDING":
         return "/featured";
-
       case "BESTSELLER":
         return "/best-sellers";
-
       default:
-        return slideHref; // product/category/home
+        return slideHref;
     }
   };
 
@@ -165,9 +184,13 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
   return (
     <section className="w-full">
       <div className="w-full mx-auto relative">
-        {/* Image */}
-        <div className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden bg-gray-200">
 
+        {/* Image with touch support */}
+        <div
+          className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden bg-gray-200"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {heroHref ? (
             <Link href={heroHref} aria-label={slide.title}>
               {image}
@@ -177,23 +200,23 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
           )}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows — desktop only */}
         {slides.length > 1 && (
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-2 md:p-3 text-white backdrop-blur-sm rounded-full group"
+              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full group"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
+              <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-2 md:p-3 text-white backdrop-blur-sm rounded-full group"
+              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full group"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </button>
           </>
         )}
@@ -208,15 +231,17 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
                   setCurrentSlide(index);
                   pauseAutoPlay();
                 }}
-                className={`transition-all duration-300 rounded-full ${index === safeCurrentSlide
+                className={`transition-all duration-300 rounded-full ${
+                  index === safeCurrentSlide
                     ? 'bg-white w-6 h-2'
                     : 'bg-white/50 w-2 h-2 hover:bg-white/75'
-                  }`}
+                }`}
                 aria-label={`Go to ${banner.title}`}
               />
             ))}
           </div>
         )}
+
       </div>
     </section>
   );

@@ -30,6 +30,15 @@ export default function Navbar() {
   const { wishlistSummary } = useWishlist();
   const [megaMenuNav, setMegaMenuNav] = useState<MegaMenuNavItem[]>(MEGA_MENU_NAV);
 
+  const searchbarItems = [
+    "Mens",
+    "Womens",
+    "Kids",
+    "Accessories",
+    "dresses",
+    "skirts",
+  ]
+
   useEffect(() => {
     async function loadCategories() {
       try {

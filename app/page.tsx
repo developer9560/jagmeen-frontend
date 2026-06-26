@@ -14,43 +14,47 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex flex-col w-full overflow-hidden">
+      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden ">
 
         {/* ── Hero Slider: HOME banners ── */}
         <HeroSection bannerType="HOME" />
 
         {/* ── Trending Products Section ── */}
-        <section className="py-6 md:py-10">
+        <section className="py-5 md:py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-2">
+            <h2 className="font-heading text-4xl md:text-5xl text-primary mb-2">
               Trending Products
             </h2>
-            <div className="w-16 h-0.5 bg-gold mb-6" />
+            <div className="w-16 h-0.5 mb-6" />
           </div>
           {/* TRENDING banner slider sits just above the product grid */}
           <HeroSection bannerType="TRENDING" />
         </section>
 
         {/* ── Featured / Trending Products Grid ── */}
-       
+
 
         {/* ── Best Sellers Section ── */}
-        <section className="py-6 md:py-10 bg-cream/40">
+        <section className="py-5 md:py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-2">
+            <h2 className="font-heading  text-4xl md:text-5xl text-primary mb-2">
               Best Sellers
             </h2>
-            <div className="w-16 h-0.5 bg-gold mb-6" />
+            <div className="w-16 h-0.5 mb-6" />
           </div>
           {/* BESTSELLER banner slider sits just above the product grid */}
           <HeroSection bannerType="BESTSELLER" />
         </section>
 
         {/* ── Best Seller Products Grid ── */}
-         {/* <FeaturedProducts />
+        {/* <FeaturedProducts />
         <BestSeller /> */}
 
+
       </main>
+      <div className="w-full flex items-center justify-center py-4">
+        <div className="h-[5px] w-20 sm:w-28 md:w-36 lg:w-48 bg-black"></div>
+      </div>
       <Footer />
     </>
   );
