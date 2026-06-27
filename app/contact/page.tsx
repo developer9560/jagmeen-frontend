@@ -17,41 +17,41 @@ const CONTACT_CARDS = [
   {
     icon: Mail,
     label: 'Email Us',
-    value: 'support@jagmeenfashion.com',
+    value: 'jagmeensupportteam@gmail.com',
     sub: 'We reply within 24 hours',
-    href: 'mailto:support@jagmeenfashion.com',
+    href: 'mailto:jagmeensupportteam@gmail.com',
   },
   {
     icon: Phone,
     label: 'Call Us',
-    value: '+91 98765 43210',
-    sub: 'Mon – Sat, 10 AM – 7 PM IST',
-    href: 'tel:+919876543210',
+    value: '+91 8809578544',
+    sub: 'Mon – Sat, 9:30 AM – 6 PM IST',
+    href: 'tel:+918809578544',
   },
   {
     icon: MapPin,
     label: 'Visit Us',
-    value: '14 Fashion Street, Karol Bagh',
-    sub: 'New Delhi – 110005, India',
-    href: 'https://maps.google.com',
+    value: 'Khedi Road , Sector-87',
+    sub: 'Faridabad Haryana – 121002, India',
+    href: 'https://maps.app.goo.gl/hEGnGJAE4NSW3x6CA?g_st=aw',
   },
-  {
-    icon: Clock,
-    label: 'Business Hours',
-    value: 'Mon – Sat: 10 AM – 7 PM',
-    sub: 'Sunday: Closed',
-    href: null,
-  },
+  // {
+  //   icon: Clock,
+  //   label: 'Business Hours',
+  //   value: 'Mon – Sat: 10 AM – 7 PM',
+  //   sub: 'Sunday: Closed',
+  //   href: null,
+  // },
 ];
 
 const FAQ_ITEMS = [
   {
     q: 'How long does delivery take?',
-    a: 'Standard delivery takes 3–7 business days. Express delivery (1–2 days) is available in select cities at checkout.',
+    a: 'Standard delivery takes 3–7 business days. Express delivery (2-3 days) is available in select cities at checkout.',
   },
   {
     q: 'Can I return or exchange a product?',
-    a: 'Yes! We offer hassle-free returns within 7 days of delivery for eligible items. Visit your Orders page to initiate a return.',
+    a: 'Yes! We offer hassle-free exchange within 7 days of delivery for eligible items. Visit your Orders page to initiate a exchange, But not Return.',
   },
   {
     q: 'Are your products authentic?',
@@ -162,7 +162,7 @@ export default function ContactPage() {
       {/* ─── Contact Cards ────────────────────────────────────────────────── */}
       <section className="bg-cream border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-gray-200">
             {CONTACT_CARDS.map((card, i) => (
               <div
                 key={card.label}
@@ -409,35 +409,7 @@ export default function ContactPage() {
       </section>
 
       {/* ─── Map Section ──────────────────────────────────────────────────── */}
-      <section className="border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-          <div className="text-center mb-10">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Find Us</p>
-            <h2 className="font-heading italic text-4xl text-primary">Our Location</h2>
-          </div>
-          <div className="relative bg-cream border border-gray-200 h-72 md:h-96 flex items-center justify-center overflow-hidden">
-            {/* Map placeholder — replace with real Google Maps embed */}
-            <div className="absolute inset-0 opacity-10"
-              style={{ backgroundImage: 'repeating-linear-gradient(0deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 30px), repeating-linear-gradient(90deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 30px)' }}
-            />
-            <div className="text-center relative z-10">
-              <div className="w-14 h-14 bg-primary flex items-center justify-center mx-auto mb-4 animate-pulse-gold">
-                <MapPin size={24} className="text-gold" />
-              </div>
-              <p className="font-heading italic text-2xl text-primary mb-1">Jagmeen Fashion</p>
-              <p className="text-sm text-charcoal/60">14 Fashion Street, Karol Bagh, New Delhi – 110005</p>
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 text-xs font-bold uppercase tracking-widest text-gold hover:text-primary transition-colors border-b border-gold/30 pb-0.5"
-              >
-                Open in Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </main>
   );
 }

@@ -402,7 +402,7 @@ export default function CheckoutPage() {
                     <p className="font-semibold text-primary mb-1">Cash on Delivery</p>
                     <p className="text-sm text-muted">Pay when your order arrives.</p>
                   </button>
-                  <button
+                  {/* <button
                     type="button"
                     onClick={() => setPaymentMode('ONLINE')}
                     className={`border p-5 text-left transition-colors ${paymentMode === 'ONLINE' ? 'border-gold bg-gold/5' : 'border-gray-100 hover:border-gold/60'}`}
@@ -410,7 +410,7 @@ export default function CheckoutPage() {
                     <CreditCard size={22} className="text-gold mb-3" />
                     <p className="font-semibold text-primary mb-1">Online Payment</p>
                     <p className="text-sm text-muted">Demo mode now. Gateway can be connected later.</p>
-                  </button>
+                  </button> */}
                 </div>
               </section>
 

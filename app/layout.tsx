@@ -29,7 +29,7 @@ export const metadata = {
   },
   description: 'Shop latest fashion for women, men & kids at Jagmeen Fashion. Best price kurtas, dresses, jeans, tops & more. Free delivery across India.',
   keywords: [
-    'Jagmeen Fashion', 'online clothing store India',
+    'jagmeen ,Jagmeen Fashion', 'online clothing store India',
     'women fashion online', 'men fashion India',
     'buy kurta online', 'affordable fashion India'
   ],

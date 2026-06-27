@@ -40,16 +40,15 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
     <section className="bg-white pt-3 pb-12 md:pt-4 md:pb-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          
+
           {/* Left Column - Gallery */}
           <div className="w-full relative">
             {/* Mobile Wishlist Overlay */}
-            <button 
+            <button
               onClick={handleToggleWishlist}
               disabled={isTogglingWishlist}
-              className={`absolute top-4 left-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-sm flex md:hidden items-center justify-center transition-all duration-300 ${
-                isWishlisted ? 'text-rose' : 'text-primary hover:text-rose'
-              } disabled:opacity-50`}
+              className={`absolute top-4 left-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-sm flex md:hidden items-center justify-center transition-all duration-300 ${isWishlisted ? 'text-rose' : 'text-primary hover:text-rose'
+                } disabled:opacity-50`}
             >
               <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
             </button>
@@ -74,10 +73,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             </div>
 
             {/* Title & Pricing */}
-            <h1 className="font-heading italic text-3xl md:text-5xl text-primary leading-tight mb-4">
-              {product.name}
+            <h1 className="  text-2xl md:text-4xl text-primary leading-tight mb-4">
+              {product.name.toUpperCase()}
             </h1>
-            
+
             <div className="flex items-end gap-4 mb-8">
               <span className="text-2xl md:text-3xl font-semibold text-primary tracking-wide">
                 {formatPrice(product.price)}
@@ -99,7 +98,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             {/* Actions */}
             <div className="flex flex-row gap-2 sm:gap-4 mb-10">
               <div className="flex items-center border border-gray-200 h-14 flex-shrink-0">
-                <button 
+                <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
                 >
@@ -108,7 +107,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <span className="w-8 sm:w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
                   {quantity}
                 </span>
-                <button 
+                <button
                   onClick={() => setQuantity(quantity + 1)}
                   className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
                 >
@@ -116,7 +115,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 </button>
               </div>
 
-              <button 
+              <button
                 onClick={handleAddToCart}
                 disabled={isAddingToCart || !product.stock_quantity}
                 className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
@@ -125,26 +124,24 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 {isAddingToCart ? 'Adding...' : product.stock_quantity ? 'Add to Bag' : 'Out of Stock'}
               </button>
 
-              <button 
+              <button
                 onClick={handleToggleWishlist}
                 disabled={isTogglingWishlist}
-                className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${
-                  isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
               </button>
             </div>
 
-            
+
 
             {/* Tabs for Details / Shipping */}
             <div className="border-b border-gray-200 flex gap-8 mb-6">
               <button
                 onClick={() => setActiveTab('details')}
-                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${
-                  activeTab === 'details' ? 'text-primary' : 'text-muted hover:text-primary'
-                }`}
+                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${activeTab === 'details' ? 'text-primary' : 'text-muted hover:text-primary'
+                  }`}
               >
                 Product Details
                 {activeTab === 'details' && (
@@ -153,9 +150,8 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </button>
               <button
                 onClick={() => setActiveTab('shipping')}
-                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${
-                  activeTab === 'shipping' ? 'text-primary' : 'text-muted hover:text-primary'
-                }`}
+                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${activeTab === 'shipping' ? 'text-primary' : 'text-muted hover:text-primary'
+                  }`}
               >
                 Shipping & Returns
                 {activeTab === 'shipping' && (
@@ -200,7 +196,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </div>
               <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
                 <RotateCcw size={24} className="text-gold" />
-                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">14 Days Return</span>
+                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">3 Day Exechange </span>
               </div>
               <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
                 <Shield size={24} className="text-gold" />

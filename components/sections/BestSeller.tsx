@@ -46,10 +46,10 @@ export default function BestSeller() {
             {/* <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-3">
               Curated Selection
             </p> */}
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-4">
               Best Sellers
             </h2>
-            <div className="w-24 h-[2px] bg-gold" />
+            <div className="w-24 h-[2px] bg-white" />
           </div>
           <Link
             href="/best-sellers"

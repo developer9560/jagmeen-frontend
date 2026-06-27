@@ -9,7 +9,7 @@ import { bannerApi, type Banner, type BannerType } from '@/lib/api';
 const DESKTOP_MEDIA_QUERY = '(min-width: 768px)';
 
 const getBannerHref = (banner: Banner) => {
-  if (banner.product_slug) return `/products/${banner.product_slug}`;
+  if (banner.product_slug) return `/${banner.product_slug}`;
   if (banner.category_slug) return `/category/${banner.category_slug}`;
   return null;
 };

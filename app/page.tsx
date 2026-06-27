@@ -22,7 +22,7 @@ export default function Home() {
         {/* ── Trending Products Section ── */}
         <section className="py-5 md:py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className="font-heading text-4xl md:text-5xl text-primary mb-2">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-2">
               Trending Products
             </h2>
             <div className="w-16 h-0.5 mb-6" />
@@ -37,7 +37,7 @@ export default function Home() {
         {/* ── Best Sellers Section ── */}
         <section className="py-5 md:py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className="font-heading  text-4xl md:text-5xl text-primary mb-2">
+            <h2 className="font-heading font-bold  text-4xl md:text-5xl text-primary mb-2">
               Best Sellers
             </h2>
             <div className="w-16 h-0.5 mb-6" />
@@ -47,13 +47,12 @@ export default function Home() {
         </section>
 
         {/* ── Best Seller Products Grid ── */}
-        {/* <FeaturedProducts />
-        <BestSeller /> */}
-
+        {/* <FeaturedProducts /> */}
+        <BestSeller />
 
       </main>
       <div className="w-full flex items-center justify-center py-4">
-        <div className="h-[5px] w-20 sm:w-28 md:w-36 lg:w-48 bg-black"></div>
+        <div className="h-[3px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black"></div>
       </div>
       <Footer />
     </>

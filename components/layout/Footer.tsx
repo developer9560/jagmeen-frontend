@@ -38,7 +38,7 @@ export default function Footer() {
               Jagmeen Fashion
             </h2>
             <p className="text-black text-sm leading-relaxed mb-6 max-w-sm">
-              Redefining luxury fashion for the modern era. Curated collections of designer clothing and accessories.
+              Elevating everyday fashion with premium-quality clothing, modern designs, and exceptional comfort.
             </p>
             
             {/* <div className="space-y-3 mb-8">
@@ -66,7 +66,7 @@ export default function Footer() {
               {categories.length > 0 ? (
                 categories.map((cat) => (
                   <li key={cat.id}>
-                    <Link href={`/category/${cat.slug}`} className="text-black hover:text-white transition-colors text-sm capitalize">
+                    <Link href={`/category/${cat.slug}`} className="text-black hover:text-black hover:font-bold transition-colors text-sm capitalize">
                       {cat.name}
                     </Link>
                   </li>
@@ -87,14 +87,14 @@ export default function Footer() {
             <ul className="space-y-4">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-black hover:text-white transition-colors text-sm">
+                  <Link href={link.href} className="text-black hover:text-black hover:font-bold transition-colors text-sm">
                     {link.label}
                   </Link>
                 </li>
               ))}
               {FOOTER_LINKS.help.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-white/70 hover:text-white transition-colors text-sm">
+                  <Link href={link.href} className="text-white/70 hover:text-black hover:font-bold transition-colors text-sm">
                     {link.label}
                   </Link>
                 </li>
@@ -118,10 +118,10 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4">
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <a href="https://www.instagram.com/jagmeenfashion" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
                <SiInstagram color="#E1306C" size={24} title="Instagram" />
               </a>
-              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <a href="https://x.com/jagmeenfashion" aria-label="Twitter" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
               <SiX color="#000000" size={24} title="X (formerly Twitter)" />
               </a>
               <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">

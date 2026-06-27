@@ -55,11 +55,11 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
                 -{discountPercent}%
               </span>
             )} */}
-            {product.is_best_seller && (
+            {/* {product.is_best_seller && (
               <span className="bg-gold text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm shadow-sm">
                 Best Seller
               </span>
-            )}
+            )} */}
           </div>
 
           {/* Wishlist Button */}
