@@ -1,17 +1,11 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import Link from 'next/link';
 import {
-  Mail, Phone, MapPin, Clock, Send, CheckCircle,
+  Mail, Phone, MapPin, Send, CheckCircle,
  MessageSquare,
 } from 'lucide-react';
-
-const FacebookIcon = ({ size = 14 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-  </svg>
-);
+import { SiFacebook, SiInstagram, SiX } from '@icons-pack/react-simple-icons';
 
 const CONTACT_CARDS = [
   {
@@ -121,8 +115,8 @@ export default function ContactPage() {
       }
       
       setSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || 'Failed to send message. Please check your connection.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please check your connection.');
     } finally {
       setIsSubmitting(false);
     }
@@ -149,7 +143,7 @@ export default function ContactPage() {
               <span className="text-gold text-xs font-bold uppercase tracking-widest">Get in Touch</span>
             </div>
             <h1 className="font-heading italic text-5xl md:text-7xl text-white leading-tight mb-6">
-              We'd Love to<br />
+              We&apos;d Love to<br />
               <span className="text-gold">Hear from You</span>
             </h1>
             <p className="text-white/60 text-lg leading-relaxed max-w-xl">
@@ -212,7 +206,7 @@ export default function ContactPage() {
                   Message Received!
                 </h3>
                 <p className="text-charcoal/60 mb-6">
-                  Thank you, <strong className="text-primary">{form.name}</strong>! We've received your message and will get back
+                  Thank you, <strong className="text-primary">{form.name}</strong>! We&apos;ve received your message and will get back
                   to you at <strong className="text-primary">{form.email}</strong> within 24 hours.
                 </p>
                 <button
@@ -368,8 +362,9 @@ export default function ContactPage() {
               </p>
               <div className="flex gap-3">
                 {[
-                  // { label: 'Instagram', icon: Instagram, href: 'https://instagram.com' },
-                  { label: 'Facebook', icon: FacebookIcon, href: 'https://facebook.com' },
+                  { label: 'Instagram', icon: SiInstagram, href: 'https://www.instagram.com/jagmeenfashion' },
+                  { label: 'Facebook', icon: SiFacebook, href: 'https://www.facebook.com/jagmeenfashion' },
+                  { label: 'X', icon: SiX, href: 'https://x.com/jagmeenfashion' },
                 ].map((s) => (
                   <a
                     key={s.label}

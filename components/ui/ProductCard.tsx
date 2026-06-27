@@ -15,9 +15,6 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
   const { toggleWishlist, checkIsWishlisted } = useWishlist();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const discountPercent =
-    product.mrp > 0 ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0;
-
   const handleAdd = async (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -39,7 +36,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           {product.primary_image ? (
             <Image
               src={product.primary_image}
-              alt={product.name}
+              alt={`${product.name} - buy online at Jagmeen Fashion`}
               width={400}
               height={500}
               className="object-cover h-full w-full group-hover:scale-105 transition-transform duration-700 ease-in-out"

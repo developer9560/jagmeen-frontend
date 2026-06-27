@@ -1,13 +1,27 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Sparkles, Heart, Globe, Award, Users, Leaf, ArrowRight } from 'lucide-react';
+import { Sparkles, Heart, Award, Users, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us — Jagmeen Fashion',
+  title: 'About Jagmeen Fashion - Garment Manufacturer in Faridabad',
   description:
-    'Learn about Jagmeen Fashion — our story, mission, values, and commitment to bringing you the finest curated fashion from India and beyond.',
+    'Learn about Jagmeen Fashion, a Faridabad-based garment manufacturer creating quality Western and Indo-Western apparel for brands, retailers and fashion businesses.',
+  keywords: [
+    'Jagmeen Fashion about',
+    'garment manufacturer Faridabad',
+    'clothing manufacturer Haryana',
+    'Western wear manufacturer India',
+    'Indo-Western apparel manufacturer',
+  ],
+  alternates: { canonical: 'https://jagmeenfashion.com/about' },
+  openGraph: {
+    title: 'About Jagmeen Fashion',
+    description:
+      'Jagmeen Fashion is a Faridabad-based garment manufacturing company focused on quality, consistency and timely delivery.',
+    url: 'https://jagmeenfashion.com/about',
+    type: 'website',
+  },
 };
-
 const VALUES = [
   {
     icon: Heart,
@@ -39,13 +53,6 @@ const VALUES = [
     title: 'Curated Beauty',
     desc: "Our buyers travel, research, and obsess over trends so your feed — and wardrobe — only ever reflects what's truly beautiful.",
   },
-];
-
-const MILESTONES = [
-  { year: '2019', label: 'Founded', desc: 'Jagmeen Fashion launched as a passion project from a small studio in Delhi.' },
-  { year: '2020', label: 'First 1,000 Orders', desc: 'Within our first year, 1,000 customers trusted us with their style.' },
-  { year: '2022', label: 'National Reach', desc: 'Expanded delivery to all 28 states and 8 union territories across India.' },
-  { year: '2024', label: '50,000+ Customers', desc: 'Our community of fashion lovers continues to grow every single day.' },
 ];
 
 export default function AboutPage() {
@@ -130,7 +137,7 @@ export default function AboutPage() {
             <div className="bg-cream border border-gold/20 p-5 md:p-7">
               {/* <span className="font-heading italic text-7xl text-gold/30 leading-none block -mt-4 mb-2">"</span> */}
               <blockquote className="font-heading italic text-xl md:text-2xl text-primary  leading-relaxed mb-4">
-                " Fashion is the armour to survive the reality of everyday life. "
+                &quot; Fashion is the armour to survive the reality of everyday life. &quot;
               </blockquote>
               {/* <cite className="text-xs uppercase tracking-widest text-muted font-bold not-italic">
                 — Bill Cunningham

@@ -325,6 +325,7 @@ export const FOOTER_LINKS = {
   company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact Us', href: '/contact' },
+    // { label: 'Western Wear', href: '/western-wear' },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms & Conditions', href: '/terms' },
     // { label: 'Careers', href: '/careers' },
@@ -332,7 +333,11 @@ export const FOOTER_LINKS = {
     // { label: 'Blog', href: '/blog' },
   ],
   help: [
-    { label: 'Contact Us', href: '/contact' },
+    // { label: 'T-Shirts', href: '/t-shirts' },
+    // { label: 'Shirts', href: '/shirts' },
+    // { label: 'Kurtas', href: '/kurtas' },
+    // { label: 'Garment Manufacturer Faridabad', href: '/garment-manufacturer-faridabad' },
+    // { label: 'Bulk Clothing Manufacturer', href: '/bulk-clothing-manufacturer' },
     // { label: 'Customer Service', href: '/support' },
     // { label: 'Shipping & Returns', href: '/shipping' },
     // { label: 'Size Guide', href: '/size-guide' },
@@ -347,8 +352,7 @@ export const FOOTER_LINKS = {
 
 // Social links
 export const SOCIAL_LINKS = [
-  { name: 'Instagram', href: 'https://instagram.com' },
-  { name: 'Twitter', href: 'https://twitter.com' },
-  { name: 'Facebook', href: 'https://facebook.com' },
-  { name: 'Pinterest', href: 'https://pinterest.com' },
+  { name: 'Instagram', href: 'https://www.instagram.com/jagmeenfashion' },
+  { name: 'X', href: 'https://x.com/jagmeenfashion' },
+  { name: 'Facebook', href: 'https://www.facebook.com/jagmeenfashion' },
 ];

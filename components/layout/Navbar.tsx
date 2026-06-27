@@ -135,7 +135,13 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 flex items-center gap-2" onClick={closeMenu}>
               <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center">
-                <Image src={logo} alt="Jagmeen Fashion Logo" width={40} height={40} style={{ width: 'auto', height: 'auto' }} />
+                <Image src={logo}
+                 alt="Jagmeen Fashion Logo - Jagmeen" 
+                 width={40} height={40}
+                 title="Jagmeen Fashion"
+                 priority = {true}
+                style={{ width: 'auto', height: 'auto' }} />
+                 
               </div>
               <h1 className="font-heading italic text-lg sm:text-xl lg:text-2xl font-bold text-primary tracking-wide leading-none whitespace-nowrap">
                 Jagmeen Fashion

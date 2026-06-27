@@ -9,7 +9,7 @@ import type {
   AddressCreatePayload,
   AddressUpdatePayload,
 } from '@/types/auth';
-import type { FeaturedProductsData, ProductDetailData, CategoryProductsData } from '@/types/product';
+import type { FeaturedProductsData, ProductDetailData, CategoryProductsData, ProductCardData } from '@/types/product';
 
 export interface CategoryNode {
   id: number;
@@ -318,7 +318,7 @@ export const productApi = {
     if (min_price !== undefined) params.set('min_price', String(min_price));
     if (max_price !== undefined) params.set('max_price', String(max_price));
     if (sort_by && sort_by !== 'discount') params.set('sort_by', sort_by);
-    return request<ApiResponse<any>>(`/api/products/getall?${params.toString()}`, { method: 'GET' });
+    return request<ApiResponse<FeaturedProductsData>>(`/api/products/getall?${params.toString()}`, { method: 'GET' });
   },
 
   getProductBySlug: (slug: string) =>
@@ -341,6 +341,12 @@ export const productApi = {
 
   trackProductView: (productId: number) =>
     request<ApiResponse>(`/api/products/${productId}/view`, { method: 'PATCH' }),
+
+  getSimilarProducts: (slug: string, limit = 8) =>
+    request<ApiResponse<ProductCardData[]>>(
+      `/api/products/${slug}/similar?limit=${limit}`,
+      { method: 'GET' }
+    ),
 };
 
 export const cartApi = {

@@ -5,11 +5,11 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import { productApi } from '@/lib/api';
-import type { ProductCardData } from '@/types/product';
+import type { FeaturedProductsData, ProductCardData } from '@/types/product';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<ProductCardData[]>([]);
-  const [pagination, setPagination] = useState<any>(null);
+  const [pagination, setPagination] = useState<FeaturedProductsData['pagination'] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,13 +27,11 @@ export default function ProductsPage() {
       try {
         const res = await productApi.getProducts(pageNum, 20, minPrice, maxPrice, sortBy);
         if (cancelled) return;
-        // Check if data structure matches
-        const data = res.data?.data ? res.data.data : res.data;
-        setProducts(data || []);
+        setProducts(res.data?.data || []);
         setPagination(res.data?.pagination || null);
         setError(null);
-      } catch (err: any) {
-        if (!cancelled) setError(err.message || 'Failed to load products');
+      } catch (err: unknown) {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load products');
       } finally {
         if (!cancelled) setIsLoading(false);
       }
@@ -100,7 +98,7 @@ export default function ProductsPage() {
 
               <div className="flex items-center gap-4">
                 <label className="text-xs text-muted">Sort By</label>
-                <select value={sortBy} onChange={(e) => { setSortBy(e.target.value as any); setPageNum(1); }} className="p-2 border border-gray-100 rounded text-sm bg-white">
+                <select value={sortBy} onChange={(e) => { setSortBy(e.target.value as typeof sortBy); setPageNum(1); }} className="p-2 border border-gray-100 rounded text-sm bg-white">
                   <option value="latest">Latest</option>
                   <option value="price_asc">Price: Low to High</option>
                   <option value="price_desc">Price: High to Low</option>

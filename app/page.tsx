@@ -1,25 +1,38 @@
 import Header from '@/components/layout/Header';
 import HeroSection from '@/components/sections/HeroSection';
-import FeaturedProducts from '@/components/sections/FeaturedProducts';
 import Footer from '@/components/layout/Footer';
 import BestSeller from '@/components/sections/BestSeller';
+import { SITE_NAME, SITE_URL } from '@/lib/seo';
 
 export const metadata = {
-  title: 'Jagmeen Fashion — Trendy Clothes for Women & Men Online India',
-  description: "Welcome to Jagmeen Fashion — India's favourite online clothing store. Shop women's kurtas, dresses, men's shirts, jeans & more at best prices. Free delivery.",
-  alternates: { canonical: 'https://jagmeenfashion.com' },
+  title: `${SITE_NAME} - Trendy Clothes for Women & Men Online India`,
+  description:
+    "Welcome to Jagmeen Fashion, an Indian online clothing store for Western and Indo-Western fashion. Shop men's and women's apparel with delivery across India.",
+  keywords: [
+    'Jagmeen Fashion',
+    'online clothes India',
+    'buy women clothing online India',
+    'men fashion India',
+    'Western wear India',
+    'Indo-Western clothing',
+  ],
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: `${SITE_NAME} - Trendy Clothes Online India`,
+    description:
+      "Shop Western and Indo-Western clothing for men and women at Jagmeen Fashion.",
+    url: SITE_URL,
+    type: 'website',
+  },
 };
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden ">
-
-        {/* ── Hero Slider: HOME banners ── */}
+      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden">
         <HeroSection bannerType="HOME" />
 
-        {/* ── Trending Products Section ── */}
         <section className="py-5 md:py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-2">
@@ -27,32 +40,23 @@ export default function Home() {
             </h2>
             <div className="w-16 h-0.5 mb-6" />
           </div>
-          {/* TRENDING banner slider sits just above the product grid */}
           <HeroSection bannerType="TRENDING" />
         </section>
 
-        {/* ── Featured / Trending Products Grid ── */}
-
-
-        {/* ── Best Sellers Section ── */}
         <section className="py-5 md:py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className="font-heading font-bold  text-4xl md:text-5xl text-primary mb-2">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-2">
               Best Sellers
             </h2>
             <div className="w-16 h-0.5 mb-6" />
           </div>
-          {/* BESTSELLER banner slider sits just above the product grid */}
           <HeroSection bannerType="BESTSELLER" />
         </section>
 
-        {/* ── Best Seller Products Grid ── */}
-        {/* <FeaturedProducts /> */}
         <BestSeller />
-
       </main>
       <div className="w-full flex items-center justify-center py-4">
-        <div className="h-[3px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black"></div>
+        <div className="h-[3px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black" />
       </div>
       <Footer />
     </>

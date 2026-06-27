@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { FOOTER_LINKS } from '@/lib/constants';
 import { categoryApi, CategoryNode } from '@/lib/api';
 import { SiInstagram, SiFacebook, SiX } from '@icons-pack/react-simple-icons';
@@ -74,7 +74,7 @@ export default function Footer() {
               ) : (
                 <div className="space-y-4">
                   {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="h-4 w-24 bg-white/10 rounded animate-pulse"></div>
+                    <div key={i} className="h-4 w-24 bg-gray-100 rounded animate-pulse"></div>
                   ))}
                 </div>
               )}
@@ -92,13 +92,13 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              {FOOTER_LINKS.help.map((link) => (
+              {/* {FOOTER_LINKS.help.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-white/70 hover:text-black hover:font-bold transition-colors text-sm">
+                  <Link href={link.href} className="text-black hover:text-black hover:font-bold transition-colors text-sm">
                     {link.label}
                   </Link>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
 
@@ -107,7 +107,7 @@ export default function Footer() {
             <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
 
             <div className="space-y-3 mb-8">
-              <a href="mailto:Jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
+              <a href="mailto:jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
                 <Mail size={16} className="text-gold" />
                 jagmeensupportteam@gmail.com
               </a>
@@ -118,13 +118,13 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/jagmeenfashion" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <a href="https://www.instagram.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
                <SiInstagram color="#E1306C" size={24} title="Instagram" />
               </a>
-              <a href="https://x.com/jagmeenfashion" aria-label="Twitter" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <a href="https://x.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="X" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
               <SiX color="#000000" size={24} title="X (formerly Twitter)" />
               </a>
-              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <a href="https://www.facebook.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gold hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
               <SiFacebook color="#1877F2" size={24} title="Facebook" />
               </a>
             </div>
@@ -158,13 +158,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-xs text-center md:text-left">
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-black/50 text-xs text-center md:text-left">
             &copy; {new Date().getFullYear()} Jagmeen Fashion. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 md:gap-6 text-xs text-white/40">
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 md:gap-6 text-xs text-black/50">
             {FOOTER_LINKS.legal.map((link) => (
-              <Link key={link.label} href={link.href} className="hover:text-white transition-colors">
+              <Link key={link.label} href={link.href} className="hover:text-black transition-colors">
                 {link.label}
               </Link>
             ))}

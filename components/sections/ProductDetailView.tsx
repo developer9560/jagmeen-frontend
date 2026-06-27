@@ -24,6 +24,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const isWishlisted = checkIsWishlisted(product.id);
   const discount = getDiscountPercent(product.price, product.mrp);
 
+
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
     await addToCart(product.id, quantity);

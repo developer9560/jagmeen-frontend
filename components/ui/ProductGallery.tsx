@@ -42,7 +42,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
         {!imageError[activeIndex] && activeImage?.image_url ? (
           <Image
             src={activeImage.image_url}
-            alt={`${productName} - View ${activeIndex + 1}`}
+            alt={`${productName} product image ${activeIndex + 1} - Jagmeen Fashion`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
@@ -101,7 +101,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               {!imageError[idx] && image.image_url ? (
                 <Image
                   src={image.image_url}
-                  alt={`${productName} thumbnail ${idx + 1}`}
+                  alt={`${productName} thumbnail image ${idx + 1} - Jagmeen Fashion`}
                   fill
                   sizes="96px"
                   className="object-cover"
@@ -132,7 +132,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
              {!imageError[activeIndex] && activeImage?.image_url && (
                 <Image
                   src={activeImage.image_url}
-                  alt={`${productName} - Fullscreen`}
+                  alt={`${productName} full product image - Jagmeen Fashion`}
                   fill
                   className="object-contain"
                   sizes="100vw"

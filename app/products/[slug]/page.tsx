@@ -5,8 +5,9 @@ import { useParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductDetailView from '@/components/sections/ProductDetailView';
+import ProductCard from '@/components/ui/ProductCard';
 import { productApi } from '@/lib/api';
-import type { ProductDetailData } from '@/types/product';
+import type { ProductCardData, ProductDetailData } from '@/types/product';
 import Link from 'next/link';
 
 
@@ -18,6 +19,7 @@ export default function ProductDetailPage() {
   const slug = params.slug as string;
 
   const [product, setProduct] = useState<ProductDetailData | null>(null);
+  const [similarProducts, setSimilarProducts] = useState<ProductCardData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,10 +41,19 @@ export default function ProductDetailPage() {
           if (fetchedProduct?.id) {
             productApi.trackProductView(fetchedProduct.id).catch(console.error);
           }
+
+          productApi
+            .getSimilarProducts(slug, 8)
+            .then((similarResponse) => {
+              if (!cancelled) setSimilarProducts(similarResponse.data || []);
+            })
+            .catch(() => {
+              if (!cancelled) setSimilarProducts([]);
+            });
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (!cancelled) {
-          setError(err.message || 'Failed to load product details.');
+          setError(err instanceof Error ? err.message : 'Failed to load product details.');
           setProduct(null);
         }
       } finally {
@@ -98,7 +109,33 @@ export default function ProductDetailPage() {
             </Link>
           </div>
         ) : (
-          <ProductDetailView product={product} />
+          <>
+            <ProductDetailView product={product} />
+            {similarProducts.length > 0 && (
+              <section className="bg-white py-12 md:py-20 border-t border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 md:px-8">
+                  <div className="flex items-end justify-between gap-4 mb-8">
+                    <div>
+                      <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">
+                        Related Products
+                      </p>
+                      <h2 className="font-heading italic text-3xl md:text-4xl text-primary">
+                        You May Also Like
+                      </h2>
+                    </div>
+                    <Link href="/products" className="text-xs uppercase tracking-widest font-bold text-primary hover:text-gold">
+                      View All
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+                    {similarProducts.map((item) => (
+                      <ProductCard key={item.id} product={item} />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )}
+          </>
         )}
       </main>
       <Footer />

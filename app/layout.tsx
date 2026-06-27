@@ -6,6 +6,11 @@ import { WishlistProvider } from "@/context/WishlistContext";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
+const siteUrl = "https://jagmeenfashion.com";
+const siteName = "Jagmeen Fashion";
+const supportEmail = "jagmeensupportteam@gmail.com";
+const supportPhone = "+91-8809578544";
+
 const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -21,49 +26,104 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-export const metadata = {
-  metadataBase: new URL('https://jagmeenfashion.com'),
-  title: {
-    default: 'Jagmeen Fashion — Women & Men Clothing Online India',
-    template: '%s | Jagmeen Fashion',
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/jagmeen_logo.png`,
+  image: `${siteUrl}/jagmeen_logo.png`,
+  description:
+    "Jagmeen Fashion is a Faridabad-based garment manufacturer and online clothing store for Western and Indo-Western apparel in India.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Khedi Road, Sector-87",
+    addressLocality: "Faridabad",
+    addressRegion: "Haryana",
+    postalCode: "121002",
+    addressCountry: "IN",
   },
-  description: 'Shop latest fashion for women, men & kids at Jagmeen Fashion. Best price kurtas, dresses, jeans, tops & more. Free delivery across India.',
-  keywords: [
-    'jagmeen ,Jagmeen Fashion', 'online clothing store India',
-    'women fashion online', 'men fashion India',
-    'buy kurta online', 'affordable fashion India'
+  telephone: supportPhone,
+  email: supportEmail,
+  sameAs: [
+    "https://www.instagram.com/jagmeenfashion",
+    "https://www.facebook.com/jagmeenfashion",
+    "https://x.com/jagmeenfashion",
   ],
-  openGraph: {
-    type: 'website',
-    siteName: 'Jagmeen Fashion',
-    url: 'https://jagmeenfashion.com',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
-  },
-  twitter: { card: 'summary_large_image' },
-  robots: { index: true, follow: true },
-  verification: { google: 'YOUR_GOOGLE_SEARCH_CONSOLE_CODE' },
+  openingHours: "Mo-Sa 09:30-18:00",
+  priceRange: "INR",
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/jagmeen_logo.png`,
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: supportPhone,
+      contactType: "customer support",
+      areaServed: "IN",
+      availableLanguage: ["en", "hi"],
+    },
+  ],
+  sameAs: [
+    "https://www.instagram.com/jagmeenfashion",
+    "https://www.facebook.com/jagmeenfashion",
+    "https://x.com/jagmeenfashion",
+  ],
+};
 
-// export const metadata: Metadata = {
-//   title: "Jagmeen Fashion — Luxury Fashion & Designer Clothing",
-//   description:
-//     "Discover curated collections of designer clothing, accessories, and luxury fashion at Jagmeen Fashion. Free shipping on orders over $150.",
-//   keywords: [
-//     "luxury fashion",
-//     "designer clothing",
-//     "women's fashion",
-//     "men's fashion",
-//     "accessories",
-//     "Jagmeen Fashion",
-//   ],
-//   openGraph: {
-//     title: "Jagmeen Fashion — Luxury Fashion & Designer Clothing",
-//     description:
-//       "Discover curated collections of designer clothing, accessories, and luxury fashion.",
-//     type: "website",
-//   },
-// };
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteUrl}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Jagmeen Fashion - Women & Men Clothing Online India",
+    template: "%s | Jagmeen Fashion",
+  },
+  description:
+    "Shop Western and Indo-Western clothing for women and men at Jagmeen Fashion. Quality garments, fair prices, and delivery across India.",
+  keywords: [
+    "Jagmeen Fashion",
+    "online clothing store India",
+    "Western wear India",
+    "Indo-Western clothing",
+    "women fashion online",
+    "men fashion India",
+    "garment manufacturer Faridabad",
+    "affordable fashion India",
+  ],
+  openGraph: {
+    type: "website",
+    siteName,
+    title: "Jagmeen Fashion - Clothing Online India",
+    description:
+      "Discover quality Western and Indo-Western fashion from Jagmeen Fashion, based in Faridabad, Haryana.",
+    url: siteUrl,
+    images: [{ url: "/jagmeen_logo.png", width: 1200, height: 630, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jagmeen Fashion - Clothing Online India",
+    description: "Shop quality Western and Indo-Western clothing online at Jagmeen Fashion.",
+    images: ["/jagmeen_logo.png"],
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: siteUrl },
+};
 
 export default function RootLayout({
   children,
@@ -78,45 +138,28 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-body">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ClothingStore",
-            "name": "Jagmeen Fashion",
-            "url": "https://jagmeenfashion.com",
-            "logo": "https://jagmeenfashion.com/logo.png",
-            "image": "https://jagmeenfashion.com/store-image.jpg",
-            "description": "Online clothing store for women, men & kids in India.",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "YOUR FULL STREET ADDRESS",
-              "addressLocality": "YOUR CITY",
-              "addressRegion": "YOUR STATE",
-              "postalCode": "YOUR PINCODE",
-              "addressCountry": "IN"
-            },
-            "telephone": "+91-XXXXXXXXXX",
-            "email": "contact@jagmeenfashion.com",
-            "sameAs": [
-              "https://www.instagram.com/jagmeenfashion",
-              "https://www.facebook.com/jagmeenfashion"
-            ],
-            "openingHours": "Mo-Su 09:00-21:00",
-            "priceRange": "₹₹",
-            "servesCuisine": null
-          })}}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <AuthProvider>
           <CartProvider>
             <WishlistProvider>
               {children}
-              <Toaster 
-                position="top-right" 
+              <Toaster
+                position="top-right"
                 toastOptions={{
                   duration: 4000,
                   style: {
-                    borderRadius: '0',
-                    background: '#333',
-                    color: '#fff',
+                    borderRadius: "0",
+                    background: "#333",
+                    color: "#fff",
                   },
                 }}
               />
