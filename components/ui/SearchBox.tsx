@@ -19,29 +19,29 @@ export default function SearchBox({ initial = '' }: { initial?: string }) {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
- const searchbarItems = [
-  "Mens",
-  "Womens", 
-  "Kids",
-  "Accessories",
-  "Dresses",
-  "Skirts",
-];
+  const searchbarItems = [
+    "Mens",
+    "Womens",
+    "Kids",
+    "Accessories",
+    "Dresses",
+    "Skirts",
+  ];
 
-const [placeholderIndex, setPlaceholderIndex] = useState(0);
-const [fade, setFade] = useState(true);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setFade(false); // fade out
-    setTimeout(() => {
-      setPlaceholderIndex((prev) => (prev + 1) % searchbarItems.length);
-      setFade(true); // fade in
-    }, 300); // wait for fade out, then change
-  }, 2000); // change every 2s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // fade out
+      setTimeout(() => {
+        setPlaceholderIndex((prev) => (prev + 1) % searchbarItems.length);
+        setFade(true); // fade in
+      }, 300); // wait for fade out, then change
+    }, 2000); // change every 2s
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -60,7 +60,7 @@ useEffect(() => {
       }
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud'}/api/products/suggest?q=${encodeURIComponent(query)}&limit=8`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.jagmeenfashion.com'}/api/products/suggest?q=${encodeURIComponent(query)}&limit=8`);
         const data = await res.json();
         if (!cancelled && data.success) {
           setSuggestions(data.data || []);
@@ -80,24 +80,24 @@ useEffect(() => {
       <div className="relative">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
         <div className="relative w-full">
-  <input
-    value={query}
-    onChange={(e) => setQuery(e.target.value)}
-    onFocus={() => { if (query) setShow(true); }}
-    placeholder=""
-    className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-100 focus:outline-none"
-  />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => { if (query) setShow(true); }}
+            placeholder=""
+            className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-100 focus:outline-none"
+          />
 
-  {/* Animated placeholder — only show when input is empty */}
-  {!query && (
-    <span
-      className="absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none select-none transition-opacity duration-300"
-      style={{ opacity: fade ? 1 : 0 }}
-    >
-      Search "{searchbarItems[placeholderIndex]}"...
-    </span>
-  )}
-</div>
+          {/* Animated placeholder — only show when input is empty */}
+          {!query && (
+            <span
+              className="absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none select-none transition-opacity duration-300"
+              style={{ opacity: fade ? 1 : 0 }}
+            >
+              Search "{searchbarItems[placeholderIndex]}"...
+            </span>
+          )}
+        </div>
       </div>
 
       {show && suggestions.length > 0 && (

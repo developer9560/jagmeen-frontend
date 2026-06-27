@@ -12,7 +12,7 @@ export async function generateMetadata(
   const { slug } = await params;
   
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud'}/api/products/get/${slug}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.jagmeenfashion.com'}/api/products/get/${slug}`, { next: { revalidate: 3600 } });
     const productData = await res.json();
     
     if (productData?.data) {
@@ -42,7 +42,7 @@ export default async function ProductLayout({ children, params }: Props) {
   let jsonLd = null;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud/'}/api/products/get/${slug}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.jagmeenfashion.com/'}/api/products/get/${slug}`, { next: { revalidate: 3600 } });
     const productData = await res.json();
     
     if (productData?.data) {

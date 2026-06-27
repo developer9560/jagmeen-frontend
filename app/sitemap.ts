@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   let productUrls: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.3dreamprint.cloud'}/api/products/getall?size=1000`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.jagmeenfashion.com'}/api/products/getall?size=1000`);
     const productsRes = await res.json();
     
     if (productsRes.data?.data) {
