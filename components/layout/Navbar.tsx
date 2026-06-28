@@ -37,22 +37,36 @@ export default function Navbar() {
       try {
         const res = await categoryApi.getTree();
         if (res.data) {
-          const navItems: MegaMenuNavItem[] = res.data.map((cat: CategoryNode) => ({
-            label: cat.name,
-            href: `/category/${cat.slug}`,
-            featured: {
-              title: 'New Arrivals',
-              subtitle: `Explore ${cat.name}`,
+          // Sort root categories by priority (ascending)
+          const tree = (res.data || []).slice().sort((a: CategoryNode, b: CategoryNode) => (a.priority ?? 0) - (b.priority ?? 0));
+
+          const navItems: MegaMenuNavItem[] = tree.map((cat: CategoryNode) => {
+            // Sort children by priority
+            const children = (cat.children || []).slice().sort((a: CategoryNode, b: CategoryNode) => (a.priority ?? 0) - (b.priority ?? 0));
+
+            return {
+              label: cat.name,
               href: `/category/${cat.slug}`,
-              accent: 'Shop Now',
-            },
-            columns: (cat.children || []).map(child => ({
-              title: child.name,
-              links: (child.children || []).length > 0 
-                ? child.children.map(sub => ({ label: sub.name, href: `/category/${sub.slug}` }))
-                : [{ label: `All ${child.name}`, href: `/category/${child.slug}` }]
-            }))
-          }));
+              featured: {
+                title: 'New Arrivals',
+                subtitle: `Explore ${cat.name}`,
+                href: `/category/${cat.slug}`,
+                accent: 'Shop Now',
+              },
+              columns: children.map(child => {
+                const subs = (child.children || []).slice().sort((a: CategoryNode, b: CategoryNode) => (a.priority ?? 0) - (b.priority ?? 0));
+                const links = subs.length > 0
+                  ? subs.map(sub => ({ label: sub.name, href: `/category/${sub.slug}` }))
+                  : [{ label: `All ${child.name}`, href: `/category/${child.slug}` }];
+
+                return {
+                  title: child.name,
+                  links,
+                };
+              })
+            };
+          });
+
           setMegaMenuNav(navItems);
         }
       } catch (err) {
