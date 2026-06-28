@@ -79,6 +79,7 @@ export default function CategoryPage() {
                     <input 
                       type="number" 
                       placeholder="Min" 
+                      aria-label="Minimum price"
                       value={minPrice ?? ''} 
                       onChange={(e) => setMinPrice(e.target.value ? Number(e.target.value) : undefined)} 
                       className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
@@ -90,6 +91,7 @@ export default function CategoryPage() {
                     <input 
                       type="number" 
                       placeholder="Max" 
+                      aria-label="Maximum price"
                       value={maxPrice ?? ''} 
                       onChange={(e) => setMaxPrice(e.target.value ? Number(e.target.value) : undefined)} 
                       className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
@@ -138,7 +140,7 @@ export default function CategoryPage() {
 
               <div className="flex items-center gap-4">
                 <label className="text-xs text-muted">Sort By</label>
-                <select value={sortBy} onChange={(e) => { setSortBy(e.target.value as typeof sortBy); setPageNum(1); }} className="p-2 border border-gray-100 rounded">
+                <select aria-label="Sort products" value={sortBy} onChange={(e) => { setSortBy(e.target.value as typeof sortBy); setPageNum(1); }} className="p-2 border border-gray-100 rounded">
                   <option value="latest">Latest</option>
                   <option value="price_asc">Price: Low to High</option>
                   <option value="price_desc">Price: High to Low</option>

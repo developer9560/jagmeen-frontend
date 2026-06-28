@@ -16,13 +16,14 @@ const getBannerHref = (banner: Banner) => {
 
 interface HeroSectionProps {
   bannerType?: BannerType;
+  initialBanners?: Banner[];
 }
 
-export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
-  const [slides, setSlides] = useState<Banner[]>([]);
+export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }: HeroSectionProps) {
+  const [slides, setSlides] = useState<Banner[]>(initialBanners);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(initialBanners.length === 0);
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
   const resumeAutoPlayTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -49,10 +50,13 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
       setIsLoading(true);
 
       try {
-        const response = await bannerApi.getByType(bannerType);
+        let banners = initialBanners;
+        if (banners.length === 0) {
+          const response = await bannerApi.getByType(bannerType);
+          banners = response.data?.banners ?? [];
+        }
         if (!isMounted) return;
 
-        const banners = response.data?.banners ?? [];
         setSlides(
           banners.filter((banner) =>
             isDesktop ? banner.is_for_desktop === true : banner.is_for_mobile === true
@@ -76,7 +80,7 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
     return () => {
       isMounted = false;
     };
-  }, [isDesktop, bannerType]);
+  }, [isDesktop, bannerType, initialBanners]);
 
   // Auto-play slider
   useEffect(() => {
@@ -164,7 +168,9 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
       fill
       className="object-cover transition-all duration-1000 ease-out"
       priority={safeCurrentSlide === 0}
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+      fetchPriority={safeCurrentSlide === 0 ? 'high' : 'auto'}
+      quality={70}
+      sizes="100vw"
     />
   );
 
@@ -231,13 +237,17 @@ export default function HeroSection({ bannerType = 'HOME' }: HeroSectionProps) {
                   setCurrentSlide(index);
                   pauseAutoPlay();
                 }}
-                className={`transition-all duration-300 rounded-full ${
-                  index === safeCurrentSlide
-                    ? 'bg-white w-6 h-2'
-                    : 'bg-white/50 w-2 h-2 hover:bg-white/75'
-                }`}
+                className="w-11 h-11 flex items-center justify-center"
                 aria-label={`Go to ${banner.title}`}
-              />
+              >
+                <span
+                  className={`block transition-all duration-300 rounded-full ${
+                    index === safeCurrentSlide
+                      ? 'bg-white w-6 h-2'
+                      : 'bg-white/50 w-2 h-2 hover:bg-white/75'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}

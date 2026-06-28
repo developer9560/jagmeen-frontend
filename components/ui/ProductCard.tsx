@@ -39,6 +39,8 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
               alt={`${product.name} - buy online at Jagmeen Fashion`}
               width={400}
               height={500}
+              quality={70}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-cover h-full w-full group-hover:scale-105 transition-transform duration-700 ease-in-out"
             />
           ) : (
@@ -89,7 +91,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           <div className="flex items-center gap-2">
             <span className="text-sm font-bold text-primary">{formatPrice(product.price)}</span>
             {product.mrp > product.price && (
-              <span className="text-xs text-muted line-through">{formatPrice(product.mrp)}</span>
+              <span className="text-xs text-neutral-600 line-through">{formatPrice(product.mrp)}</span>
             )}
           </div>
         </Link>

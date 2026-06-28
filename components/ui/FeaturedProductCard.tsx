@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Heart, ShoppingBag, ArrowUpRight } from 'lucide-react';
 import { useWishlist } from '@/context/WishlistContext';
@@ -19,31 +18,28 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
   const router = useRouter();
   const { toggleWishlist, checkIsWishlisted } = useWishlist();
   const { addToCart } = useCart();
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [wishlistOverride, setWishlistOverride] = useState<{ productId: number; value: boolean } | null>(null);
   const [imageError, setImageError] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
   const discount = getDiscountPercent(product.price, product.mrp);
   const productHref = `/products/${product.slug}`;
-
-  // Sync initial wishlist state from context
-  useEffect(() => {
-    setIsWishlisted(checkIsWishlisted(product.id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkIsWishlisted, product.id]);
+  const contextWishlisted = checkIsWishlisted(product.id);
+  const isWishlisted = wishlistOverride?.productId === product.id ? wishlistOverride.value : contextWishlisted;
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Optimistic UI
-    setIsWishlisted(!isWishlisted);
+    setWishlistOverride({ productId: product.id, value: !isWishlisted });
     
     const success = await toggleWishlist(product.id);
     if (!success) {
-      // Revert if failed
-      setIsWishlisted(isWishlisted);
+      setWishlistOverride(null);
+      return;
     }
+
+    window.setTimeout(() => setWishlistOverride(null), 500);
   };
 
   const handleAddToCart = async (e: React.MouseEvent) => {
@@ -78,9 +74,10 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
         {product.primary_image && !imageError ? (
           <Image
             src={product.primary_image}
-            alt={product.name}
+            alt={`${product.name} - buy online at Jagmeen Fashion`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            quality={70}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             onError={() => setImageError(true)}
           />
@@ -175,7 +172,7 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
             {formatPrice(product.price)}.00
           </span>
           {product.mrp > product.price && (
-            <span className="text-sm text-muted line-through">{formatPrice(product.mrp)}.00</span>
+            <span className="text-sm text-neutral-600 line-through">{formatPrice(product.mrp)}.00</span>
           )}
         </div>
       </div>

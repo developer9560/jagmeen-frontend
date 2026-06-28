@@ -135,6 +135,12 @@ export default function RootLayout({
       lang="en"
       className={`${cormorantGaramond.variable} ${dmSans.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.jagmeenfashion.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://api.jagmeenfashion.com" />
+      </head>
       <body className="min-h-full flex flex-col font-body">
         <script
           type="application/ld+json"

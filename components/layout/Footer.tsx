@@ -61,7 +61,7 @@ export default function Footer() {
 
           {/* Column 2: Top Categories */}
           <div className="flex flex-col">
-            <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Top Categories</h3>
+            <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Top Categories</h3>
             <ul className="space-y-4">
               {categories.length > 0 ? (
                 categories.map((cat) => (
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Column 3: Quick Links */}
           <div className="flex flex-col">
-            <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Quick Links</h3>
+            <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Quick Links</h3>
             <ul className="space-y-4">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
@@ -104,7 +104,7 @@ export default function Footer() {
 
           {/* Column 4: Newsletter */}
           <div className="flex flex-col">
-            <h3 className="text-gold text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
+            <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
 
             <div className="space-y-3 mb-8">
               <a href="mailto:jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">

@@ -3,6 +3,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import Footer from '@/components/layout/Footer';
 import BestSeller from '@/components/sections/BestSeller';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
+import type { Banner, BannerType } from '@/lib/api';
 
 export const metadata = {
   title: `${SITE_NAME} - Trendy Clothes for Women & Men Online India`,
@@ -26,12 +27,39 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.jagmeenfashion.com';
+
+async function getBanners(type: BannerType): Promise<Banner[]> {
+  try {
+    const response = await fetch(`${apiUrl}/api/banners/type/${type}`, {
+      next: { revalidate: 300 },
+    });
+    if (!response.ok) return [];
+    const payload = await response.json();
+    const banners = payload?.data?.banners || [];
+
+    return banners.sort((a: Banner, b: Banner) => {
+      if (a.is_for_mobile === b.is_for_mobile) return a.id - b.id;
+      return a.is_for_mobile ? -1 : 1;
+    });
+  } catch (error) {
+    console.error(`Failed to fetch ${type} banners for homepage:`, error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const [homeBanners, trendingBanners, bestSellerBanners] = await Promise.all([
+    getBanners('HOME'),
+    getBanners('TRENDING'),
+    getBanners('BESTSELLER'),
+  ]);
+
   return (
     <>
       <Header />
       <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden">
-        <HeroSection bannerType="HOME" />
+        <HeroSection bannerType="HOME" initialBanners={homeBanners} />
 
         <section className="py-5 md:py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -40,7 +68,7 @@ export default function Home() {
             </h2>
             <div className="w-16 h-0.5 mb-6" />
           </div>
-          <HeroSection bannerType="TRENDING" />
+          <HeroSection bannerType="TRENDING" initialBanners={trendingBanners} />
         </section>
 
         <section className="py-5 md:py-8 bg-white">
@@ -50,7 +78,7 @@ export default function Home() {
             </h2>
             <div className="w-16 h-0.5 mb-6" />
           </div>
-          <HeroSection bannerType="BESTSELLER" />
+          <HeroSection bannerType="BESTSELLER" initialBanners={bestSellerBanners} />
         </section>
 
         <BestSeller />
