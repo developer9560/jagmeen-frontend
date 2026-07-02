@@ -142,14 +142,7 @@ export default function WishlistPage() {
                       <Trash2 size={14} />
                     </button>
                     
-                    {/* Out of stock badge */}
-                    {!item.stock_quantity && (
-                      <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none">
-                        <span className="bg-primary text-white text-[10px] tracking-widest uppercase font-bold px-4 py-2">
-                          Out of Stock
-                        </span>
-                      </div>
-                    )}
+
                   </div>
 
                   {/* Details Area */}
@@ -169,14 +162,12 @@ export default function WishlistPage() {
                     {/* Add to Cart Button */}
                     <button
                       onClick={() => handleAddToCart(item.product_id)}
-                      disabled={!item.stock_quantity || addingToCartId === item.product_id}
+                      disabled={addingToCartId === item.product_id}
                       className="w-full py-3 border border-primary text-xs tracking-widest uppercase font-bold hover:bg-primary hover:text-white transition-colors disabled:opacity-50 disabled:border-gray-200 disabled:text-muted disabled:hover:bg-transparent"
                     >
                       {addingToCartId === item.product_id 
                         ? 'Adding...' 
-                        : item.stock_quantity 
-                          ? 'Add to Bag' 
-                          : 'Sold Out'}
+                        : 'Add to Bag'}
                     </button>
                   </div>
                 </div>

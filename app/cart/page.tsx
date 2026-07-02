@@ -166,7 +166,7 @@ export default function CartPage() {
                             </span>
                             <button 
                               onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                              disabled={item.quantity >= item.stock_quantity}
+                              disabled={item.quantity >= 10}
                               className="flex-1 flex items-center justify-center text-primary hover:text-gold disabled:opacity-50 transition-colors"
                             >
                               +

@@ -5,6 +5,7 @@ import BestSeller from '@/components/sections/BestSeller';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
 import type { Banner, BannerType } from '@/lib/api';
 
+
 export const metadata = {
   title: `${SITE_NAME} - Trendy Clothes for Women & Men Online India`,
   description:
@@ -48,11 +49,28 @@ async function getBanners(type: BannerType): Promise<Banner[]> {
   }
 }
 
+async function getSectionTitle(type: string): Promise<string | null> {
+  try {
+    const response = await fetch(`${apiUrl}/api/sections/${type}`, {
+      next: { revalidate: 300 },
+    });
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data?.is_active ? data?.title : null;
+  } catch (error) {
+    console.error(`Failed to fetch ${type} section title:`, error);
+    return null;
+  }
+}
+ 
+
 export default async function Home() {
-  const [homeBanners, trendingBanners, bestSellerBanners] = await Promise.all([
+  const [homeBanners, trendingBanners, bestSellerBanners, trendingTitle, bestSellerTitle] = await Promise.all([
     getBanners('HOME'),
     getBanners('TRENDING'),
     getBanners('BESTSELLER'),
+    getSectionTitle('TRENDING'),
+    getSectionTitle('BESTSELLER'),
   ]);
 
   return (
@@ -64,9 +82,9 @@ export default async function Home() {
         <section className="py-5 md:py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-2">
-              Trending Products
+              {trendingTitle || 'Trending'}
             </h2>
-            <div className="w-16 h-0.5 mb-6" />
+            <div className="w-16 h-0.5 mb-6 bg-gold" />
           </div>
           <HeroSection bannerType="TRENDING" initialBanners={trendingBanners} />
         </section>
@@ -74,9 +92,9 @@ export default async function Home() {
         <section className="py-5 md:py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-2">
-              Best Sellers
+              {bestSellerTitle || 'Best Seller '}
             </h2>
-            <div className="w-16 h-0.5 mb-6" />
+            <div className="w-16 h-0.5 mb-6 bg-gold" />
           </div>
           <HeroSection bannerType="BESTSELLER" initialBanners={bestSellerBanners} />
         </section>

@@ -1,14 +1,20 @@
+export interface ProductSize {
+  id: number;
+  product_id: number;
+  size: string;
+  price: number;
+  mrp: number;
+}
+
 export interface ProductCardData {
   id: number;
   slug: string;
   name: string;
-  price: number;
-  mrp: number;
   primary_image: string | null;
   is_featured: boolean;
   is_best_seller: boolean;
-  stock_quantity: number;
   summary: string;
+  sizes?: ProductSize[];
 }
 
 export interface PaginationMeta {
@@ -48,16 +54,14 @@ export interface ProductDetailData {
   id: number;
   slug: string;
   name: string;
-  price: number;
-  mrp: number;
   summary: string | null;
   product_details: Record<string, any> | string | null;
   keywords?: string[];
   is_featured: boolean;
-  stock_quantity: number;
   view_count: number;
   sale: number;
   images: ProductImage[];
+  sizes?: ProductSize[];
   category_id: number;
   created_at: string;
   updated_at: string;

@@ -17,17 +17,22 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [activeTab, setActiveTab] = useState<'details' | 'shipping'>('details');
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false);
+  const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
 
   const { addToCart } = useCart();
   const { checkIsWishlisted, toggleWishlist } = useWishlist();
 
   const isWishlisted = checkIsWishlisted(product.id);
-  const discount = getDiscountPercent(product.price, product.mrp);
+  
+  const currentSize = product.sizes && product.sizes.length > 0 ? product.sizes[selectedSizeIdx] : null;
+  const currentPrice = currentSize ? currentSize.price : 0;
+  const currentMrp = currentSize ? currentSize.mrp : 0;
+  const discount = currentPrice > 0 ? getDiscountPercent(currentPrice, currentMrp) : 0;
 
 
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
-    await addToCart(product.id, quantity);
+    await addToCart(product.id, quantity, currentSize?.size);
     setIsAddingToCart(false);
   };
 
@@ -79,13 +84,43 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             </h1>
 
             <div className="flex items-end gap-4 mb-8">
-              <span className="text-2xl md:text-3xl font-semibold text-primary tracking-wide">
-                {formatPrice(product.price)}
-              </span>
-              {product.mrp > product.price && (
-                <span className="text-lg text-muted line-through mb-1">{formatPrice(product.mrp)}</span>
+              {currentSize ? (
+                <>
+                  <span className="text-2xl md:text-3xl font-semibold text-primary tracking-wide">
+                    {formatPrice(currentPrice)}
+                  </span>
+                  {currentMrp > currentPrice && (
+                    <span className="text-lg text-muted line-through mb-1">{formatPrice(currentMrp)}</span>
+                  )}
+                </>
+              ) : (
+                <span className="text-2xl md:text-3xl font-semibold text-primary tracking-wide">
+                  Price Unavailable
+                </span>
               )}
             </div>
+
+            {/* Sizes Selection */}
+            {product.sizes && product.sizes.length > 0 && (
+              <div className="mb-8">
+                <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Select Size</p>
+                <div className="flex flex-wrap gap-3">
+                  {product.sizes.map((s, idx) => (
+                    <button
+                      key={s.id || idx}
+                      onClick={() => setSelectedSizeIdx(idx)}
+                      className={`h-12 min-w-[3rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${
+                        selectedSizeIdx === idx
+                          ? 'border-primary bg-primary text-white'
+                          : 'border-gray-200 text-charcoal hover:border-primary'
+                      }`}
+                    >
+                      {s.size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="w-full h-px bg-gold/20 mb-8" />
 
@@ -118,11 +153,11 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
               <button
                 onClick={handleAddToCart}
-                disabled={isAddingToCart || !product.stock_quantity}
+                disabled={isAddingToCart || !currentSize}
                 className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
               >
                 <ShoppingBag size={18} />
-                {isAddingToCart ? 'Adding...' : product.stock_quantity ? 'Add to Bag' : 'Out of Stock'}
+                {isAddingToCart ? 'Adding...' : 'Add to Bag'}
               </button>
 
               <button

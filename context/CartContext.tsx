@@ -17,7 +17,7 @@ interface CartContextType {
   cartSummary: CartSummary | null;
   isLoading: boolean;
   refreshCartSummary: () => Promise<void>;
-  addToCart: (productId: number, quantity?: number) => Promise<boolean>;
+  addToCart: (productId: number, quantity?: number, size?: string) => Promise<boolean>;
   getCartItems: () => Promise<CartData | null>;
   removeItem: (itemId: number) => Promise<boolean>;
   updateItemQuantity: (itemId: number, quantity: number) => Promise<boolean>;
@@ -55,7 +55,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     refreshCartSummary();
   }, [refreshCartSummary]);
 
-  const addToCart = async (productId: number, quantity: number = 1): Promise<boolean> => {
+  const addToCart = async (productId: number, quantity: number = 1, size?: string): Promise<boolean> => {
     if (!isAuthenticated) {
       toast.error('Please sign in to add items to your cart.');
       return false;
@@ -65,7 +65,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (!token) return false;
 
     try {
-      const response = await cartApi.addToCart(token, productId, quantity);
+      const response = await cartApi.addToCart(token, productId, quantity, size);
       if (response.success) {
         toast.success(response.message || 'Added to bag');
         if (response.cart_summary) {

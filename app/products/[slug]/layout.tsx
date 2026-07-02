@@ -24,7 +24,6 @@ interface ProductMeta {
   mrp: number;
   summary?: string | null;
   keywords?: string[];
-  stock_quantity: number;
   images?: ProductImageMeta[];
   updated_at?: string;
 }
@@ -117,10 +116,7 @@ export default async function ProductLayout({ children, params }: Props) {
             url: `${SITE_URL}/products/${slug}`,
             priceCurrency: 'INR',
             price: product.price,
-            availability:
-              product.stock_quantity > 0
-                ? 'https://schema.org/InStock'
-                : 'https://schema.org/OutOfStock',
+            availability: 'https://schema.org/InStock',
             itemCondition: 'https://schema.org/NewCondition',
           },
         },

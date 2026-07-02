@@ -22,7 +22,9 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
   const [imageError, setImageError] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const discount = getDiscountPercent(product.price, product.mrp);
+  const discount = product.sizes && product.sizes.length > 0 
+    ? getDiscountPercent(product.sizes[0].price, product.sizes[0].mrp) 
+    : 0;
   const productHref = `/products/${product.slug}`;
   const contextWishlisted = checkIsWishlisted(product.id);
   const isWishlisted = wishlistOverride?.productId === product.id ? wishlistOverride.value : contextWishlisted;
@@ -168,11 +170,17 @@ export default function FeaturedProductCard({ product, index = 0 }: FeaturedProd
         )} */}
 
         <div className="flex items-baseline gap-2.5">
-          <span className="text-base md:text-lg font-semibold text-primary tracking-wide">
-            {formatPrice(product.price)}.00
-          </span>
-          {product.mrp > product.price && (
-            <span className="text-sm text-neutral-600 line-through">{formatPrice(product.mrp)}.00</span>
+          {product.sizes && product.sizes.length > 0 ? (
+            <>
+              <span className="text-base md:text-lg font-semibold text-primary tracking-wide">
+                {formatPrice(product.sizes[0].price)}.00
+              </span>
+              {product.sizes[0].mrp > product.sizes[0].price && (
+                <span className="text-sm text-neutral-600 line-through">{formatPrice(product.sizes[0].mrp)}.00</span>
+              )}
+            </>
+          ) : (
+            <span className="text-base md:text-lg font-semibold text-primary tracking-wide">Price Unavailable</span>
           )}
         </div>
       </div>

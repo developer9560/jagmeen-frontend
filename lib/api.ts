@@ -356,10 +356,10 @@ export const cartApi = {
   getSummary: (token: string) =>
     request<CartSummary>('/api/cart/summary', { method: 'GET' }, token),
 
-  addToCart: (token: string, productId: number, quantity: number = 1) =>
+  addToCart: (token: string, productId: number, quantity: number = 1, size?: string) =>
     request<AddToCartResponse>(
       '/api/cart/add',
-      { method: 'POST', body: JSON.stringify({ product_id: productId, quantity }) },
+      { method: 'POST', body: JSON.stringify({ product_id: productId, quantity, size }) },
       token
     ),
 

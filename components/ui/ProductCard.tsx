@@ -89,9 +89,15 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
         <Link href={`/products/${product.slug}`} className="block hover:text-gold transition-colors">
           <h3 className="text-sm font-medium text-primary line-clamp-1 mb-2">{product.name}</h3>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-primary">{formatPrice(product.price)}</span>
-            {product.mrp > product.price && (
-              <span className="text-xs text-neutral-600 line-through">{formatPrice(product.mrp)}</span>
+            {product.sizes && product.sizes.length > 0 ? (
+              <>
+                <span className="text-sm font-bold text-primary">{formatPrice(product.sizes[0].price)}</span>
+                {product.sizes[0].mrp > product.sizes[0].price && (
+                  <span className="text-xs text-neutral-600 line-through">{formatPrice(product.sizes[0].mrp)}</span>
+                )}
+              </>
+            ) : (
+              <span className="text-sm font-bold text-primary">Price Unavailable</span>
             )}
           </div>
         </Link>
