@@ -161,7 +161,7 @@ export default function Navbar() {
           </div>
 
           {/* Center logo */}
-          <Link href="/" className="hidden lg:flex items-center justify-center" onClick={closeMenu}>
+          <Link href="/" className="flex items-center justify-center" onClick={closeMenu}>
           <div className="flex h-10 w-20 items-center justify-center sm:w-28 md:pt-6 cursor-pointer">
             <Image
               src={logoName}
