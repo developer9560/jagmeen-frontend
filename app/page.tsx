@@ -9,9 +9,9 @@ import { SITE_NAME, SITE_URL } from '@/lib/seo';
 import type { Banner, BannerType } from '@/lib/api';
 
 export const metadata = {
-  title: `${SITE_NAME} - Trendy Clothes for Women & Men Online India`,
+  title: `${SITE_NAME} - Jagmeen Online Fashion Store`,
   description:
-    "Welcome to Jagmeen Fashion, an Indian online clothing store for Western and Indo-Western fashion. Shop men's and women's apparel with delivery across India.",
+    "Jagmeen is a lifestyle brand. Focusing on latest trends in clothing. ",
   keywords: [
     'Jagmeen Fashion',
     'online clothes India',
@@ -22,9 +22,9 @@ export const metadata = {
   ],
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: `${SITE_NAME} - Trendy Clothes Online India`,
+    title: `${SITE_NAME} - Jagmeen online fashion store`,
     description:
-      "Shop Western and Indo-Western clothing for men and women at Jagmeen Fashion.",
+      "Jagmeen is a lifestyle brand. Focusing on latest trends in clothing. ",
     url: SITE_URL,
     type: 'website',
   },

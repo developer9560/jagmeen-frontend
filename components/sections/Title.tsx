@@ -12,7 +12,7 @@ const Title = ({ sectionType, fallback }: TitleProps) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.jagmeenfashion.com";
     if (!apiUrl) {
       setLoading(false);
       return;

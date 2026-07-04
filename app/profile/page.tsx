@@ -3,22 +3,22 @@ import Link from 'next/link';
 import { Sparkles, Heart, Award, Users, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Jagmeen Fashion - Garment Manufacturer',
+  title: 'Jagmeen Fashion - Profile',
   description:
-    'Learn about Jagmeen Fashion, a Faridabad-based garment manufacturer creating quality Western and Indo-Western apparel for brands, retailers and fashion businesses.',
+    'Jagmeen Fashion is in the business of manufacturing and export of woven garments. The company is based in India.',
   keywords: [
-    'Jagmeen Fashion about',
+    'Jagmeen Fashion profile',
     'garment manufacturer Faridabad',
     'clothing manufacturer Haryana',
     'Western wear manufacturer India',
     'Indo-Western apparel manufacturer',
   ],
-  alternates: { canonical: 'https://jagmeenfashion.com/about' },
+  alternates: { canonical: 'https://jagmeenfashion.com/profile' },
   openGraph: {
-    title: 'About Jagmeen Fashion',
+    title: 'Profile - Jagmeen Fashion',
     description:
-      'Jagmeen Fashion is a Faridabad-based garment manufacturing company focused on quality, consistency and timely delivery.',
-    url: 'https://jagmeenfashion.com/about',
+      'Jagmeen Fashion is in the business of manufacturing and export of woven garments. The company based in India',
+    url: 'https://jagmeenfashion.com/profile',
     type: 'website',
   },
 };
@@ -55,7 +55,7 @@ const VALUES = [
   },
 ];
 
-export default function AboutPage() {
+export default function ProfilePage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ─── Hero ─────────────────────────────────────────────────────────── */}
