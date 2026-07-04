@@ -60,6 +60,10 @@ const nextConfig: NextConfig = {
       {
         protocol:"https",
         hostname:"houseofniav.com"
+      },
+      {
+        protocol:"https",
+        hostname:"drive.google.com"
       }
     ],
     unoptimized: process.env.NODE_ENV === "development",

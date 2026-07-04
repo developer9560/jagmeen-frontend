@@ -156,7 +156,7 @@ export default function PrivacyPolicyPage() {
               <Shield size={14} className="text-gold" />
               <span className="text-gold text-xs font-bold uppercase tracking-widest">Legal</span>
             </div>
-            <h1 className="font-heading italic text-5xl md:text-7xl text-white leading-tight mb-6">
+            <h1 className="font-heading  text-5xl md:text-7xl text-white leading-tight mb-6">
               Privacy<br />Policy
             </h1>
             <p className="text-white/50 text-sm">
@@ -204,7 +204,7 @@ export default function PrivacyPolicyPage() {
                   <div className="w-10 h-10 flex-shrink-0 bg-primary flex items-center justify-center">
                     <section.icon size={18} className="text-gold" />
                   </div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-primary">{section.title}</h2>
+                  <h2 className="font-heading  text-2xl md:text-3xl text-primary">{section.title}</h2>
                 </div>
 
                 {/* Subsections */}

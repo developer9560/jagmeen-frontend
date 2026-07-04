@@ -109,7 +109,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="animate-fade-in-up">
             <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">Who We Are</p>
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary leading-tight mb-8">
+            <h2 className="font-heading  text-4xl md:text-5xl text-primary leading-tight mb-8">
               More Than a Fashion Store
             </h2>
             <div className="space-y-5 text-charcoal/70 leading-relaxed">
@@ -135,11 +135,11 @@ export default function AboutPage() {
           {/* Decorative quote block */}
           <div className="relative">
             <div className="bg-cream border border-gold/20 p-5 md:p-7">
-              {/* <span className="font-heading italic text-7xl text-gold/30 leading-none block -mt-4 mb-2">"</span> */}
-              <blockquote className="font-heading italic text-xl md:text-2xl text-primary  leading-relaxed mb-4">
+              {/* <span className="font-heading  text-7xl text-gold/30 leading-none block -mt-4 mb-2">"</span> */}
+              <blockquote className="font-heading  text-xl md:text-2xl text-primary  leading-relaxed mb-4">
                 &quot; Fashion is the armour to survive the reality of everyday life. &quot;
               </blockquote>
-              {/* <cite className="text-xs uppercase tracking-widest text-muted font-bold not-italic">
+              {/* <cite className="text-xs uppercase tracking-widest text-muted font-bold not-">
                 — Bill Cunningham
               </cite> */}
             </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">What We Stand For</p>
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary">Our Core Values</h2>
+            <h2 className="font-heading  text-4xl md:text-5xl text-primary">Our Core Values</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {VALUES.map((v, i) => (
@@ -165,7 +165,7 @@ export default function AboutPage() {
                 <div className="w-12 h-12 flex items-center justify-center bg-primary group-hover:bg-gold transition-colors duration-300 mb-6">
                   <v.icon size={22} className="text-gold group-hover:text-primary transition-colors duration-300" />
                 </div>
-                <h3 className="font-heading italic text-xl text-primary mb-3">{v.title}</h3>
+                <h3 className="font-heading  text-xl text-primary mb-3">{v.title}</h3>
                 <p className="text-charcoal/60 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
@@ -179,7 +179,7 @@ export default function AboutPage() {
       <section className="bg-primary py-24">
         <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
           <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">Join Us</p>
-          <h2 className="font-heading italic text-4xl md:text-6xl text-white mb-6">
+          <h2 className="font-heading  text-4xl md:text-6xl text-white mb-6">
             Start Your Style Journey
           </h2>
           <p className="text-white/50 mb-10 text-lg">

@@ -65,7 +65,7 @@ export default function ClientPage({ slug }: Props) {
           </div>
 
           {/* Sidebar */}
-          <aside className="hidden md:block w-64 flex-shrink-0 space-y-8">
+          {/* <aside className="hidden md:block w-64 flex-shrink-0 space-y-8">
             <div className="bg-white rounded-sm p-6 shadow-sm border border-gray-100">
               <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">Filter By</h4>
 
@@ -126,13 +126,13 @@ export default function ClientPage({ slug }: Props) {
                 </div>
               </div>
             </div>
-          </aside>
+          </aside> */}
 
           {/* Product grid */}
           <section className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="font-heading italic text-2xl text-primary">{category?.name || seoPage?.h1 || fallbackTitle}</h1>
+                <h1 className="font-heading  text-2xl text-primary">{category?.name || seoPage?.h1 || fallbackTitle}</h1>
                 <p className="text-sm text-muted">{pagination ? `${pagination.total_records} Products` : ''}</p>
               </div>
 
@@ -168,69 +168,7 @@ export default function ClientPage({ slug }: Props) {
                   <button disabled={pagination ? !pagination.has_next : true} onClick={() => setPageNum((s) => s + 1)} className="px-4 py-2 border rounded">Next</button>
                 </div>
 
-                <section className="mt-14 bg-white border border-gray-100 p-6 md:p-8">
-                  <h2 className="font-heading italic text-3xl text-primary mb-5">
-                    {seoPage?.h1 || `${category?.name || fallbackTitle} at Jagmeen Fashion`}
-                  </h2>
-                  <div className="space-y-4 text-sm md:text-base text-charcoal/70 leading-relaxed">
-                    {seoPage ? (
-                      seoPage.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-                    ) : (
-                      <>
-                        <p>
-                          Explore {category?.name || fallbackTitle} online at Jagmeen Fashion with product images,
-                          prices, availability and clear product details. This category page helps customers compare
-                          active products and choose styles that match their need.
-                        </p>
-                        <p>
-                          For stronger SEO, add researched category keywords, useful buying guidance, size notes,
-                          fabric details and internal links for every important product group.
-                        </p>
-                      </>
-                    )}
-                  </div>
-
-                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {(seoPage?.relatedLinks || [
-                      { label: 'All Products', href: '/products' },
-                      { label: 'Contact Us', href: '/contact' },
-                      { label: 'About Jagmeen', href: '/about' },
-                    ]).map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="border border-gray-100 px-4 py-3 text-sm font-medium text-primary hover:border-gold hover:text-gold transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="mt-8 bg-cream/60 border border-gold/20 p-6 md:p-8">
-                  <h2 className="font-heading italic text-3xl text-primary mb-5">FAQs</h2>
-                  <div className="space-y-4">
-                    {(seoPage?.faqs || [
-                      {
-                        question: `Can I buy ${category?.name || fallbackTitle} online from Jagmeen Fashion?`,
-                        answer: `Yes, active ${category?.name || fallbackTitle} products are listed with price, images and product details.`,
-                      },
-                      {
-                        question: 'Does Jagmeen Fashion deliver across India?',
-                        answer: 'Delivery is available across India for eligible products and serviceable pin codes.',
-                      },
-                      {
-                        question: 'Where should I write researched keywords?',
-                        answer: 'Use frontend/lib/seo.ts for landing-page keywords and category/product metadata files for page-specific terms.',
-                      },
-                    ]).map((faq) => (
-                      <div key={faq.question} className="bg-white p-5 border border-gray-100">
-                        <h3 className="font-semibold text-primary mb-2">{faq.question}</h3>
-                        <p className="text-sm text-charcoal/70">{faq.answer}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+                
               </>
             )}
           </section>

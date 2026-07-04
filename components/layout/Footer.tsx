@@ -29,15 +29,15 @@ export default function Footer() {
 
   return (
     <footer className="bg-white text-black pt-20 pb-6 ">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="w-full mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
           {/* Column 1: Brand Info */}
-          <div className="flex flex-col">
-            <h2 className="font-heading italic text-3xl font-bold tracking-wide mb-6">
-              Jagmeen Fashion
+          <div className="flex flex-col mt-0  p-0">
+            <h2 className=" p-0  uppercase text-3xl font-bold tracking-wide">
+              Jagmeen 
             </h2>
-            <p className="text-black text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-black text-sm leading-relaxed  max-w-[250px]">
               Elevating everyday fashion with premium-quality clothing, modern designs, and exceptional comfort.
             </p>
             
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Top Categories */}
-          <div className="flex flex-col">
+          <div className="flex flex-col  py-2">
             <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Top Categories</h3>
             <ul className="space-y-4">
               {categories.length > 0 ? (
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Quick Links */}
-          <div className="flex flex-col">
+          <div className="flex flex-col py-2">
             <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Quick Links</h3>
             <ul className="space-y-4">
               {FOOTER_LINKS.company.map((link) => (
@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Newsletter */}
-          <div className="flex flex-col">
+          <div className="flex flex-col py-2 ">
             <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">Get In Touch</h3>
 
             <div className="space-y-3 mb-8">

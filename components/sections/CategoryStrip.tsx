@@ -7,7 +7,7 @@ export default function CategoryStrip() {
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="font-heading italic text-3xl md:text-4xl text-primary text-center mb-10">
+        <h2 className="font-heading  text-3xl md:text-4xl text-primary text-center mb-10">
           Shop by Category
         </h2>
         

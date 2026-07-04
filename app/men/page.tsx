@@ -42,7 +42,8 @@ export const metadata: Metadata = {
   alternates: { canonical: siteUrl },
 };
 
+
 export default function MenPage({ params }: { params?: { slug?: string } }) {
-  const slug = (params?.slug as string) || 'men';
+  const slug = (params?.slug as string) || 'mens';
   return <ClientPage slug={slug} />;
 }

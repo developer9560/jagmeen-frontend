@@ -59,7 +59,7 @@ export default function OrdersPage() {
       <div className="bg-white border border-gray-100 p-6 md:p-10">
         <div className="mb-8">
           <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Purchases</p>
-          <h1 className="font-heading italic text-3xl md:text-4xl text-primary">My Orders</h1>
+          <h1 className="font-heading  text-3xl md:text-4xl text-primary">My Orders</h1>
           <p className="text-sm text-muted mt-2">Track order status and review your purchased items.</p>
         </div>
 

@@ -19,7 +19,7 @@ export default function SaleBanner() {
           Limited Time Offer
         </p>
         
-        <h2 className="font-heading italic text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-none animate-fade-in-up delay-100">
+        <h2 className="font-heading  text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-none animate-fade-in-up delay-100">
           The Grand Summer Sale
         </h2>
         

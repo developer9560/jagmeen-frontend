@@ -75,7 +75,7 @@ export default function MegaMenu({ item, isVisible, onClose }: MegaMenuProps) {
                 <p className="text-gold text-xs tracking-[0.25em] uppercase font-bold mb-2">
                   {item.featured.subtitle}
                 </p>
-                <h4 className="font-heading italic text-3xl text-white mb-4 group-hover:text-gold transition-colors duration-300">
+                <h4 className="font-heading  text-3xl text-white mb-4 group-hover:text-gold transition-colors duration-300">
                   {item.featured.title}
                 </h4>
                 <span className="inline-flex items-center gap-2 text-white text-xs tracking-widest uppercase font-medium group-hover:gap-3 transition-all duration-300">

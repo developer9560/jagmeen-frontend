@@ -185,7 +185,7 @@ export default function CheckoutPage() {
         <Header />
         <main className="min-h-[60vh] flex flex-col items-center justify-center bg-cream/30 px-4 text-center">
           <ShieldCheck size={48} className="text-muted mb-6" />
-          <h1 className="font-heading italic text-3xl md:text-4xl text-primary mb-4">Sign in to checkout</h1>
+          <h1 className="font-heading  text-3xl md:text-4xl text-primary mb-4">Sign in to checkout</h1>
           <p className="text-muted mb-8">Your bag is waiting. Please sign in before placing an order.</p>
           <Link href="/login" className="bg-primary text-white text-xs tracking-[0.2em] uppercase font-bold px-8 py-4 hover:bg-gold transition-colors">
             Sign In
@@ -205,7 +205,7 @@ export default function CheckoutPage() {
             <div className="bg-white border border-gray-100 p-8 md:p-12 text-center">
               <CheckCircle2 size={56} className="mx-auto text-gold mb-6" />
               <p className="text-xs tracking-[0.25em] uppercase text-gold font-bold mb-3">Order Confirmed</p>
-              <h1 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">Thank you for your order</h1>
+              <h1 className="font-heading  text-4xl md:text-5xl text-primary mb-4">Thank you for your order</h1>
               <p className="text-charcoal/70 mb-8">
                 Your order {placedOrder.order_number} has been placed successfully.
               </p>
@@ -247,7 +247,7 @@ export default function CheckoutPage() {
         <Header />
         <main className="min-h-[60vh] flex flex-col items-center justify-center bg-cream/30 px-4 text-center">
           <PackageCheck size={48} className="text-muted mb-6" />
-          <h1 className="font-heading italic text-3xl md:text-4xl text-primary mb-4">Your bag is empty</h1>
+          <h1 className="font-heading  text-3xl md:text-4xl text-primary mb-4">Your bag is empty</h1>
           <p className="text-muted mb-8">Add something beautiful before checking out.</p>
           <Link href="/products" className="bg-primary text-white text-xs tracking-[0.2em] uppercase font-bold px-8 py-4 hover:bg-gold transition-colors">
             Continue Shopping
@@ -265,7 +265,7 @@ export default function CheckoutPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="mb-10">
             <p className="text-xs tracking-[0.25em] uppercase text-gold font-bold mb-2">Secure Checkout</p>
-            <h1 className="font-heading italic text-4xl md:text-5xl text-primary">Complete Your Order</h1>
+            <h1 className="font-heading  text-4xl md:text-5xl text-primary">Complete Your Order</h1>
           </div>
 
           {error && (
@@ -280,7 +280,7 @@ export default function CheckoutPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                   <div>
                     <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Step 1</p>
-                    <h2 className="font-heading italic text-2xl md:text-3xl text-primary">Delivery Address</h2>
+                    <h2 className="font-heading  text-2xl md:text-3xl text-primary">Delivery Address</h2>
                   </div>
                   <button
                     onClick={() => setShowAddressForm(true)}
@@ -294,7 +294,7 @@ export default function CheckoutPage() {
                 {showAddressForm && (
                   <form onSubmit={handleAddressSubmit} className="border border-gray-100 bg-cream/40 p-5 md:p-6 mb-6 space-y-5">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-heading italic text-xl text-primary">New Address</h3>
+                      <h3 className="font-heading  text-xl text-primary">New Address</h3>
                       <button type="button" onClick={() => setShowAddressForm(false)} className="text-muted hover:text-primary">
                         <X size={20} />
                       </button>
@@ -391,7 +391,7 @@ export default function CheckoutPage() {
 
               <section className="bg-white border border-gray-100 p-5 md:p-8">
                 <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Step 2</p>
-                <h2 className="font-heading italic text-2xl md:text-3xl text-primary mb-6">Payment Mode</h2>
+                <h2 className="font-heading  text-2xl md:text-3xl text-primary mb-6">Payment Mode</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <button
                     type="button"
@@ -416,7 +416,7 @@ export default function CheckoutPage() {
 
               <section className="bg-white border border-gray-100 p-5 md:p-8">
                 <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Step 3</p>
-                <h2 className="font-heading italic text-2xl md:text-3xl text-primary mb-5">Order Note</h2>
+                <h2 className="font-heading  text-2xl md:text-3xl text-primary mb-5">Order Note</h2>
                 <textarea
                   value={customerNote}
                   onChange={(event) => setCustomerNote(event.target.value)}
@@ -429,7 +429,7 @@ export default function CheckoutPage() {
 
             <aside className="lg:col-span-1">
               <div className="bg-white border border-gray-100 p-5 md:p-8 lg:sticky lg:top-24">
-                <h2 className="font-heading italic text-2xl text-primary mb-6">Order Review</h2>
+                <h2 className="font-heading  text-2xl text-primary mb-6">Order Review</h2>
 
                 <div className="space-y-4 mb-6 max-h-80 overflow-y-auto pr-1">
                   {cartData.items.map((item) => (

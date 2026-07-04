@@ -49,7 +49,7 @@ export default function BestSeller() {
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary mb-4">
               Best Sellers
             </h2> */}
-            <div className="w-24 h-[2px] bg-white" />
+            <div className="w-24 h-[2px] " />
           </div>
           <Link
             href="/best-sellers"
@@ -89,7 +89,7 @@ export default function BestSeller() {
 
         {!isLoading && !error && products.length === 0 && (
           <div className="text-center py-16 border border-dashed border-gray-200 bg-white/50">
-            <p className="font-heading italic text-2xl text-primary/40 mb-2">Coming Soon</p>
+            <p className="font-heading  text-2xl text-primary/40 mb-2">Coming Soon</p>
             <p className="text-sm text-muted">Featured pieces will appear here once added.</p>
           </div>
         )}

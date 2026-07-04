@@ -97,7 +97,7 @@ export default function ProductDetailPage() {
           </div>
         ) : error || !product ? (
           <div className="flex-1 flex flex-col items-center justify-center py-32 px-4 text-center">
-            <h1 className="font-heading italic text-4xl text-primary mb-4">Product Not Found</h1>
+            <h1 className="font-heading  text-4xl text-primary mb-4">Product Not Found</h1>
             <p className="text-muted mb-8 max-w-md">
               {error || "We couldn't find the product you're looking for. It might have been removed or is temporarily unavailable."}
             </p>
@@ -119,7 +119,7 @@ export default function ProductDetailPage() {
                       <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">
                         Related Products
                       </p>
-                      <h2 className="font-heading italic text-3xl md:text-4xl text-primary">
+                      <h2 className="font-heading  text-3xl md:text-4xl text-primary">
                         You May Also Like
                       </h2>
                     </div>

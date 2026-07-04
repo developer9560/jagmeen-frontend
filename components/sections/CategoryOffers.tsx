@@ -6,7 +6,7 @@ export default function CategoryOffers() {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">
+          <h2 className="font-heading  text-4xl md:text-5xl text-primary mb-4">
             Curated Collections
           </h2>
           <div className="w-24 h-[2px] bg-gold mx-auto mb-6"></div>
@@ -47,7 +47,7 @@ export default function CategoryOffers() {
                 <p className="text-gold uppercase tracking-widest text-xs font-bold mb-3">
                   {offer.subtitle}
                 </p>
-                <h3 className="font-heading italic text-3xl md:text-4xl text-white mb-2">
+                <h3 className="font-heading  text-3xl md:text-4xl text-white mb-2">
                   {offer.title}
                 </h3>
                 <p className="text-white/70 font-body mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">

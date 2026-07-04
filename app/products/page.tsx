@@ -48,53 +48,13 @@ export default function ProductsPage() {
       <main className="flex-1 bg-neutral-50/50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 lg:py-12 flex flex-col md:flex-row gap-8">
           
-          {/* Sidebar */}
-          <aside className="hidden md:block w-64 flex-shrink-0 space-y-8">
-            <div className="bg-white rounded-sm p-6 shadow-sm border border-gray-100">
-              <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">Filter By</h4>
-
-              <div className="mb-8">
-                <h5 className="text-sm font-semibold text-primary mb-4">Price Range</h5>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="relative w-full">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
-                    <input 
-                      type="number" 
-                      placeholder="Min" 
-                      aria-label="Minimum price"
-                      value={minPrice ?? ''} 
-                      onChange={(e) => setMinPrice(e.target.value ? Number(e.target.value) : undefined)} 
-                      className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
-                    />
-                  </div>
-                  <span className="text-gray-400">-</span>
-                  <div className="relative w-full">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
-                    <input 
-                      type="number" 
-                      placeholder="Max" 
-                      aria-label="Maximum price"
-                      value={maxPrice ?? ''} 
-                      onChange={(e) => setMaxPrice(e.target.value ? Number(e.target.value) : undefined)} 
-                      className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
-                    />
-                  </div>
-                </div>
-                <button 
-                  onClick={() => setPageNum(1)} 
-                  className="w-full bg-primary text-white text-xs font-bold uppercase tracking-widest py-3 rounded-sm hover:bg-gold transition-colors"
-                >
-                  Apply Filter
-                </button>
-              </div>
-            </div>
-          </aside>
+          
 
           {/* Product grid */}
           <section className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="font-heading italic text-2xl text-primary">All Products</h1>
+                <h1 className="font-heading  text-2xl text-primary">All Products</h1>
                 <p className="text-sm text-muted">{pagination ? `${pagination.total_records} Products` : ''}</p>
               </div>
 

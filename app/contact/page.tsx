@@ -142,7 +142,7 @@ export default function ContactPage() {
               <MessageSquare size={14} className="text-gold" />
               <span className="text-gold text-xs font-bold uppercase tracking-widest">Get in Touch</span>
             </div>
-            <h1 className="font-heading italic text-5xl md:text-7xl text-white leading-tight mb-6">
+            <h1 className="font-heading  text-5xl md:text-7xl text-white leading-tight mb-6">
               We&apos;d Love to<br />
               <span className="text-gold">Hear from You</span>
             </h1>
@@ -192,7 +192,7 @@ export default function ContactPage() {
           {/* ── Contact Form ── */}
           <div className="lg:col-span-3">
             <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Send a Message</p>
-            <h2 className="font-heading italic text-4xl text-primary mb-8">
+            <h2 className="font-heading  text-4xl text-primary mb-8">
               How Can We Help?
             </h2>
 
@@ -202,7 +202,7 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle size={32} className="text-gold" />
                 </div>
-                <h3 className="font-heading italic text-3xl text-primary mb-3">
+                <h3 className="font-heading  text-3xl text-primary mb-3">
                   Message Received!
                 </h3>
                 <p className="text-charcoal/60 mb-6">
@@ -329,7 +329,7 @@ export default function ContactPage() {
             {/* FAQ Accordion */}
             <div>
               <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Quick Answers</p>
-              <h2 className="font-heading italic text-3xl text-primary mb-6">Common Questions</h2>
+              <h2 className="font-heading  text-3xl text-primary mb-6">Common Questions</h2>
               <div className="divide-y divide-gray-100 border border-gray-100">
                 {FAQ_ITEMS.map((item, i) => (
                   <div key={i}>
@@ -356,7 +356,7 @@ export default function ContactPage() {
             {/* Social Links */}
             <div className="bg-cream border border-gold/20 p-8">
               <p className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Follow Us</p>
-              <h3 className="font-heading italic text-2xl text-primary mb-5">Stay Connected</h3>
+              <h3 className="font-heading  text-2xl text-primary mb-5">Stay Connected</h3>
               <p className="text-sm text-charcoal/60 mb-6">
                 Join our community for style inspiration, exclusive drops, and behind-the-scenes content.
               </p>

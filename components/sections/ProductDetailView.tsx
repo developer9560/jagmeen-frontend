@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ProductDetailData } from '@/types/product';
 import ProductGallery from '@/components/ui/ProductGallery';
 import { formatPrice, getDiscountPercent } from '@/lib/format';
@@ -21,6 +22,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
   const { addToCart } = useCart();
   const { checkIsWishlisted, toggleWishlist } = useWishlist();
+  const router = useRouter();
 
   const isWishlisted = checkIsWishlisted(product.id);
   
@@ -34,6 +36,18 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
     setIsAddingToCart(true);
     await addToCart(product.id, quantity, currentSize?.size);
     setIsAddingToCart(false);
+  };
+
+  const handleBuyItNow = async () => {
+    if (!currentSize) return;
+
+    setIsAddingToCart(true);
+    const added = await addToCart(product.id, quantity, currentSize.size);
+    setIsAddingToCart(false);
+
+    if (added) {
+      router.push('/checkout');
+    }
   };
 
   const handleToggleWishlist = async () => {
@@ -65,28 +79,17 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           {/* Right Column - Product Info */}
           <div className="flex flex-col">
             {/* Badges */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {product.is_featured && (
-                <span className="bg-primary text-white text-[10px] tracking-[0.15em] uppercase font-bold px-3 py-1.5">
-                  Featured
-                </span>
-              )}
-              {discount && (
-                <span className="bg-gold text-primary text-[10px] tracking-[0.15em] uppercase font-bold px-3 py-1.5">
-                  {discount}% Off
-                </span>
-              )}
-            </div>
+            
 
             {/* Title & Pricing */}
-            <h1 className="  text-2xl md:text-4xl text-primary leading-tight mb-4">
+            <h1 className="  text-xl md:text-2xl text-primary leading-tight mb-4">
               {product.name.toUpperCase()}
             </h1>
 
             <div className="flex items-end gap-4 mb-8">
               {currentSize ? (
                 <>
-                  <span className="text-2xl md:text-3xl font-semibold text-primary tracking-wide">
+                  <span className="text-xl md:text-2xl font-semibold text-primary tracking-wide">
                     {formatPrice(currentPrice)}
                   </span>
                   {currentMrp > currentPrice && (
@@ -157,7 +160,15 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
               >
                 <ShoppingBag size={18} />
-                {isAddingToCart ? 'Adding...' : 'Add to Bag'}
+                {isAddingToCart ? 'Adding...' : 'Add to Cart'}
+              </button>
+
+              <button
+                onClick={handleBuyItNow}
+                disabled={isAddingToCart || !currentSize}
+                className="flex-1 h-14 bg-gold text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+              >
+                Buy It Now
               </button>
 
               <button

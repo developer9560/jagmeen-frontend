@@ -86,6 +86,43 @@ const websiteJsonLd = {
     target: `${siteUrl}/search?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
+  hasPart: [
+    {
+      "@type": "SiteNavigationElement",
+      name: "Trending",
+      url: `${siteUrl}/trending`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Best Sellers",
+      url: `${siteUrl}/best-sellers`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Men",
+      url: `${siteUrl}/men`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Women",
+      url: `${siteUrl}/women`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Kids",
+      url: `${siteUrl}/kids`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "About",
+      url: `${siteUrl}/about`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Contact",
+      url: `${siteUrl}/contact`,
+    },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -123,6 +160,10 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: siteUrl },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({

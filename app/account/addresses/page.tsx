@@ -129,7 +129,7 @@ export default function AddressesPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Delivery</p>
-            <h1 className="font-heading italic text-3xl md:text-4xl text-primary">My Addresses</h1>
+            <h1 className="font-heading  text-3xl md:text-4xl text-primary">My Addresses</h1>
             <p className="text-sm text-muted mt-2">Manage your shipping and billing addresses.</p>
           </div>
           {!showForm && (
@@ -157,7 +157,7 @@ export default function AddressesPage() {
         {showForm && (
           <form onSubmit={handleSubmit} className="border border-gray-100 bg-cream/50 p-6 mb-8 space-y-5">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-heading italic text-xl text-primary">
+              <h3 className="font-heading  text-xl text-primary">
                 {editingId ? 'Edit Address' : 'New Address'}
               </h3>
               <button type="button" onClick={closeForm} className="text-muted hover:text-primary">

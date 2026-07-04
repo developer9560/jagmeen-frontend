@@ -117,7 +117,7 @@ export default function OrderDetailPage() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5 mb-8">
           <div>
             <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Order Detail</p>
-            <h1 className="font-heading italic text-3xl md:text-4xl text-primary">{order.order_number}</h1>
+            <h1 className="font-heading  text-3xl md:text-4xl text-primary">{order.order_number}</h1>
             <p className="text-sm text-muted mt-2">
               Placed on {new Date(order.created_at).toLocaleDateString('en-IN', {
                 day: '2-digit',
@@ -153,7 +153,7 @@ export default function OrderDetailPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <h2 className="font-heading italic text-2xl text-primary mb-5">Items</h2>
+            <h2 className="font-heading  text-2xl text-primary mb-5">Items</h2>
             <div className="space-y-4">
               {order.items.map((item) => (
                 <div key={item.id} className="flex gap-4 border border-gray-100 p-4">
@@ -165,7 +165,7 @@ export default function OrderDetailPage() {
                     )}
                   </Link>
                   <div className="flex-1 min-w-0">
-                    <Link href={`/products/${item.product_slug}`} className="font-heading italic text-lg md:text-xl text-primary hover:text-gold transition-colors">
+                    <Link href={`/products/${item.product_slug}`} className="font-heading  text-lg md:text-xl text-primary hover:text-gold transition-colors">
                       {item.product_name}
                     </Link>
                     <p className="text-sm text-muted mt-2">Qty {item.quantity} × {formatPrice(item.unit_price)}</p>
@@ -180,7 +180,7 @@ export default function OrderDetailPage() {
             <div className="border border-gray-100 p-5 mb-5">
               <div className="flex items-center gap-2 mb-4">
                 <MapPin size={18} className="text-gold" />
-                <h2 className="font-heading italic text-xl text-primary">Delivery Address</h2>
+                <h2 className="font-heading  text-xl text-primary">Delivery Address</h2>
               </div>
               <div className="text-sm text-charcoal/75 leading-relaxed">
                 <p className="font-semibold text-primary">{order.shipping_address_line1}</p>
@@ -192,7 +192,7 @@ export default function OrderDetailPage() {
             </div>
 
             <div className="border border-gray-100 p-5">
-              <h2 className="font-heading italic text-xl text-primary mb-4">Summary</h2>
+              <h2 className="font-heading  text-xl text-primary mb-4">Summary</h2>
               <div className="space-y-3 text-sm text-charcoal/80">
                 <div className="flex justify-between">
                   <span>Subtotal</span>

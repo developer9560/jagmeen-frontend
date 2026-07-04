@@ -64,75 +64,13 @@ export default function ClientPage({ slug }: Props) {
             <button className="text-sm text-gold font-bold uppercase tracking-wider">Show Filters</button>
           </div>
 
-          {/* Sidebar */}
-          <aside className="hidden md:block w-64 flex-shrink-0 space-y-8">
-            <div className="bg-white rounded-sm p-6 shadow-sm border border-gray-100">
-              <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">Filter By</h4>
-
-              <div className="mb-8">
-                <h5 className="text-sm font-semibold text-primary mb-4">Price Range</h5>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="relative w-full">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
-                    <input 
-                      type="number" 
-                      placeholder="Min" 
-                      aria-label="Minimum price"
-                      value={minPrice ?? ''} 
-                      onChange={(e) => setMinPrice(e.target.value ? Number(e.target.value) : undefined)} 
-                      className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
-                    />
-                  </div>
-                  <span className="text-gray-400">-</span>
-                  <div className="relative w-full">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
-                    <input 
-                      type="number" 
-                      placeholder="Max" 
-                      aria-label="Maximum price"
-                      value={maxPrice ?? ''} 
-                      onChange={(e) => setMaxPrice(e.target.value ? Number(e.target.value) : undefined)} 
-                      className="w-full pl-7 p-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-gold transition-colors" 
-                    />
-                  </div>
-                </div>
-                <button 
-                  onClick={() => setPageNum(1)} 
-                  className="w-full bg-primary text-white text-xs font-bold uppercase tracking-widest py-3 rounded-sm hover:bg-gold transition-colors"
-                >
-                  Apply Filter
-                </button>
-              </div>
-
-              <div className="mb-8">
-                <h5 className="text-sm font-semibold text-primary mb-4">Color</h5>
-                <div className="flex flex-wrap gap-3">
-                  <button className="w-8 h-8 rounded-full bg-slate-800 ring-1 ring-offset-2 ring-transparent hover:ring-slate-800 transition-all cursor-not-allowed opacity-50" title="Black (Coming Soon)"></button>
-                  <button className="w-8 h-8 rounded-full bg-rose-600 ring-1 ring-offset-2 ring-transparent hover:ring-rose-600 transition-all cursor-not-allowed opacity-50" title="Red (Coming Soon)"></button>
-                  <button className="w-8 h-8 rounded-full bg-emerald-700 ring-1 ring-offset-2 ring-transparent hover:ring-emerald-700 transition-all cursor-not-allowed opacity-50" title="Green (Coming Soon)"></button>
-                  <button className="w-8 h-8 rounded-full bg-yellow-400 ring-1 ring-offset-2 ring-transparent hover:ring-yellow-400 transition-all cursor-not-allowed opacity-50" title="Yellow (Coming Soon)"></button>
-                  <button className="w-8 h-8 rounded-full bg-blue-600 ring-1 ring-offset-2 ring-transparent hover:ring-blue-600 transition-all cursor-not-allowed opacity-50" title="Blue (Coming Soon)"></button>
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <h5 className="text-sm font-semibold text-primary mb-4">Size</h5>
-                <div className="flex flex-wrap gap-2">
-                  {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
-                    <button key={size} className="w-10 h-10 border border-gray-200 rounded-sm text-sm text-gray-500 hover:border-gold hover:text-gold transition-colors cursor-not-allowed opacity-50" title={`${size} (Coming Soon)`}>
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </aside>
+          
 
           {/* Product grid */}
           <section className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="font-heading italic text-2xl text-primary">{category?.name || seoPage?.h1 || fallbackTitle}</h1>
+                <h1 className="font-heading  text-2xl text-primary">{category?.name || seoPage?.h1 || fallbackTitle}</h1>
                 <p className="text-sm text-muted">{pagination ? `${pagination.total_records} Products` : ''}</p>
               </div>
 
@@ -167,70 +105,6 @@ export default function ClientPage({ slug }: Props) {
                   <span className="text-sm">Page {pagination ? pagination.page : pageNum} of {pagination ? pagination.total_pages : 1}</span>
                   <button disabled={pagination ? !pagination.has_next : true} onClick={() => setPageNum((s) => s + 1)} className="px-4 py-2 border rounded">Next</button>
                 </div>
-
-                <section className="mt-14 bg-white border border-gray-100 p-6 md:p-8">
-                  <h2 className="font-heading italic text-3xl text-primary mb-5">
-                    {seoPage?.h1 || `${category?.name || fallbackTitle} at Jagmeen Fashion`}
-                  </h2>
-                  <div className="space-y-4 text-sm md:text-base text-charcoal/70 leading-relaxed">
-                    {seoPage ? (
-                      seoPage.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-                    ) : (
-                      <>
-                        <p>
-                          Explore {category?.name || fallbackTitle} online at Jagmeen Fashion with product images,
-                          prices, availability and clear product details. This category page helps customers compare
-                          active products and choose styles that match their need.
-                        </p>
-                        <p>
-                          For stronger SEO, add researched category keywords, useful buying guidance, size notes,
-                          fabric details and internal links for every important product group.
-                        </p>
-                      </>
-                    )}
-                  </div>
-
-                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {(seoPage?.relatedLinks || [
-                      { label: 'All Products', href: '/products' },
-                      { label: 'Contact Us', href: '/contact' },
-                      { label: 'About Jagmeen', href: '/about' },
-                    ]).map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="border border-gray-100 px-4 py-3 text-sm font-medium text-primary hover:border-gold hover:text-gold transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="mt-8 bg-cream/60 border border-gold/20 p-6 md:p-8">
-                  <h2 className="font-heading italic text-3xl text-primary mb-5">FAQs</h2>
-                  <div className="space-y-4">
-                    {(seoPage?.faqs || [
-                      {
-                        question: `Can I buy ${category?.name || fallbackTitle} online from Jagmeen Fashion?`,
-                        answer: `Yes, active ${category?.name || fallbackTitle} products are listed with price, images and product details.`,
-                      },
-                      {
-                        question: 'Does Jagmeen Fashion deliver across India?',
-                        answer: 'Delivery is available across India for eligible products and serviceable pin codes.',
-                      },
-                      {
-                        question: 'Where should I write researched keywords?',
-                        answer: 'Use frontend/lib/seo.ts for landing-page keywords and category/product metadata files for page-specific terms.',
-                      },
-                    ]).map((faq) => (
-                      <div key={faq.question} className="bg-white p-5 border border-gray-100">
-                        <h3 className="font-semibold text-primary mb-2">{faq.question}</h3>
-                        <p className="text-sm text-charcoal/70">{faq.answer}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
               </>
             )}
           </section>

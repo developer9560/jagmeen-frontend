@@ -69,7 +69,7 @@ export default function CartPage() {
         <Header />
         <main className="min-h-[60vh] flex flex-col items-center justify-center bg-cream/30 px-4 text-center">
           <ShoppingBag size={48} className="text-muted mb-6" />
-          <h1 className="font-heading italic text-3xl md:text-4xl text-primary mb-4">Your Bag is Empty</h1>
+          <h1 className="font-heading  text-3xl md:text-4xl text-primary mb-4">Your Bag is Empty</h1>
           <p className="text-muted mb-8">Please sign in to view your bag and checkout.</p>
           <Link 
             href="/login"
@@ -90,7 +90,7 @@ export default function CartPage() {
       <Header />
       <main className="flex-1 bg-cream/30 py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h1 className="font-heading italic text-4xl text-primary mb-10">Shopping Bag</h1>
+          <h1 className="font-heading  text-4xl text-primary mb-10">Shopping Bag</h1>
 
           {isEmpty ? (
             <div className="bg-white p-12 text-center border border-gray-100 flex flex-col items-center">
@@ -132,7 +132,7 @@ export default function CartPage() {
                       <div className="flex flex-col justify-between flex-1 py-1">
                         <div>
                           <div className="flex justify-between items-start">
-                            <Link href={`/products/${item.product_slug}`} className="font-heading italic text-xl text-primary hover:text-gold transition-colors">
+                            <Link href={`/products/${item.product_slug}`} className="font-heading  text-xl text-primary hover:text-gold transition-colors">
                               {item.product_name}
                             </Link>
                             <button 
@@ -186,7 +186,7 @@ export default function CartPage() {
               {/* Order Summary */}
               <div className="lg:col-span-1">
                 <div className="bg-white border border-gray-100 p-8 sticky top-24">
-                  <h2 className="font-heading italic text-2xl text-primary mb-6">Order Summary</h2>
+                  <h2 className="font-heading  text-2xl text-primary mb-6">Order Summary</h2>
                   
                   <div className="space-y-4 text-sm text-charcoal/80 border-b border-gray-100 pb-6 mb-6">
                     <div className="flex justify-between">

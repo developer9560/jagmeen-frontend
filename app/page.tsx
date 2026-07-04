@@ -7,6 +7,9 @@ import BestSeller from '@/components/sections/BestSeller';
 import Title from '@/components/sections/Title';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
 import type { Banner, BannerType } from '@/lib/api';
+// import FeaturedProductCard from '@/components/sections/FeaturedProducts';
+import DoodleProductCard from '@/components/sections/DoodledProducts';
+import DoodleBestSeller from '@/components/sections/DoodleBestSeller';
 
 export const metadata = {
   title: `${SITE_NAME} - Jagmeen Online Fashion Store`,
@@ -79,12 +82,13 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden">
+      
+      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden ">
         <HeroSection bannerType="HOME" initialBanners={homeBanners} />
 
-        <section className="py-5 md:py-8">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className=" font-bold text-4xl md:text-5xl text-primary ">
+        <section className="py-5 md:py-8 mt-20 ">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center">
+            <h2 className=" font-heading font-bold text-xl md:text-2xl text-primary uppercase ">
               <Title sectionType="TRENDING" fallback="Trending" />
             </h2>
             <div className="w-16 h-0.5 mb-6 bg-white" />
@@ -92,20 +96,24 @@ export default async function Home() {
           <HeroSection bannerType="TRENDING" initialBanners={trendingBanners} />
         </section>
 
-        <section className="py-5 md:py-8 bg-white">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <h2 className=" font-bold text-4xl md:text-5xl text-primary ">
+        <DoodleProductCard />
+
+        {/* <FeaturedProductCard/> */}
+
+        <section className="py-5 md:py-8 bg-white mt-15">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center">
+            <h2 className=" font-heading font-bold text-xl md:text-2xl text-primary uppercase flex items-center justify-center">
               <Title sectionType="BESTSELLER" fallback="Best Seller" />
             </h2>
             <div className="w-16 h-0.5 mb-6 bg-white" />
           </div>
           <HeroSection bannerType="BESTSELLER" initialBanners={bestSellerBanners} />
         </section>
-
-        <BestSeller />
+    <DoodleBestSeller />
+       
       </main>
       <div className="w-full flex items-center justify-center py-4">
-        <div className="h-[3px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black" />
+        <div className="h-[1px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black" />
       </div>
       <Footer />
     </>

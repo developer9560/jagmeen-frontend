@@ -5,6 +5,7 @@ import FeaturedProductCard from '@/components/ui/FeaturedProductCard';
 import FeaturedProductSkeleton from '@/components/ui/FeaturedProductSkeleton';
 import type { ProductCardData, FeaturedProductsData } from '@/types/product';
 import type { ApiResponse } from '@/types/auth';
+import DoodleProductCard from '@/components/ui/DoodleProductCard';
 
 interface InfiniteProductGridProps {
   title: string;
@@ -13,7 +14,6 @@ interface InfiniteProductGridProps {
 }
 
 export default function InfiniteProductGrid({ 
-  title, 
   fetchPage, 
   pageSize = 12 
 }: InfiniteProductGridProps) {
@@ -79,17 +79,12 @@ export default function InfiniteProductGrid({
 
   return (
     <section className="bg-cream/30 py-6 md:py-8 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="mb-10 md:mb-16">
-          <h1 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">
-            {title}
-          </h1>
-          <div className="w-24 h-[2px] bg-gold" />
-        </div>
+      <div className="w-full mx-auto px-4 md:px-8">
+        
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map((product, index) => (
-            <FeaturedProductCard key={`${product.id}-${index}`} product={product} index={index} />
+            <DoodleProductCard key={`${product.id}-${index}`} product={product} index={index} />
           ))}
           
           {isLoading && (

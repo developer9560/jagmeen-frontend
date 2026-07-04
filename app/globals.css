@@ -11,8 +11,8 @@
   --color-muted: #999999;
 
   /* Fonts */
-  --font-heading: "Cormorant Garamond", serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Roboto", sans-serif;
+  --font-body: "Roboto", sans-serif;
 }
 
 /* ===== Base Styles ===== */

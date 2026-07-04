@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import FeaturedProductCard from '@/components/ui/FeaturedProductCard';
 import FeaturedProductSkeleton from '@/components/ui/FeaturedProductSkeleton';
+import DoodleProducts from '@/components/ui/DoodleProductCard';
 import { productApi } from '@/lib/api';
 import type { ProductCardData } from '@/types/product';
 
@@ -46,18 +47,18 @@ export default function FeaturedProducts() {
             {/* <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-3">
               Curated Selection
             </p> */}
-            <h2 className="font-heading text-4xl md:text-5xl text-primary mb-4">
+            {/* <h2 className="font-heading text-4xl md:text-5xl text-primary mb-4">
               Trending Products
-            </h2>
-            <div className="w-24 h-[2px] bg-gold" />
+            </h2> */}
+            <div className="w-24 h-[2px] " />
           </div>
-          <Link
+          {/* <Link
             href="/featured"
             className="text-sm font-bold uppercase tracking-wider text-primary hover:text-gold transition-colors mt-6 md:mt-0 flex items-center gap-2 group"
           >
             View All Collection
             <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-          </Link>
+          </Link> */}
         </div>
 
         {isLoading && (
@@ -89,7 +90,7 @@ export default function FeaturedProducts() {
 
         {!isLoading && !error && products.length === 0 && (
           <div className="text-center py-16 border border-dashed border-gray-200 bg-white/50">
-            <p className="font-heading italic text-2xl text-primary/40 mb-2">Coming Soon</p>
+            <p className="font-heading  text-2xl text-primary/40 mb-2">Coming Soon</p>
             <p className="text-sm text-muted">Featured pieces will appear here once added.</p>
           </div>
         )}

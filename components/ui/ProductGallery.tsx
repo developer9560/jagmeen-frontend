@@ -17,13 +17,16 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
   const activeImage = sortedImages[activeIndex];
+  const [zoomed, setZoomed] = useState(false);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % sortedImages.length);
+    setZoomed(false);
   };
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + sortedImages.length) % sortedImages.length);
+    setZoomed(false);
   };
 
   if (!sortedImages.length) {
@@ -45,7 +48,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             alt={`${productName} product image ${activeIndex + 1} - Jagmeen Fashion`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             priority
             onError={() => setImageError((prev) => ({ ...prev, [activeIndex]: true }))}
           />
@@ -119,25 +122,33 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
 
       {/* Fullscreen Modal (Simplified for now) */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-md flex flex-col">
-          <div className="p-4 flex justify-end">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex flex-col">
+          <div className="p-4 flex justify-between items-center gap-4">
             <button
               onClick={() => setIsFullscreen(false)}
-              className="text-xs uppercase tracking-[0.2em] font-bold text-primary hover:text-gold transition-colors p-2"
+              className="text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-gold transition-colors p-2"
             >
-              Close [X]
+              Close
+            </button>
+            <button
+              onClick={() => setZoomed((prev) => !prev)}
+              className="text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-gold transition-colors p-2"
+            >
+              {zoomed ? 'Zoom Out' : 'Zoom In'}
             </button>
           </div>
           <div className="flex-1 relative flex items-center justify-center p-4">
-             {!imageError[activeIndex] && activeImage?.image_url && (
+            {!imageError[activeIndex] && activeImage?.image_url && (
+              <div className="relative w-full h-full max-w-[1200px] max-h-[calc(100vh-100px)] overflow-hidden">
                 <Image
                   src={activeImage.image_url}
                   alt={`${productName} full product image - Jagmeen Fashion`}
                   fill
-                  className="object-contain"
+                  className={`object-contain transition-transform duration-500 ${zoomed ? 'scale-150' : 'scale-100'}`}
                   sizes="100vw"
                 />
-             )}
+              </div>
+            )}
           </div>
         </div>
       )}

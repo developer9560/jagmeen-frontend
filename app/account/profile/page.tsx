@@ -59,7 +59,7 @@ export default function ProfilePage() {
     <div className="bg-white border border-gray-100 p-6 md:p-10 animate-fade-in">
       <div className="mb-8">
         <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">Account Settings</p>
-        <h1 className="font-heading italic text-3xl md:text-4xl text-primary">My Profile</h1>
+        <h1 className="font-heading  text-3xl md:text-4xl text-primary">My Profile</h1>
         <p className="text-sm text-muted mt-2">Manage your personal information and account security.</p>
       </div>
 

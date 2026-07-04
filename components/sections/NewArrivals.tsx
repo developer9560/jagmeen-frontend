@@ -9,7 +9,7 @@ export default function NewArrivals() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-12">
           <div>
-            <h2 className="font-heading italic text-4xl md:text-5xl text-primary mb-4">
+            <h2 className="font-heading  text-4xl md:text-5xl text-primary mb-4">
               New Arrivals
             </h2>
             <div className="w-24 h-[2px] bg-gold"></div>

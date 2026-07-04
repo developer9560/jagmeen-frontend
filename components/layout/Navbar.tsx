@@ -12,6 +12,7 @@ import { useWishlist } from '@/context/WishlistContext';
 import logo from '@/public/jagmeen_logo.png';
 import Image from 'next/image';
 import SearchBox from '../ui/SearchBox';
+import logoName from '@/public/jagmeen_namel_logo.png'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +31,7 @@ export default function Navbar() {
   const { wishlistSummary } = useWishlist();
   const [megaMenuNav, setMegaMenuNav] = useState<MegaMenuNavItem[]>(MEGA_MENU_NAV);
 
- 
+
 
   useEffect(() => {
     async function loadCategories() {
@@ -124,22 +125,19 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`transition-all duration-300 relative ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-gray-100'
-            : 'bg-white border-b border-transparent'
-        }`}
+        className={`transition-all duration-300 relative ${isScrolled
+            ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 py-2 lg:py-3 shadow-sm'
+            : 'bg-white border-b border-transparent py-2 lg:py-3 shadow-sm'
+          }`}
       >
         <div
-          className={`w-full mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
-            isScrolled ? 'py-2' : 'py-2 lg:py-2'
-          }`}
+          className={`mx-auto grid w-full grid-cols-[1fr_auto_1fr] items-center px-4 transition-all duration-300 md:px-6 lg:px-8 ${isScrolled ? ' py-0 lg:pb-7' : ' py-0 lg:pb-7'}`}
         >
           {/* Left Section: Mobile menu + Logo */}
-          <div className="flex items-center gap-3 lg:gap-5 flex-shrink-0">
+          <div className="flex items-center justify-self-start gap-3 lg:gap-5">
             {/* Mobile menu toggle */}
             <button
-              className="lg:hidden text-primary p-1 -ml-1"
+              className="-ml-1 p-1 text-primary lg:hidden"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -147,26 +145,39 @@ export default function Navbar() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2" onClick={closeMenu}>
-              <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center">
-                <Image src={logo}
-                 alt="Jagmeen Fashion Logo - Jagmeen" 
-                 width={40} height={40}
-                 title="Jagmeen Fashion"
-                 priority = {true}
-                style={{ width: 'auto', height: 'auto' }} />
-                 
+            <Link href="/" className="flex flex-shrink-0 items-center gap-2" onClick={closeMenu}>
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center">
+                <Image
+                  src={logo}
+                  alt="Jagmeen Fashion Logo - Jagmeen"
+                  width={40}
+                  height={40}
+                  title="Jagmeen Fashion"
+                  priority={true}
+                  style={{ width: 'auto', height: 'auto' }}
+                />
               </div>
-              <h1 className="font-heading italic text-lg sm:text-xl lg:text-2xl font-bold text-primary tracking-wide leading-none whitespace-nowrap">
-                Jagmeen Fashion
-              </h1>
             </Link>
           </div>
 
-          {/* Center: Search bar removed and moved to right section */}
+          {/* Center logo */}
+          <Link href="/" className="hidden lg:flex items-center justify-center" onClick={closeMenu}>
+          <div className="flex h-10 w-20 items-center justify-center sm:w-28 md:pt-6 cursor-pointer">
+            <Image
+              src={logoName}
+              alt="Jagmeen Fashion Logo - Jagmeen"
+              width={120}
+              height={40}
+              title="Jagmeen Fashion"
+              priority={true}
+              className="h-auto w-auto object-contain"
+            />
+
+          </div>
+          </Link>
 
           {/* Right Section: Icons */}
-          <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 text-primary flex-shrink-0">
+          <div className="flex items-center justify-self-end gap-3 text-primary sm:gap-4 lg:gap-5">
             {/* Desktop SearchBox */}
             <div className="hidden md:block w-[260px]">
               {/* @ts-ignore */}
@@ -256,9 +267,33 @@ export default function Navbar() {
               )}
             </div>
 
-            
+
           </div>
         </div>
+
+
+
+
+        <nav aria-label="Primary site navigation" className="hidden justify-center items-center gap-6 border-t border-gray-100 bg-white px-4 py-2 text-xs uppercase tracking-[0.25em] text-primary">
+          {[
+            { label: 'Trending', href: '/trending' },
+            { label: 'Best Sellers', href: '/best-sellers' },
+            { label: 'Women', href: '/women' },
+            { label: 'Men', href: '/men' },
+            { label: 'Kids', href: '/kids' },
+            { label: 'About', href: '/about' },
+            { label: 'Contact', href: '/contact' },
+
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hover:text-gold transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
         {/* Mobile search bar — slides down */}
         <div className={`md:hidden transition-all duration-300 ease-out border-t border-gray-50 ${isMobileSearchOpen ? 'max-h-[600px] opacity-100 overflow-visible' : 'max-h-0 opacity-0 overflow-hidden border-t-0'}`}>
@@ -272,17 +307,11 @@ export default function Navbar() {
       </nav>
 
       {/* Floating Menu Button - Below Header */}
-      <div className="relative hidden md:block h-0 flex justify-start pointer-events-none z-50 ml-4">
-        {/* <button
-          onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-          className="relative -top-6 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-white pointer-events-auto hover:scale-110"
-          aria-label="Navigation menu"
-        >
-          <Menu size={24} className={`transition-transform duration-300 ${isFloatingMenuOpen ? 'rotate-90' : ''}`} />
-        </button> */}
+      <div className="relative hidden md:block h-0 flex justify-start pointer-events-none z-50 ml-6">
+       
         <button
           onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-          className="relative -top-6 w-14 h-14 rounded-full bg-gradient-to-br shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-white pointer-events-auto hover:scale-110"
+          className="relative -top-12 w-14 h-14 rounded-full   hover:shadow-xl transition-all duration-300 flex items-center justify-center text-white pointer-events-auto hover:scale-110"
           aria-label="Navigation menu"
         >
           <Menu size={24} color="black" className={`transition-transform duration-300 ${isFloatingMenuOpen ? 'rotate-90' : ''}`} />
@@ -372,9 +401,8 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         <div
           className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
@@ -382,13 +410,12 @@ export default function Navbar() {
         />
 
         <div
-          className={`absolute top-0 left-0 w-[88%] max-w-sm h-full bg-white shadow-2xl flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`absolute top-0 left-0 w-[88%] max-w-sm h-full bg-white shadow-2xl flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           {/* Drawer header */}
           <div className="p-5 border-b border-gray-100 flex justify-between items-center flex-shrink-0">
-            <h2 className="font-heading italic text-2xl font-bold text-primary tracking-wide">
+            <h2 className="font-heading  text-2xl font-bold text-primary tracking-wide">
               Jagmeen Fashion
             </h2>
             <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
@@ -417,9 +444,8 @@ export default function Navbar() {
                   </button>
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ease-out ${
-                      isExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
+                    className={`overflow-hidden transition-all duration-300 ease-out ${isExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+                      }`}
                   >
                     <div className="px-5 pb-4 space-y-5 bg-cream/30">
                       {item.columns.map((column) => (
@@ -452,7 +478,7 @@ export default function Navbar() {
                           <p className="text-[10px] tracking-widest uppercase text-gold mb-1">
                             {item.featured.subtitle}
                           </p>
-                          <p className="font-heading italic text-lg">{item.featured.title}</p>
+                          <p className="font-heading  text-lg">{item.featured.title}</p>
                         </div>
                         <ArrowRight size={16} className="text-gold group-hover:translate-x-1 transition-transform" />
                       </Link>

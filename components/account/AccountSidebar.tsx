@@ -21,7 +21,7 @@ export default function AccountSidebar() {
       <div className="bg-white border border-gray-100 p-6 lg:sticky lg:top-28">
         <div className="mb-8 pb-6 border-b border-gray-100">
           <p className="text-xs tracking-widest uppercase text-gold font-bold mb-2">My Account</p>
-          <h2 className="font-heading italic text-2xl text-primary">{user?.name}</h2>
+          <h2 className="font-heading  text-2xl text-primary">{user?.name}</h2>
           <p className="text-sm text-muted mt-1">{user?.email}</p>
         </div>
 

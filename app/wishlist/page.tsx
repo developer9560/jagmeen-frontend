@@ -75,7 +75,7 @@ export default function WishlistPage() {
         <Header />
         <main className="min-h-[60vh] flex flex-col items-center justify-center bg-cream/30 px-4 text-center">
           <Heart size={48} className="text-muted mb-6" />
-          <h1 className="font-heading italic text-3xl md:text-4xl text-primary mb-4">Your Wishlist is Empty</h1>
+          <h1 className="font-heading  text-3xl md:text-4xl text-primary mb-4">Your Wishlist is Empty</h1>
           <p className="text-muted mb-8">Please sign in to view your saved items.</p>
           <Link 
             href="/login"
@@ -97,7 +97,7 @@ export default function WishlistPage() {
       <main className="flex-1 bg-cream/30 py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between mb-10">
-            <h1 className="font-heading italic text-4xl text-primary">My Wishlist</h1>
+            <h1 className="font-heading  text-4xl text-primary">My Wishlist</h1>
             <span className="text-sm font-semibold uppercase tracking-wider text-muted">
               {wishlistData?.total_items || 0} Items
             </span>
@@ -148,7 +148,7 @@ export default function WishlistPage() {
                   {/* Details Area */}
                   <div className="p-4 flex flex-col flex-1">
                     <Link href={`/products/${item.product_slug}`} className="flex-1">
-                      <h3 className="font-heading italic text-lg text-primary mb-1 group-hover:text-gold transition-colors line-clamp-1">
+                      <h3 className="font-heading  text-lg text-primary mb-1 group-hover:text-gold transition-colors line-clamp-1">
                         {item.product_name}
                       </h3>
                       <div className="text-sm font-semibold text-primary mb-4">

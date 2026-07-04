@@ -166,7 +166,7 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
       src={slide.image_url}
       alt={slide.title}
       fill
-      className="object-cover transition-all duration-1000 ease-out"
+      className="object-contain transition-all duration-1000 ease-out"
       priority={safeCurrentSlide === 0}
       fetchPriority={safeCurrentSlide === 0 ? 'high' : 'auto'}
       quality={70}
@@ -177,7 +177,7 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
   const getHeroLink = () => {
     switch (bannerType) {
       case "TRENDING":
-        return "/featured";
+        return "/trending";
       case "BESTSELLER":
         return "/best-sellers";
       default:
@@ -188,12 +188,12 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
   const heroHref = getHeroLink();
 
   return (
-    <section className="w-full">
-      <div className="w-full mx-auto relative">
+    <section className="w-full ">
+      <div className="w-full mx-auto relative group">
 
         {/* Image with touch support */}
         <div
-          className="relative w-full h-64 sm:h-96 md:h-[550px] overflow-hidden bg-gray-200"
+          className="relative w-full h-200 sm:h-96 md:h-[850px] overflow-hidden bg-gray-200"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
@@ -211,7 +211,7 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
           <>
             <button
               onClick={prevSlide}
-              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full group"
+              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 group-hover:flex opacity-0 group-hover:opacity-100 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -219,17 +219,17 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
 
             <button
               onClick={nextSlide}
-              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full group"
+              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 group-hover:flex opacity-0 group-hover:opacity-100 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform " />
             </button>
           </>
         )}
 
         {/* Slide Indicators - Dots */}
         {slides.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20 flex">
             {slides.map((banner, index) => (
               <button
                 key={banner.id}
@@ -237,21 +237,20 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
                   setCurrentSlide(index);
                   pauseAutoPlay();
                 }}
-                className="w-11 h-11 flex items-center justify-center"
+                className="w-5 h-11 flex items-center justify-center"
                 aria-label={`Go to ${banner.title}`}
               >
                 <span
                   className={`block transition-all duration-300 rounded-full ${
                     index === safeCurrentSlide
-                      ? 'bg-white w-6 h-2'
-                      : 'bg-white/50 w-2 h-2 hover:bg-white/75'
+                      ? 'bg-white w-1 h-1 md:w-2 md:h-2'
+                      : 'bg-white/50 w-1 h-1md:w-2 md:h-2 hover:bg-white/75'
                   }`}
                 />
               </button>
             ))}
           </div>
         )}
-
       </div>
     </section>
   );
