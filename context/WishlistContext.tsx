@@ -62,7 +62,9 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
 
   const toggleWishlist = useCallback(async (productId: number): Promise<boolean> => {
     if (!isAuthenticated) {
-      toast.error('Please sign in to add items to your wishlist.');
+      // Use a stable id so repeated calls update the same toast and close works predictably
+      // Auto-dismiss after 2 seconds so it doesn't linger when user closes the prompt
+      toast.error('Please sign in to add items to your wishlist.', { id: 'auth-required', duration: 1500   });
       return false;
     }
 

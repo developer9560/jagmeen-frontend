@@ -57,7 +57,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart = async (productId: number, quantity: number = 1, size?: string): Promise<boolean> => {
     if (!isAuthenticated) {
-      toast.error('Please sign in to add items to your cart.');
+      // Use a stable id so repeated calls update the same toast and close works predictably
+      // Auto-dismiss after 2 seconds so it doesn't linger when user closes the prompt
+      toast.error('Please sign in to add items to your cart.', { id: 'auth-required', duration: 1500 });
       return false;
     }
 
