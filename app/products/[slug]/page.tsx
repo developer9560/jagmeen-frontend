@@ -77,7 +77,7 @@ export default function ProductDetailPage() {
       <Header />
       <main className="flex-1 flex flex-col w-full overflow-hidden bg-cream/30">
         {/* Breadcrumbs */}
-        <div className="bg-cream/30 border-b border-gray-100">
+        {/* <div className="bg-cream/30 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
             <nav className="text-[10px] uppercase tracking-widest font-semibold flex items-center gap-2 text-muted">
               <Link href="/" className="hover:text-primary transition-colors">Home</Link>
@@ -88,7 +88,7 @@ export default function ProductDetailPage() {
               </span>
             </nav>
           </div>
-        </div>
+        </div> */}
 
         {/* Content */}
         {isLoading ? (

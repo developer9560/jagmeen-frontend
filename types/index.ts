@@ -38,7 +38,7 @@ export interface MegaMenuNavItem {
   label: string;
   href: string;
   columns: MegaMenuColumn[];
-  featured: MegaMenuFeatured;
+
 }
 
 export interface Category {

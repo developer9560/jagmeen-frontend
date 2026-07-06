@@ -62,7 +62,7 @@ export default function MegaMenu({ item, isVisible, onClose }: MegaMenuProps) {
             }`}
             style={{ transitionDelay: isVisible ? '180ms' : '0ms' }}
           >
-            <Link
+            {/* <Link
               href={item.featured.href}
               onClick={onClose}
               className="group block relative h-full min-h-[220px] bg-primary overflow-hidden"
@@ -83,7 +83,7 @@ export default function MegaMenu({ item, isVisible, onClose }: MegaMenuProps) {
                   <ArrowRight size={14} className="text-gold" />
                 </span>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
 

@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Search, Heart, ShoppingBag, Menu, X, User, ChevronDown, ArrowRight } from 'lucide-react';
@@ -58,7 +57,7 @@ export default function Navbar() {
                 const subs = (child.children || []).slice().sort((a: CategoryNode, b: CategoryNode) => (a.priority ?? 0) - (b.priority ?? 0));
                 const links = subs.length > 0
                   ? subs.map(sub => ({ label: sub.name, href: `/category/${sub.slug}` }))
-                  : [{ label: `All ${child.name}`, href: `/category/${child.slug}` }];
+                  : [{ label: ` ${child.name}`, href: `/category/${child.slug}` }];
 
                 return {
                   title: child.name,
@@ -120,6 +119,8 @@ export default function Navbar() {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
     }
   };
+
+  const hoveredCategory = megaMenuNav.find((item) => item.label === hoveredFloatingCategory);
 
   return (
     <>
@@ -350,42 +351,40 @@ export default function Navbar() {
           </div>
 
           {/* Subcategories Mega Menu - Shows on Hover */}
-          {hoveredFloatingCategory && (
+          {hoveredFloatingCategory && hoveredCategory && (
             <div
               className="bg-white border border-gray-100 rounded-lg shadow-2xl w-80 max-h-[calc(100vh-120px)] overflow-y-auto animate-fade-in-down"
               onMouseEnter={() => setHoveredFloatingCategory(hoveredFloatingCategory)}
               onMouseLeave={() => setHoveredFloatingCategory(null)}
             >
-              {megaMenuNav.find((item) => item.label === hoveredFloatingCategory) && (
-                <div className="p-5 space-y-5">
-                  {/* Subcategory Sections */}
-                  {megaMenuNav.find((item) => item.label === hoveredFloatingCategory)?.columns.map(
-                    (column) => (
-                      <div key={column.title}>
-                        <p className="text-[10px] tracking-[0.2em] uppercase font-bold text-gold mb-3 px-2">
-                          {column.title}
-                        </p>
-                        <ul className="space-y-2">
-                          {column.links.map((link) => (
-                            <li key={link.href}>
-                              <Link
-                                href={link.href}
-                                className="block px-3 py-2 text-sm text-charcoal hover:text-primary hover:bg-cream/50 rounded transition-all duration-150"
-                                onClick={() => {
-                                  setIsFloatingMenuOpen(false);
-                                  setHoveredFloatingCategory(null);
-                                }}
-                              >
-                                {link.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
+              <div className="p-5 space-y-4">
+                <p className="text-sm tracking-[0.2em] uppercase font-semibold text-primary">
+                  {hoveredCategory.label}
+                </p>
+                {hoveredCategory.columns.map((column) => (
+                  <div key={column.title} className="space-y-2">
+                    <p className="text-[11px] tracking-[0.2em] uppercase font-semibold text-muted">
+                      {column.title}
+                    </p>
+                    <ul className="space-y-1">
+                      {column.links.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            href={link.href}
+                            className="block px-3 py-2 text-sm text-charcoal hover:text-primary hover:bg-cream/50 rounded transition-all duration-150"
+                            onClick={() => {
+                              setIsFloatingMenuOpen(false);
+                              setHoveredFloatingCategory(null);
+                            }}
+                          >
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -447,29 +446,22 @@ export default function Navbar() {
                     className={`overflow-hidden transition-all duration-300 ease-out ${isExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
                       }`}
                   >
-                    <div className="px-5 pb-4 space-y-5 bg-cream/30">
-                      {item.columns.map((column) => (
-                        <div key={column.title}>
-                          <p className="text-[10px] tracking-[0.2em] uppercase font-bold text-gold mb-2">
-                            {column.title}
-                          </p>
-                          <ul className="space-y-2.5 pl-1">
-                            {column.links.map((link) => (
-                              <li key={link.href}>
-                                <Link
-                                  href={link.href}
-                                  className="text-sm text-charcoal hover:text-primary transition-colors"
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                  {link.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                    <div className="px-5 pb-4 space-y-4 bg-cream/30">
+                      <ul className="space-y-2 pl-1">
+                        {item.columns.flatMap((column) => column.links).map((link) => (
+                          <li key={link.href}>
+                            <Link
+                              href={link.href}
+                              className="text-sm text-charcoal hover:text-primary transition-colors"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
 
-                      <Link
+                      {/* <Link
                         href={item.featured.href}
                         className="flex items-center justify-between p-4 bg-primary text-white group"
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -481,7 +473,7 @@ export default function Navbar() {
                           <p className="font-heading  text-lg">{item.featured.title}</p>
                         </div>
                         <ArrowRight size={16} className="text-gold group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                      </Link> */}
 
                       <Link
                         href={item.href}

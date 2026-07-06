@@ -5,12 +5,6 @@ export const MEGA_MENU_NAV: MegaMenuNavItem[] = [
   {
     label: 'Women',
     href: '/women',
-    featured: {
-      title: 'New Arrivals',
-      subtitle: 'Spring / Summer 2025',
-      href: '/women/new-arrivals',
-      accent: 'Shop the Collection',
-    },
     columns: [
       {
         title: 'Clothing',
@@ -48,12 +42,7 @@ export const MEGA_MENU_NAV: MegaMenuNavItem[] = [
   {
     label: 'Men',
     href: '/men',
-    featured: {
-      title: 'Premium Edit',
-      subtitle: 'Tailored for the Modern Man',
-      href: '/men/premium',
-      accent: 'Explore Now',
-    },
+   
     columns: [
       {
         title: 'Clothing',
@@ -91,12 +80,7 @@ export const MEGA_MENU_NAV: MegaMenuNavItem[] = [
   {
     label: 'Kids',
     href: '/kids',
-    featured: {
-      title: 'Little Luxe',
-      subtitle: 'Styles for Every Adventure',
-      href: '/kids/new-arrivals',
-      accent: 'View Collection',
-    },
+   
     columns: [
       {
         title: 'Girls',
@@ -326,28 +310,14 @@ export const FOOTER_LINKS = {
     { label: 'About Us', href: '/about' },
     { label: 'Contact Us', href: '/contact' },
     // { label: 'Western Wear', href: '/western-wear' },
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms & Conditions', href: '/terms' },
-    // { label: 'Careers', href: '/careers' },
-    // { label: 'Press', href: '/press' },
-    // { label: 'Blog', href: '/blog' },
-  ],
-  help: [
-    // { label: 'T-Shirts', href: '/t-shirts' },
-    // { label: 'Shirts', href: '/shirts' },
-    // { label: 'Kurtas', href: '/kurtas' },
-    // { label: 'Garment Manufacturer Faridabad', href: '/garment-manufacturer-faridabad' },
-    // { label: 'Bulk Clothing Manufacturer', href: '/bulk-clothing-manufacturer' },
-    // { label: 'Customer Service', href: '/support' },
-    // { label: 'Shipping & Returns', href: '/shipping' },
-    // { label: 'Size Guide', href: '/size-guide' },
-    // { label: 'FAQs', href: '/faqs' },
+    { label: 'Return & Exchange', href: '/return-exchange' },
+    { label: 'Delivery Policy', href: '/delivery-policy' },
+   
   ],
   legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms & Conditions', href: '/terms' },
-    // { label: 'Cookie Policy', href: '/cookies' },
-  ],
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms of Service', href: '/terms-of-service' },
+  ]
 };
 
 // Social links

@@ -5,6 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
 const siteUrl = "https://jagmeenfashion.com";
 const siteName = "Jagmeen Fashion";
@@ -210,6 +211,7 @@ export default function RootLayout({
                   },
                 }}
               />
+              <FloatingWhatsApp />
             </WishlistProvider>
           </CartProvider>
         </AuthProvider>

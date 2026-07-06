@@ -25,7 +25,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const router = useRouter();
 
   const isWishlisted = checkIsWishlisted(product.id);
-  
+
   const currentSize = product.sizes && product.sizes.length > 0 ? product.sizes[selectedSizeIdx] : null;
   const currentPrice = currentSize ? currentSize.price : 0;
   const currentMrp = currentSize ? currentSize.mrp : 0;
@@ -78,9 +78,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
           {/* Right Column - Product Info */}
           <div className="flex flex-col">
-            {/* Badges */}
-            
-
             {/* Title & Pricing */}
             <h1 className="  text-xl md:text-2xl text-primary leading-tight mb-4">
               {product.name.toUpperCase()}
@@ -112,11 +109,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     <button
                       key={s.id || idx}
                       onClick={() => setSelectedSizeIdx(idx)}
-                      className={`h-12 min-w-[3rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${
-                        selectedSizeIdx === idx
-                          ? 'border-primary bg-primary text-white'
-                          : 'border-gray-200 text-charcoal hover:border-primary'
-                      }`}
+                      className={`h-12 min-w-[3rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${selectedSizeIdx === idx
+                        ? 'border-primary bg-primary text-white'
+                        : 'border-gray-200 text-charcoal hover:border-primary'
+                        }`}
                     >
                       {s.size}
                     </button>
@@ -135,50 +131,57 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             )}
 
             {/* Actions */}
-            <div className="flex flex-row gap-2 sm:gap-4 mb-10">
-              <div className="flex items-center border border-gray-200 h-14 flex-shrink-0">
+            <div className="flex flex-col gap-2 sm:gap-4 mb-10">
+              <div className="flex items-center  h-14 flex-shrink-0   overflow-hidden">
+                <div className="  flex items-center justify-center border border-gray-200 h-full" >
+
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors "
+                  >
+                    -
+                  </button>
+                  <span className="w-8 sm:w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+
+
                 <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
+                  onClick={handleToggleWishlist}
+                  disabled={isTogglingWishlist}
+                  className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                  -
-                </button>
-                <span className="w-8 sm:w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
-                >
-                  +
+                  <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
                 </button>
               </div>
 
-              <button
-                onClick={handleAddToCart}
-                disabled={isAddingToCart || !currentSize}
-                className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
-              >
-                <ShoppingBag size={18} />
-                {isAddingToCart ? 'Adding...' : 'Add to Cart'}
-              </button>
+              <div className="flex flex-1 gap-2 sm:gap-4">
+                <button
+                  onClick={handleAddToCart}
+                  disabled={isAddingToCart || !currentSize}
+                  className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                >
+                  <ShoppingBag size={18} />
+                  {isAddingToCart ? 'Adding...' : 'Add to Cart'}
+                </button>
 
-              <button
-                onClick={handleBuyItNow}
-                disabled={isAddingToCart || !currentSize}
-                className="flex-1 h-14 bg-gold text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
-              >
-                Buy It Now
-              </button>
+                <button
+                  onClick={handleBuyItNow}
+                  disabled={isAddingToCart || !currentSize}
+                  className="flex-1 h-14 bg-gold text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                >
+                  Buy It Now
+                </button>
+              </div>
 
-              <button
-                onClick={handleToggleWishlist}
-                disabled={isTogglingWishlist}
-                className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
-              </button>
             </div>
 
 
