@@ -98,7 +98,6 @@ export default async function Home() {
 
         <DoodleProductCard />
 
-        {/* <FeaturedProductCard/> */}
 
         <section className="py-5 md:py-8 bg-white mt-15">
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center">

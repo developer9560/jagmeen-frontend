@@ -27,7 +27,7 @@ const CONTACT_CARDS = [
     label: 'Visit Us',
     value: 'Khedi Road , Sector-87',
     sub: 'Faridabad Haryana – 121002, India',
-    href: 'https://maps.app.goo.gl/hEGnGJAE4NSW3x6CA?g_st=aw',
+    href: 'https://maps.app.goo.gl/dKiq1eCengubZ2qU8',
   },
   // {
   //   icon: Clock,

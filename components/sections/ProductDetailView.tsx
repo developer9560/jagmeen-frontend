@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ProductDetailData } from '@/types/product';
 import ProductGallery from '@/components/ui/ProductGallery';
 import { formatPrice, getDiscountPercent } from '@/lib/format';
-import { Heart, ShoppingBag, Truck, Shield, RotateCcw } from 'lucide-react';
+import { Heart, ShoppingBag, Truck, Shield, RotateCcw, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 
@@ -19,6 +19,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false);
   const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
+  const [showSizeChart, setShowSizeChart] = useState(false);
 
   const { addToCart } = useCart();
   const { checkIsWishlisted, toggleWishlist } = useWishlist();
@@ -103,7 +104,17 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             {/* Sizes Selection */}
             {product.sizes && product.sizes.length > 0 && (
               <div className="mb-8">
-                <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Select Size</p>
+                <div className="flex justify-between items-center mb-3">
+                  <p className="text-sm font-semibold text-primary uppercase tracking-widest">Select Size</p>
+                  {product.size_chart && (
+                    <button 
+                      onClick={() => setShowSizeChart(true)}
+                      className="text-sm underline underline-offset-4 text-charcoal hover:text-primary transition-colors"
+                    >
+                      Size chart
+                    </button>
+                  )}
+                </div>
                 <div className="flex flex-wrap gap-3">
                   {product.sizes.map((s, idx) => (
                     <button
@@ -257,6 +268,30 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
         </div>
       </div>
+
+      {/* Size Chart Modal */}
+      {showSizeChart && product.size_chart && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#FAF8F5] relative max-w-2xl w-full shadow-2xl overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
+            <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-[#FAF8F5] sticky top-0 z-10">
+              <h3 className="text-sm tracking-widest uppercase font-semibold text-primary">Size Chart</h3>
+              <button 
+                onClick={() => setShowSizeChart(false)}
+                className="text-gray-500 hover:text-primary transition-colors p-1"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto flex justify-center bg-white">
+              <img 
+                src={product.size_chart} 
+                alt="Size Chart" 
+                className="max-w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

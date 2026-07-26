@@ -209,7 +209,7 @@ export default function Footer() {
 
           <div className="flex flex-col py-2">
             <p className="text-black text-sm leading-relaxed  max-w-[250px] ">
-              GSTIN: 27AAJCG1680H1Z9
+              GSTIN: 06ENQPP6096E1ZD
             </p>
           </div>
           <div className="flex flex-col py-2">

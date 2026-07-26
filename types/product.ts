@@ -56,6 +56,7 @@ export interface ProductDetailData {
   name: string;
   summary: string | null;
   product_details: Record<string, any> | string | null;
+  size_chart?: string | null;
   keywords?: string[];
   is_featured: boolean;
   view_count: number;
