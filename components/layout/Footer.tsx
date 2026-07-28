@@ -87,7 +87,7 @@ export default function Footer() {
           {/* Column 2: Top Categories */}
           <div className="flex flex-col  py-2">
             <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">
-              Shop
+              Top Categories
             </h3>
             <ul className="space-y-4">
               {subcategories.length > 0 ? (
@@ -129,7 +129,7 @@ export default function Footer() {
 
           <div className="flex flex-col  py-2">
             <h3 className="text-primary text-xs font-bold uppercase tracking-widest mb-6">
-              Top Categories
+              Shop
             </h3>
             <ul className="space-y-4">
               {categories.length > 0 ? (
@@ -213,15 +213,15 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-col py-2">
-            <a href="https://wa.me/918809578544" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
-              <Phone size={16} className="text-gold" />
+            <a href="https://wa.me/918809578544" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-black hover:text-red-400 transition-colors">
+              <Phone size={16} className="text-red-500" />
               +91  8809578544
             </a>
           </div>
 
           <div className="flex flex-col py-2">
-            <a href="mailto:jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-gold transition-colors">
-              <Mail size={16} className="text-gold" />
+            <a href="mailto:jagmeensupportteam@gmail.com" className="flex items-center gap-3 text-sm text-black hover:text-red-400 transition-colors">
+              <Mail size={16} className="text-red-500" />
               jagmeensupportteam@gmail.com
             </a>
 
@@ -232,7 +232,7 @@ export default function Footer() {
           <div className="flex flex-col py-2">
 
             <p className="flex items-center gap-3 text-sm leading-relaxed  ">
-              <MapPin size={16} className="text-gold" />
+              <MapPin size={16} className="text-red-500" />
               123 Fashion Street, Style City, SC 12345
             </p>
 
@@ -248,6 +248,20 @@ export default function Footer() {
           <p className="text-black/50 text-xs text-center md:text-left">
             &copy; {new Date().getFullYear()} Jagmeen Fashion. All rights reserved.
           </p>
+          <div className="flex gap-4">
+              <a href="https://www.instagram.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full  flex items-center justify-center  transition-all font-serif font-bold text-sm">
+               <SiInstagram color="#E1306C" size={24} title="Instagram" />
+              </a>
+              <a href="https://x.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="X" className="w-10 h-10 rounded-full  flex items-center justify-center  hover:text-primary hover:border-gold transition-all font-serif font-bold text-sm">
+              <SiX color="#000000" size={24} title="X (formerly Twitter)" />
+              </a>
+              <a href="https://www.facebook.com/jagmeenfashion" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full  flex items-center justify-center  hover:text-primary transition-all font-serif font-bold text-sm">
+              <SiFacebook color="#1877F2" size={24} title="Facebook" />
+              </a>
+            </div>
+          
+
+
           <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 md:gap-6 text-xs text-black/50">
             {FOOTER_LINKS.legal.map((link) => (
               <Link key={link.label} href={link.href} className="hover:text-black transition-colors">

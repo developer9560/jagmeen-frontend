@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ProductImage } from '@/types/product';
-import { ChevronLeft, ChevronRight, Expand } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 
 interface ProductGalleryProps {
   images: ProductImage[];
@@ -39,65 +39,17 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Main Image */}
-      <div className="relative w-full aspect-square md:aspect-[4/5] max-h-[450px] md:max-h-[550px] lg:max-h-[600px] bg-cream overflow-hidden rounded-sm group">
-        {!imageError[activeIndex] && activeImage?.image_url ? (
-          <Image
-            src={activeImage.image_url}
-            alt={`${productName} product image ${activeIndex + 1} - Jagmeen Fashion`}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-            priority
-            onError={() => setImageError((prev) => ({ ...prev, [activeIndex]: true }))}
-          />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-cream/50">
-            <span className="font-heading italic text-primary/30 text-lg">Image Unavailable</span>
-          </div>
-        )}
-
-        {/* Navigation Arrows */}
-        {sortedImages.length > 1 && (
-          <>
-            <button
-              onClick={handlePrev}
-              className="absolute  left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary  opecity-100  md:opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
-              aria-label="Previous image"
-            >
-              <ChevronLeft size={20}  />
-            </button>
-            <button
-              onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
-              aria-label="Next image"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </>
-        )}
-
-        {/* Expand Button */}
-        <button
-          onClick={() => setIsFullscreen(true)}
-          className="absolute top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
-          aria-label="View fullscreen"
-        >
-          <Expand size={18} />
-        </button>
-      </div>
-
-      {/* Thumbnails */}
+    <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8 h-full">
+      {/* Thumbnails - Vertical on Desktop, Horizontal on Mobile */}
       {sortedImages.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto overflow-x-hidden md:w-14 lg:w-18 flex-shrink-0 scrollbar-hide order-2 md:order-1">
           {sortedImages.map((image, idx) => (
             <button
               key={image.id}
               onClick={() => setActiveIndex(idx)}
-              className={`relative w-20 h-24 sm:w-24 sm:h-32 flex-shrink-0 bg-cream overflow-hidden rounded-sm transition-all duration-300 ${
+              className={`relative w-20 h-24 sm:w-24 sm:h-32 md:w-full md:h-auto md:aspect-[3/4] flex-shrink-0 bg-cream overflow-hidden  transition-all duration-300 ${
                 idx === activeIndex
-                  ? 'ring-2 ring-gold ring-offset-2 opacity-100'
+                  ? 'border-2 border-black ring-offset-2 opacity-100'
                   : 'opacity-60 hover:opacity-100'
               }`}
             >
@@ -120,34 +72,86 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
         </div>
       )}
 
-      {/* Fullscreen Modal (Simplified for now) */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex flex-col">
-          <div className="p-4 flex justify-between items-center gap-4">
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-gold transition-colors p-2"
-            >
-              Close
-            </button>
-            <button
-              onClick={() => setZoomed((prev) => !prev)}
-              className="text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-gold transition-colors p-2"
-            >
-              {zoomed ? 'Zoom Out' : 'Zoom In'}
-            </button>
+      {/* Main Image */}
+      <div 
+        className="relative w-full aspect-[3/4] md:aspect-auto md:h-[600px] lg:h-[750px] bg-cream overflow-hidden group cursor-[url('/plus.png')_24_24,_zoom-in] order-1 md:order-2"
+        onClick={() => setIsFullscreen(true)}
+      >
+        {!imageError[activeIndex] && activeImage?.image_url ? (
+          <Image
+            src={activeImage.image_url}
+            alt={`${productName} product image ${activeIndex + 1} - Jagmeen Fashion`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            priority
+            onError={() => setImageError((prev) => ({ ...prev, [activeIndex]: true }))}
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-cream/50">
+            <span className="font-heading italic text-primary/30 text-lg">Image Unavailable</span>
           </div>
-          <div className="flex-1 relative flex items-center justify-center p-4">
+        )}
+      </div>
+
+      {/* Fullscreen Modal */}
+      {isFullscreen && (
+        <div className="fixed inset-0 z-50 bg-white flex flex-col justify-center items-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             {!imageError[activeIndex] && activeImage?.image_url && (
-              <div className="relative w-full h-full max-w-[1200px] max-h-[calc(100vh-100px)] overflow-hidden">
+              <div 
+                className={`relative w-full h-full overflow-hidden cursor-${zoomed ? 'zoom-out' : 'zoom-in'}`}
+                onClick={() => setZoomed((prev) => !prev)}
+              >
                 <Image
                   src={activeImage.image_url}
                   alt={`${productName} full product image - Jagmeen Fashion`}
                   fill
-                  className={`object-contain transition-transform duration-500 ${zoomed ? 'scale-150' : 'scale-100'}`}
+                  className={`object-contain transition-transform duration-500 ease-out ${zoomed ? 'scale-[2.5]' : 'scale-100'}`}
                   sizes="100vw"
+                  priority
                 />
               </div>
+            )}
+          </div>
+          
+          {/* Controls - Bottom Center */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
+            {sortedImages.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
+                className="w-12 h-12 bg-white/90 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-all shadow-sm"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} strokeWidth={1.5} />
+              </button>
+            )}
+            
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFullscreen(false);
+              }}
+              className="w-16 h-16 bg-white/90 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-all shadow-sm"
+              aria-label="Close fullscreen"
+            >
+              <X size={30} strokeWidth={1} />
+            </button>
+            
+            {sortedImages.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
+                className="w-12 h-12 bg-white/90 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-all shadow-sm"
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} strokeWidth={1.5} />
+              </button>
             )}
           </div>
         </div>

@@ -9,6 +9,7 @@ import ProductCard from '@/components/ui/ProductCard';
 import { productApi } from '@/lib/api';
 import type { ProductCardData, ProductDetailData } from '@/types/product';
 import Link from 'next/link';
+import DoodleProductCard from '@/components/ui/DoodleProductCard';
 
 
 
@@ -114,22 +115,19 @@ export default function ProductDetailPage() {
             {similarProducts.length > 0 && (
               <section className="bg-white py-12 md:py-20 border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                  <div className="flex items-end justify-between gap-4 mb-8">
+                  <div className="flex items-end justify-center gap-4 mb-8">
                     <div>
-                      <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">
-                        Related Products
-                      </p>
-                      <h2 className="font-heading  text-3xl md:text-4xl text-primary">
+                      <h2 className="font-heading  text-3xl md:text-4xl text-primary uppercase">
                         You May Also Like
                       </h2>
                     </div>
-                    <Link href="/products" className="text-xs uppercase tracking-widest font-bold text-primary hover:text-gold">
+                    {/* <Link href="/products" className="text-xs uppercase tracking-widest font-bold text-primary hover:text-gold">
                       View All
-                    </Link>
+                    </Link> */}
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
                     {similarProducts.map((item) => (
-                      <ProductCard key={item.id} product={item} />
+                      <DoodleProductCard key={item.id} product={item} />
                     ))}
                   </div>
                 </div>

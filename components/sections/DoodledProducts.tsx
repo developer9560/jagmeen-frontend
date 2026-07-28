@@ -81,17 +81,17 @@ export default function DoodledProducts() {
   }, [products]);
 
   return (
-    <section className="bg-white py-6 md:py-8">
+    <section className="bg-white py-4 md:py-6">
       <div className="max-full mx-auto px-4 md:px-8">
-        
+
 
         {isLoading && (
           <div className="overflow-x-auto scrollbar-hide carousel py-4">
-            <div className="flex gap-14 snap-x snap-mandatory scroll-smooth px-4">
+            <div className="flex gap-4 snap-x snap-mandatory scroll-smooth px-4">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className="snap-start flex-shrink-0 basis-[calc(48%-1.5rem)] sm:basis-[calc(32.5%-1.333rem)] md:basis-[calc(23.75%-1.25rem)]"
+                  className="snap-start flex-shrink-0 basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] md:basis-[calc(25%-0.75rem)]"
                 >
                   <FeaturedProductSkeleton />
                 </div>
@@ -130,12 +130,12 @@ export default function DoodledProducts() {
               onScroll={handleScroll}
               className="overflow-x-auto scrollbar-hide py-4"
             >
-              <div className="flex gap-14 snap-x snap-mandatory scroll-smooth px-4">
+              <div className="flex gap-4 snap-x snap-mandatory scroll-smooth px-4">
                 {products.map((product, index) => (
                   <div
                     key={product.id}
                     data-carousel-item
-                    className="snap-start flex-shrink-0 basis-[calc(48%-1.5rem)] sm:basis-[calc(32.5%-1.333rem)] md:basis-[calc(23.75%-1.25rem)]"
+                    className="snap-start flex-shrink-0 basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] md:basis-[calc(25%-0.75rem)]"
                   >
                     <DoodleProductCard product={product} index={index} />
                   </div>
@@ -146,33 +146,55 @@ export default function DoodledProducts() {
             <button
               type="button"
               onClick={() => handleButtonScroll('left')}
-              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg transition-opacity duration-300 hover:bg-gold hover:text-white sm:flex ${isHovered && canScrollLeft ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden h-12 w-12 items-center justify-center rounded-full transition-opacity duration-300  hover:text-white sm:flex ${isHovered && canScrollLeft ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               aria-label="Scroll left"
             >
-              <ChevronLeft size={24} 
-              strokeWidth={1.5} />
-              
+              <div className="relative w-6 h-6">
+                {/* Black shadow arrow */}
+                <ChevronLeft
+                  className="absolute left-[1px] w-6 h-6"
+                  color="white"
+                />
+
+                {/* White arrow */}
+                <ChevronLeft
+                  className="absolute  left-1 w-6 h-6"
+                  color="black"
+                />
+              </div>
             </button>
 
             <button
               type="button"
               onClick={() => handleButtonScroll('right')}
-              className={`absolute  right-4 top-1/2 -translate-y-1/2 z-20 hidden h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg transition-opacity duration-300 hover:bg-gold hover:text-white sm:flex ${isHovered && canScrollRight ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+              className={`absolute  right-4 top-1/2 -translate-y-1/2 z-20 hidden h-12 w-12 items-center justify-center rounded-full transition-opacity duration-300  hover:text-white sm:flex ${isHovered && canScrollRight ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               aria-label="Scroll right"
             >
-              <ChevronRight size={24} strokeWidth={1.5} />
+              <div className="relative w-6 h-6">
+                {/* Black shadow arrow */}
+                <ChevronRight
+                  className="absolute left-[1px] w-6 h-6"
+                  color="black"
+                />
+
+                {/* White arrow */}
+                <ChevronRight
+                  className="absolute  left-1 w-6 h-6"
+                  color="white"
+                />
+              </div>
             </button>
           </div>
         )}
-        <div className="flex justify-center h-30 w-full ">
-            
-                <Link href="/trending" className="text-sm font-bold uppercase tracking-wider text-primary hover:text-gold transition-colors flex  justify-center items-center  group h-10 w-30 border border-gold  mt-6 md:mt-0 gap-2">
-                    View All
-                    
-                </Link>
+        <div className="flex justify-center  w-full  ">
+
+          <Link href="/trending" className="text-sm font-bold uppercase tracking-wider  hover:text-red-500 transition-colors flex  justify-center items-center  group h-10 w-30   mt-6 md:mt-0 gap-2">
+            View All
+
+          </Link>
         </div>
 
-        
+
       </div>
     </section>
   );

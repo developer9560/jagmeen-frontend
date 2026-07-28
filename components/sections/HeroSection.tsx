@@ -211,18 +211,42 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
           <>
             <button
               onClick={prevSlide}
-              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 group-hover:flex opacity-0 group-hover:opacity-100 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full"
+              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 group-hover:flex transition-all duration-300 p-3 rounded-full"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            </button>
+              <div className="relative w-6 h-6">
+                {/* Black shadow arrow */}
+                <ChevronLeft
+                  className="absolute left-[1px] w-6 h-6"
+                  color="white"
+                />
 
+                {/* White arrow */}
+                <ChevronLeft
+                  className="absolute  left-1 w-6 h-6"
+                  color="black"
+                />
+              </div>
+            </button>
             <button
               onClick={nextSlide}
-              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/40 group-hover:flex opacity-0 group-hover:opacity-100 hover:bg-white/70 transition-all duration-300 p-3 text-white backdrop-blur-sm rounded-full"
+              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20  group-hover:flex opacity-0 group-hover:opacity-100  transition-all duration-300 p-3 "
               aria-label="Next slide"
             >
-              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform " />
+              <div className="relative w-6 h-6">
+                {/* Black shadow arrow */}
+                <ChevronRight
+                  className="absolute left-[1px] w-6 h-6"
+                  color="black"
+                />
+
+                {/* White arrow */}
+                <ChevronRight
+                  className="absolute  left-1 w-6 h-6"
+                  color="white"
+                />
+              </div>
+
             </button>
           </>
         )}
@@ -241,11 +265,10 @@ export default function HeroSection({ bannerType = 'HOME', initialBanners = [] }
                 aria-label={`Go to ${banner.title}`}
               >
                 <span
-                  className={`block transition-all duration-300 rounded-full ${
-                    index === safeCurrentSlide
+                  className={`block transition-all duration-300 rounded-full ${index === safeCurrentSlide
                       ? 'bg-white w-1 h-1 md:w-2 md:h-2'
                       : 'bg-white/50 w-1 h-1md:w-2 md:h-2 hover:bg-white/75'
-                  }`}
+                    }`}
                 />
               </button>
             ))}

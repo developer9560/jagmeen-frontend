@@ -127,8 +127,8 @@ export default function Navbar() {
       <nav
         ref={navRef}
         className={`transition-all duration-300 relative ${isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 py-2 lg:py-3 shadow-sm'
-            : 'bg-white border-b border-transparent py-2 lg:py-3 shadow-sm'
+          ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 py-2 lg:py-3 shadow-sm'
+          : 'bg-white border-b border-transparent py-2 lg:py-3 shadow-sm'
           }`}
       >
         <div
@@ -163,18 +163,18 @@ export default function Navbar() {
 
           {/* Center logo */}
           <Link href="/" className="flex items-center justify-center" onClick={closeMenu}>
-          <div className="flex h-10 w-20 items-center justify-center sm:w-28 md:pt-6 cursor-pointer">
-            <Image
-              src={logoName}
-              alt="Jagmeen Fashion Logo - Jagmeen"
-              width={120}
-              height={40}
-              title="Jagmeen Fashion"
-              priority={true}
-              className="h-auto w-auto object-contain"
-            />
+            <div className="flex h-10 w-20 items-center justify-center sm:w-28 md:pt-6 cursor-pointer">
+              <Image
+                src={logoName}
+                alt="Jagmeen Fashion Logo - Jagmeen"
+                width={120}
+                height={40}
+                title="Jagmeen Fashion"
+                priority={true}
+                className="h-auto w-auto object-contain"
+              />
 
-          </div>
+            </div>
           </Link>
 
           {/* Right Section: Icons */}
@@ -308,11 +308,11 @@ export default function Navbar() {
       </nav>
 
       {/* Floating Menu Button - Below Header */}
-      <div className="relative hidden md:block h-0 flex justify-start pointer-events-none z-50 ml-6">
-       
+      <div className="relative hidden md:block h-0 flex justify-start pointer-events-none z-50 ml-6 ">
+
         <button
           onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-          className="relative -top-12 w-14 h-14 rounded-full   hover:shadow-xl transition-all duration-300 flex items-center justify-center text-white pointer-events-auto hover:scale-110"
+          className="relative -top-15 w-14 h-14 rounded-full transition-all duration-300 flex items-center justify-center text-white pointer-events-auto hover:scale-110"
           aria-label="Navigation menu"
         >
           <Menu size={24} color="black" className={`transition-transform duration-300 ${isFloatingMenuOpen ? 'rotate-90' : ''}`} />
@@ -321,9 +321,9 @@ export default function Navbar() {
 
       {/* Floating Menu - Main Categories with Hover Submenu */}
       {isFloatingMenuOpen && (
-        <div className="fixed top-20 left-4 z-40 flex items-start gap-0.3 animate-fade-in-down">
+        <div className="fixed top-30 left-10 z-40 flex items-start gap-0.3 animate-fade-in-down">
           {/* Main Categories List */}
-          <div className="bg-white border border-gray-100 rounded-lg shadow-2xl w-[200px] max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="bg-white border border-gray-100 rounded-lg  w-[200px] max-h-[calc(100vh-120px)] overflow-y-auto">
             <div className="p-0">
               {megaMenuNav.map((item) => (
                 <div
@@ -332,7 +332,6 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredFloatingCategory(item.label)}
                   onMouseLeave={() => setHoveredFloatingCategory(null)}
                 >
-                  {/* Main Category Item */}
                   <button
                     onClick={() => {
                       window.location.href = item.href;
@@ -340,10 +339,9 @@ export default function Navbar() {
                     }}
                     className="w-full flex items-center justify-end px-4 py-3 text-sm tracking-wider uppercase font-medium text-primary hover:bg-cream hover:text-gold transition-all duration-200"
                   >
+                    <span className="h-1 w-1 bg-black rounded-full hidden group-hover:block"></span>
+
                     <span className="flex-1">{item.label}</span>
-                    <span className={`text-xs transition-transform duration-200 ${hoveredFloatingCategory === item.label ? 'opacity-100 translate-x-1' : 'opacity-40'}`}>
-                      →
-                    </span>
                   </button>
                 </div>
               ))}
@@ -353,14 +351,11 @@ export default function Navbar() {
           {/* Subcategories Mega Menu - Shows on Hover */}
           {hoveredFloatingCategory && hoveredCategory && (
             <div
-              className="bg-white border border-gray-100 rounded-lg shadow-2xl w-80 max-h-[calc(100vh-120px)] overflow-y-auto animate-fade-in-down"
+              className="bg-white border border-gray-100 rounded-lg  w-80 max-h-[calc(100vh-120px)] overflow-y-auto animate-fade-in-down"
               onMouseEnter={() => setHoveredFloatingCategory(hoveredFloatingCategory)}
               onMouseLeave={() => setHoveredFloatingCategory(null)}
             >
               <div className="p-5 space-y-4">
-                <p className="text-sm tracking-[0.2em] uppercase font-semibold text-primary">
-                  {hoveredCategory.label}
-                </p>
                 {hoveredCategory.columns.map((column) => (
                   <div key={column.title} className="space-y-2">
                     <p className="text-[11px] tracking-[0.2em] uppercase font-semibold text-muted">

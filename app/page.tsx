@@ -12,7 +12,7 @@ import DoodleProductCard from '@/components/sections/DoodledProducts';
 import DoodleBestSeller from '@/components/sections/DoodleBestSeller';
 
 export const metadata = {
-  title: `${SITE_NAME} - Jagmeen Online Fashion Store`,
+  title: `Jagmeen - Online Fashion Store`,
   description:
     "Jagmeen is a lifestyle brand. Focusing on latest trends in clothing. ",
   keywords: [
@@ -68,7 +68,7 @@ async function getSectionTitle(type: string): Promise<string | null> {
     return null;
   }
 }
- 
+
 export default async function Home() {
   const [homeBanners, trendingBanners, bestSellerBanners, trendingTitle, bestSellerTitle] =
     await Promise.all([
@@ -82,7 +82,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      
+
       <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden ">
         <HeroSection bannerType="HOME" initialBanners={homeBanners} />
 
@@ -97,9 +97,8 @@ export default async function Home() {
         </section>
 
         <DoodleProductCard />
-
-
-        <section className="py-5 md:py-8 bg-white mt-15">
+        {/* <span className='w-full h-1 bg-black'></span> */}
+        <section className="py-5 md:py-8 bg-white mt-10">
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center">
             <h2 className=" font-heading font-bold text-xl md:text-2xl text-primary uppercase flex items-center justify-center">
               <Title sectionType="BESTSELLER" fallback="Best Seller" />
@@ -108,8 +107,8 @@ export default async function Home() {
           </div>
           <HeroSection bannerType="BESTSELLER" initialBanners={bestSellerBanners} />
         </section>
-    <DoodleBestSeller />
-       
+        <DoodleBestSeller />
+
       </main>
       <div className="w-full flex items-center justify-center py-4">
         <div className="h-[1px] w-40 sm:w-56 md:w-70 lg:w-96 bg-black" />

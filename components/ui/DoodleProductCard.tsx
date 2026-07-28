@@ -93,7 +93,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
         )}
 
         {/* Badges */}
-        <div className="absolute top-0 left-0 right-0 flex justify-between items-start p-2 md:p-3 z-10">
+        <div className="absolute top-0 left-0 right-0 flex justify-between items-start p-2 md:p-3 z-10 ">
           <div className="flex flex-col gap-1.5">
             {discount && (
               <span className="bg-white text-primary text-[10px] tracking-[0.15em] uppercase font-bold px-2.5 py-1">
@@ -105,11 +105,11 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
           <button
             type="button"
             onClick={handleWishlistToggle}
-            className="w-9 h-9 flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-105 z-20"
+            className=" flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-105 z-20 "
             aria-label="Add to wishlist"
           >
             <Heart
-              size={22}
+              size={20}
               strokeWidth={1.5}
               className={`transition-colors ${isWishlisted ? 'fill-rose text-rose' : 'text-primary  hover:text-rose'}`}
             />
@@ -124,7 +124,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
             e.stopPropagation();
             router.push(productHref);
           }}
-          className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center  bg-white text-primary shadow-sm transition-all duration-300 sm:translate-y-full sm:opacity-0 group-hover:sm:translate-y-0 group-hover:sm:opacity-100 "
+          className="absolute bottom-3 right-3 z-10 flex h-8 w-8 items-center justify-center  bg-white text-primary shadow-sm transition-all duration-300 sm:translate-y-full sm:opacity-0 group-hover:sm:translate-y-0 group-hover:sm:opacity-100 "
           aria-label="View product"
         >
           <Plus size={18} className="transition-transform duration-300 hover:rotate-90" />

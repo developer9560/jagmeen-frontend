@@ -123,7 +123,7 @@ export default function ContactPage() {
   };
 
   const inputCls =
-    'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-charcoal placeholder-gray-400 focus:outline-none focus:border-gold transition-colors';
+    'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-charcoal placeholder-gray-400 focus:outline-none focus:border-red-200 transition-colors';
 
   return (
     <main className="min-h-screen bg-white">
@@ -138,13 +138,13 @@ export default function ContactPage() {
         />
         <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-36">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 px-4 py-2 mb-6">
-              <MessageSquare size={14} className="text-gold" />
-              <span className="text-gold text-xs font-bold uppercase tracking-widest">Get in Touch</span>
+            <div className="inline-flex items-center gap-2 bg-red-200/10 border border-red-200/20 px-4 py-2 mb-6">
+              <MessageSquare size={14} className="text-red-200" />
+              <span className="text-red-200 text-xs font-bold uppercase tracking-widest">Get in Touch</span>
             </div>
             <h1 className="font-heading  text-5xl md:text-7xl text-white leading-tight mb-6">
               We&apos;d Love to<br />
-              <span className="text-gold">Hear from You</span>
+              <span className="text-red-200">Hear from You</span>
             </h1>
             <p className="text-white/60 text-lg leading-relaxed max-w-xl">
               Whether you have a question about an order, need styling advice, or just want to say hello — our team is here for you.
@@ -162,8 +162,8 @@ export default function ContactPage() {
                 key={card.label}
                 className={`p-8 ${i < CONTACT_CARDS.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-gray-200' : ''} group`}
               >
-                <div className="w-10 h-10 bg-primary flex items-center justify-center mb-5 group-hover:bg-gold transition-colors duration-300">
-                  <card.icon size={18} className="text-gold group-hover:text-primary transition-colors duration-300" />
+                <div className="w-10 h-10 bg-primary flex items-center justify-center mb-5 group-hover:bg-red-200 transition-colors duration-300">
+                  <card.icon size={18} className="text-red-200 group-hover:text-primary transition-colors duration-300" />
                 </div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted mb-2">{card.label}</p>
                 {card.href ? (
@@ -171,7 +171,7 @@ export default function ContactPage() {
                     href={card.href}
                     target={card.href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
-                    className="font-medium text-primary hover:text-gold transition-colors block mb-1 text-sm"
+                    className="font-medium text-primary hover:text-red-200 transition-colors block mb-1 text-sm"
                   >
                     {card.value}
                   </a>
@@ -191,16 +191,16 @@ export default function ContactPage() {
 
           {/* ── Contact Form ── */}
           <div className="lg:col-span-3">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Send a Message</p>
+            <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-3">Send a Message</p>
             <h2 className="font-heading  text-4xl text-primary mb-8">
               How Can We Help?
             </h2>
 
             {submitted ? (
               /* ── Success state ── */
-              <div className="border border-gold/30 bg-cream p-10 text-center animate-fade-in">
+              <div className="border border-red-200/30 bg-cream p-10 text-center animate-fade-in">
                 <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle size={32} className="text-gold" />
+                  <CheckCircle size={32} className="text-red-200" />
                 </div>
                 <h3 className="font-heading  text-3xl text-primary mb-3">
                   Message Received!
@@ -211,7 +211,7 @@ export default function ContactPage() {
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', subject: '', message: '' }); }}
-                  className="text-sm uppercase tracking-widest font-bold text-gold hover:text-primary transition-colors"
+                  className="text-sm uppercase tracking-widest font-bold text-red-200 hover:text-primary transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -228,7 +228,7 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-charcoal mb-2">
-                      Full Name <span className="text-gold">*</span>
+                      Full Name <span className="text-red-200">*</span>
                     </label>
                     <input
                       name="name"
@@ -242,7 +242,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-charcoal mb-2">
-                      Email Address <span className="text-gold">*</span>
+                      Email Address <span className="text-red-200">*</span>
                     </label>
                     <input
                       name="email"
@@ -290,7 +290,7 @@ export default function ContactPage() {
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-charcoal mb-2">
-                    Your Message <span className="text-gold">*</span>
+                    Your Message <span className="text-red-200">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -306,7 +306,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto bg-primary text-white px-10 py-4 text-sm font-bold uppercase tracking-widest hover:bg-gold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto bg-primary text-white px-10 py-4 text-sm font-bold uppercase tracking-widest hover:bg-red-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -328,7 +328,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-10">
             {/* FAQ Accordion */}
             <div>
-              <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Quick Answers</p>
+              <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-3">Quick Answers</p>
               <h2 className="font-heading  text-3xl text-primary mb-6">Common Questions</h2>
               <div className="divide-y divide-gray-100 border border-gray-100">
                 {FAQ_ITEMS.map((item, i) => (
@@ -339,7 +339,7 @@ export default function ContactPage() {
                       className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 hover:bg-cream transition-colors"
                     >
                       <span className="text-sm font-medium text-primary">{item.q}</span>
-                      <span className={`text-gold flex-shrink-0 text-xl font-light leading-none transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>
+                      <span className={`text-red-200 flex-shrink-0 text-xl font-light leading-none transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>
                         +
                       </span>
                     </button>
@@ -354,7 +354,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Links */}
-            <div className="bg-cream border border-gold/20 p-8">
+            <div className="bg-cream border border-red-200/20 p-8">
               <p className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Follow Us</p>
               <h3 className="font-heading  text-2xl text-primary mb-5">Stay Connected</h3>
               <p className="text-sm text-charcoal/60 mb-6">
@@ -372,7 +372,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="flex items-center gap-2 px-4 py-3 bg-primary text-white text-xs font-bold uppercase tracking-wider hover:bg-gold transition-colors"
+                    className="flex items-center gap-2 px-4 py-3 bg-primary text-white text-xs font-bold uppercase tracking-wider hover:bg-red-200 transition-colors"
                   >
                     <s.icon size={14} />
                     {s.label}
@@ -386,7 +386,7 @@ export default function ContactPage() {
               href="https://wa.me/918809578544"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 border border-gray-200 p-6 hover:border-gold hover:bg-cream transition-all group"
+              className="flex items-center gap-4 border border-gray-200 p-6 hover:border-red-200 hover:bg-cream transition-all group"
             >
               <div className="w-12 h-12 bg-[#25D366] flex items-center justify-center flex-shrink-0">
                 <svg viewBox="0 0 24 24" className="w-6 h-6 fill-white" xmlns="http://www.w3.org/2000/svg">
@@ -395,7 +395,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <div>
-                <p className="font-medium text-primary text-sm group-hover:text-gold transition-colors">Chat on WhatsApp</p>
+                <p className="font-medium text-primary text-sm group-hover:text-red-200 transition-colors">Chat on WhatsApp</p>
                 <p className="text-xs text-muted mt-0.5">Fastest response — usually within minutes</p>
               </div>
             </a>

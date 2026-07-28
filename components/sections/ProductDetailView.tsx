@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ProductDetailData } from '@/types/product';
 import ProductGallery from '@/components/ui/ProductGallery';
 import { formatPrice, getDiscountPercent } from '@/lib/format';
-import { Heart, ShoppingBag, Truck, Shield, RotateCcw, X } from 'lucide-react';
+import { Heart, ShoppingBag, Truck, Shield, RotateCcw, X ,Share2Icon} from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 
@@ -13,13 +13,23 @@ interface ProductDetailViewProps {
   product: ProductDetailData;
 }
 
+interface ShareButtonProps {
+  title?: string;
+  text?: string;
+  url?: string;
+}
+
+
+
 export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState<'details' | 'shipping'>('details');
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isShippingOpen, setIsShippingOpen] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false);
   const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
   const [showSizeChart, setShowSizeChart] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const { addToCart } = useCart();
   const { checkIsWishlisted, toggleWishlist } = useWishlist();
@@ -57,28 +67,53 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
     setIsTogglingWishlist(false);
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: product.name,
+      text: product.summary || `Check out this amazing product from Jagmeen Fashion!`,
+      url: `https://www.jagmeenfashion.com/products/${product.slug}`
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        alert('Link copied to clipboard!');
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
+    }
+  };
+
   return (
     <section className="bg-white pt-3 pb-12 md:pt-4 md:pb-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
           {/* Left Column - Gallery */}
-          <div className="w-full relative">
+          <div className="w-full relative lg:col-span-8 ">
             {/* Mobile Wishlist Overlay */}
-            <button
+            {/* <button
               onClick={handleToggleWishlist}
               disabled={isTogglingWishlist}
               className={`absolute top-4 left-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-sm flex md:hidden items-center justify-center transition-all duration-300 ${isWishlisted ? 'text-rose' : 'text-primary hover:text-rose'
                 } disabled:opacity-50`}
             >
               <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
-            </button>
+            </button> */}
 
             <ProductGallery images={product.images} productName={product.name} />
+
+            
           </div>
 
           {/* Right Column - Product Info */}
-          <div className="flex flex-col">
+          <div className="flex flex-col lg:col-span-4 lg:pl-4">
             {/* Title & Pricing */}
             <h1 className="  text-xl md:text-2xl text-primary leading-tight mb-4">
               {product.name.toUpperCase()}
@@ -101,6 +136,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               )}
             </div>
 
+
+             {/* Summary */}
+            {product.summary && (
+              <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8">
+                {product.summary}
+              </p>
+            )}
+
             {/* Sizes Selection */}
             {product.sizes && product.sizes.length > 0 && (
               <div className="mb-8">
@@ -121,8 +164,8 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                       key={s.id || idx}
                       onClick={() => setSelectedSizeIdx(idx)}
                       className={`h-12 min-w-[3rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${selectedSizeIdx === idx
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-gray-200 text-charcoal hover:border-primary'
+                        ? 'border-primary  text-black'
+                        : 'border-gray-200 text-charcoal '
                         }`}
                     >
                       {s.size}
@@ -132,14 +175,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </div>
             )}
 
-            <div className="w-full h-px bg-gold/20 mb-8" />
+            {/* <div className="w-full h-px bg-gold/20 mb-8" /> */}
 
-            {/* Summary */}
-            {product.summary && (
-              <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8">
-                {product.summary}
-              </p>
-            )}
+            
 
             {/* Actions */}
             <div className="flex flex-col gap-2 sm:gap-4 mb-10">
@@ -148,7 +186,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors "
+                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-red-300 transition-colors "
                   >
                     -
                   </button>
@@ -167,18 +205,18 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleToggleWishlist}
                   disabled={isTogglingWishlist}
-                  className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-gold'
+                  className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-red-300'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
                 </button>
               </div>
 
-              <div className="flex flex-1 gap-2 sm:gap-4">
+              <div className="flex flex-col sm:flex-row md:flex-col gap-2 sm:gap-4 flex-1">
                 <button
                   onClick={handleAddToCart}
                   disabled={isAddingToCart || !currentSize}
-                  className="flex-1 h-14 bg-primary text-white text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-gold transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-14 text-black text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold  border-2 cursor-pointer hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   <ShoppingBag size={18} />
                   {isAddingToCart ? 'Adding...' : 'Add to Cart'}
@@ -187,7 +225,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleBuyItNow}
                   disabled={isAddingToCart || !currentSize}
-                  className="flex-1 h-14 bg-gold text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-14 border-2  cursor-pointer text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   Buy It Now
                 </button>
@@ -197,60 +235,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
 
 
-            {/* Tabs for Details / Shipping */}
-            <div className="border-b border-gray-200 flex gap-8 mb-6">
-              <button
-                onClick={() => setActiveTab('details')}
-                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${activeTab === 'details' ? 'text-primary' : 'text-muted hover:text-primary'
-                  }`}
-              >
-                Product Details
-                {activeTab === 'details' && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold" />
-                )}
-              </button>
-              <button
-                onClick={() => setActiveTab('shipping')}
-                className={`pb-4 text-xs tracking-[0.15em] uppercase font-bold relative transition-colors ${activeTab === 'shipping' ? 'text-primary' : 'text-muted hover:text-primary'
-                  }`}
-              >
-                Shipping & Returns
-                {activeTab === 'shipping' && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold" />
-                )}
-              </button>
-            </div>
 
-            <div className="text-sm text-charcoal/80 leading-relaxed prose prose-sm max-w-none">
-              {activeTab === 'details' ? (
-                <div>
-                  {product.product_details ? (
-                    typeof product.product_details === 'object' ? (
-                      <div className="space-y-3 mt-2">
-                        {Object.entries(product.product_details).map(([key, value]) => (
-                          <div key={key} className="flex border-b border-gray-100 pb-2">
-                            <span className="w-1/3 font-semibold text-primary capitalize">{key}</span>
-                            <span className="w-2/3 text-muted">{String(value)}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div dangerouslySetInnerHTML={{ __html: product.product_details }} />
-                    )
-                  ) : (
-                    <p>No detailed information available for this product.</p>
-                  )}
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <p><strong>Standard Delivery:</strong> 3-5 business days.</p>
-                  <p><strong>Express Delivery:</strong> 1-2 business days available at checkout.</p>
-                  <p><strong>Returns:</strong> You can return any item within 14 days of receipt for a full refund or exchange. Items must be unworn, unwashed, and have original tags attached.</p>
-                </div>
-              )}
-            </div>
             {/* Service Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
               <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
                 <Truck size={24} className="text-gold" />
                 <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Free Shipping</span>
@@ -260,13 +247,81 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">3 Day Exechange </span>
               </div>
               <div className="flex flex-col items-center justify-center p-4 bg-cream/30 text-center gap-2">
-                <Shield size={24} className="text-gold" />
+                <Shield size={24} className="text-red-600" />
                 <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">Secure Payment</span>
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>
+              {/* Accordions below gallery */}
+            <div className="mt-8 border-t border-gray-200">
+              {/* Product Details Accordion */}
+              <div className="border-b border-gray-200">
+                <button
+                  onClick={() => setIsDetailsOpen(!isDetailsOpen)}
+                  className="w-full py-4 flex justify-between items-center text-sm tracking-[0.15em] uppercase font-bold text-primary hover:text-gold transition-colors"
+                >
+                  Product Details
+                  <span className="text-xl font-light">{isDetailsOpen ? '-' : '+'}</span>
+                </button>
+                {isDetailsOpen && (
+                  <div className="pb-6 text-sm text-charcoal/80 leading-relaxed prose prose-sm max-w-none animate-fade-in">
+                    {product.product_details ? (
+                      typeof product.product_details === 'object' ? (
+                        <div className="space-y-3">
+                          {Object.entries(product.product_details).map(([key, value]) => (
+                            <div key={key} className="flex border-b border-gray-100 pb-2">
+                              <span className="w-1/3 font-semibold text-primary capitalize">{key}</span>
+                              <span className="w-2/3 text-muted">{String(value)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div dangerouslySetInnerHTML={{ __html: product.product_details }} />
+                      )
+                    ) : (
+                      <p>No detailed information available for this product.</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Shipping & Returns Accordion */}
+              <div className="border-b border-gray-200">
+                <button
+                  onClick={() => setIsShippingOpen(!isShippingOpen)}
+                  className="w-full py-4 flex justify-between items-center text-sm tracking-[0.15em] uppercase font-bold text-primary hover:text-gold transition-colors"
+                >
+                  Shipping & Returns
+                  <span className="text-xl font-light">{isShippingOpen ? '-' : '+'}</span>
+                </button>
+                {isShippingOpen && (
+                  <div className="pb-6 text-sm text-charcoal/80 leading-relaxed prose prose-sm max-w-none animate-fade-in">
+                    <div className="space-y-4">
+                      <p><strong>Standard Delivery:</strong> 3-5 business days.</p>
+                      <p><strong>Express Delivery:</strong> 1-2 business days available at checkout.</p>
+                      <p><strong>Returns:</strong> You can return any item within 14 days of receipt for a full refund or exchange. Items must be unworn, unwashed, and have original tags attached.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Note & Share */}
+            <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mt-8 pt-6 border-t border-gray-200">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-xs sm:text-sm text-charcoal/80 bg-cream/30 p-3 rounded-sm flex-1">
+                <span className="font-bold text-primary whitespace-nowrap">Please Note:</span>
+                <span>Sale and clearance items are final sale. Returns and exchanges are not applicable on discounted products.</span>
+              </div>
+              <button 
+                onClick={handleShare}
+                className="flex items-center justify-center gap-2 border border-gray-200 px-6 py-3 hover:border-primary hover:text-primary transition-all uppercase tracking-widest text-xs font-bold w-full xl:w-auto shrink-0"
+              >
+                Share
+                <Share2Icon size={16} />
+              </button>
+            </div>
       </div>
 
       {/* Size Chart Modal */}

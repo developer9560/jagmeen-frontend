@@ -46,12 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
-    {
-      url: `${SITE_URL}/category`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
+    
     {
       url: `${SITE_URL}/women`,
       lastModified: new Date().toISOString(),
@@ -76,24 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.75,
     },
-    {
-      url: `${SITE_URL}/contact`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/privacy`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${SITE_URL}/terms`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+    
   ];
 
   const landingUrls: MetadataRoute.Sitemap = Object.values(landingPages).map((page) => ({

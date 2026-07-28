@@ -60,21 +60,21 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
       {/* ─── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative bg-primary overflow-hidden">
-  {/* Decorative gold orbs */}
-  <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-  <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl" />
+  {/* Decorative red-200 orbs */}
+  <div className="absolute top-0 right-0 w-96 h-96 bg-red-200/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+  <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-200/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl" />
 
   <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-28 md:py-40">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       
       {/* Left Column */}
       <div>
-        <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-6 animate-fade-in">
+        <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-6 animate-fade-in">
           Our Story
         </p>
         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4 animate-fade-in-up">
           Dressed in<br />
-          <span className="text-gold text-5xl lg:text-8xl py-0">Purpose</span>
+          <span className="text-red-200 text-5xl lg:text-8xl py-0">Purpose</span>
         </h1>
         <p className="text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed animate-fade-in-up delay-200">
           Jagmeen Fashion was established from a simple belief — that great style should be accessible,
@@ -86,13 +86,13 @@ export default function AboutPage() {
       <div className=" p-8  backdrop-blur-sm animate-fade-in-up delay-300">
         <p className="text-white/75 text-base md:text-lg leading-relaxed mb-5">
           Jagmeen Fashion is a garment manufacturing company located in Faridabad, Haryana, dedicated to
-          producing premium-quality Western and Indo-Western apparel for brands, retailers, wholesalers,
+          producing premium-quality,  Western and Indo-Western, retailers, wholesalers,
           and fashion businesses.
         </p>
         <p className="text-white/75 text-base md:text-lg leading-relaxed mb-5">
           Our focus is on quality, consistency, timely delivery, and customer satisfaction. With a
-          commitment to excellence, we work closely with our clients to transform design concepts into
-          market-ready garments that reflect current fashion trends and consumer demands.
+          commitment to excellence, we work closely with our clients to transform design, concepts.
+          
         </p>
         <p className="text-white/75 text-base md:text-lg leading-relaxed">
           Whether serving domestic markets or supporting international business opportunities, Jagmeen
@@ -108,7 +108,7 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="animate-fade-in-up">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">Who We Are</p>
+            <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-4">Who We Are</p>
             <h2 className="font-heading  text-4xl md:text-5xl text-primary leading-tight mb-8">
               More Than a Fashion Store
             </h2>
@@ -134,8 +134,8 @@ export default function AboutPage() {
 
           {/* Decorative quote block */}
           <div className="relative">
-            <div className="bg-cream border border-gold/20 p-5 md:p-7">
-              {/* <span className="font-heading  text-7xl text-gold/30 leading-none block -mt-4 mb-2">"</span> */}
+            <div className="bg-cream border border-red-200/20 p-5 md:p-7">
+              {/* <span className="font-heading  text-7xl text-red-200/30 leading-none block -mt-4 mb-2">"</span> */}
               <blockquote className="font-heading  text-xl md:text-2xl text-primary  leading-relaxed mb-4">
                 &quot; Fashion is the armour to survive the reality of everyday life. &quot;
               </blockquote>
@@ -143,8 +143,8 @@ export default function AboutPage() {
                 — Bill Cunningham
               </cite> */}
             </div>
-            {/* Gold accent line */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold/20 -z-10" />
+            {/* red-200 accent line */}
+            <div className="absolute -bottom-4 -right-4 w-full h-full border border-red-200/20 -z-10" />
           </div>
         </div>
       </section>
@@ -153,17 +153,17 @@ export default function AboutPage() {
       <section className="bg-cream py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">What We Stand For</p>
+            <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-4">What We Stand For</p>
             <h2 className="font-heading  text-4xl md:text-5xl text-primary">Our Core Values</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {VALUES.map((v, i) => (
               <div
                 key={v.title}
-                className={`bg-white border border-gray-100 p-8 hover:border-gold/40 hover:shadow-lg transition-all duration-300 group animate-fade-in-up delay-${(i + 1) * 100}`}
+                className={`bg-white border border-gray-100 p-8 hover:border-red-200/40 hover:shadow-lg transition-all duration-300 group animate-fade-in-up delay-${(i + 1) * 100}`}
               >
-                <div className="w-12 h-12 flex items-center justify-center bg-primary group-hover:bg-gold transition-colors duration-300 mb-6">
-                  <v.icon size={22} className="text-gold group-hover:text-primary transition-colors duration-300" />
+                <div className="w-12 h-12 flex items-center justify-center bg-primary group-hover:bg-red-200 transition-colors duration-300 mb-6">
+                  <v.icon size={22} className="text-red-200 group-hover:text-primary transition-colors duration-300" />
                 </div>
                 <h3 className="font-heading  text-xl text-primary mb-3">{v.title}</h3>
                 <p className="text-charcoal/60 text-sm leading-relaxed">{v.desc}</p>
@@ -178,7 +178,7 @@ export default function AboutPage() {
       {/* ─── CTA ──────────────────────────────────────────────────────────── */}
       <section className="bg-primary py-24">
         <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
-          <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">Join Us</p>
+          <p className="text-red-200 text-xs font-bold uppercase tracking-[0.3em] mb-4">Join Us</p>
           <h2 className="font-heading  text-4xl md:text-6xl text-white mb-6">
             Start Your Style Journey
           </h2>
@@ -188,13 +188,13 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 bg-gold text-primary px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors"
+              className="inline-flex items-center gap-2 bg-red-200 text-primary px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors"
             >
               Shop Now <ArrowRight size={16} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 border border-white/20 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:border-gold hover:text-gold transition-colors"
+              className="inline-flex items-center gap-2 border border-white/20 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:border-red-200 hover:text-red-200 transition-colors"
             >
               Contact Us
             </Link>
