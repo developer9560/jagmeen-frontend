@@ -83,8 +83,6 @@ export default function DoodledProducts() {
   return (
     <section className="bg-white py-4 md:py-6">
       <div className="max-full mx-auto px-4 md:px-8">
-
-
         {isLoading && (
           <div className="overflow-x-auto scrollbar-hide carousel py-4">
             <div className="flex gap-4 snap-x snap-mandatory scroll-smooth px-4">

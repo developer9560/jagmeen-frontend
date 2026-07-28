@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: blob: https:; font-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; connect-src 'self' https://api.jagmeenfashion.com https://res.cloudinary.com https:; form-action 'self'; upgrade-insecure-requests",
+              "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: blob: https:; font-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; connect-src 'self' https://api.jagmeenfashion.com https://res.cloudinary.com https:; form-action 'self'; media-src 'self' blob: https://res.cloudinary.com https://player.cloudinary.com https://*.cloudinary.com https://www.youtube.com https://youtu.be https://*.youtube.com; frame-src 'self' https://www.youtube.com https://youtube.com https://player.cloudinary.com https://*.cloudinary.com; upgrade-insecure-requests",
           },
         ],
       },
@@ -64,6 +64,16 @@ const nextConfig: NextConfig = {
       {
         protocol:"https",
         hostname:"drive.google.com"
+      },{
+        protocol:"https",
+        hostname:"youtube.com"
+      },{
+        protocol:"https",
+        hostname:"youtu.be"
+      },
+      {
+        protocol:"https",
+        hostname:"www.youtube.com"
       }
     ],
     unoptimized: process.env.NODE_ENV === "development",
