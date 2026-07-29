@@ -349,6 +349,14 @@ export const productApi = {
     ),
 };
 
+export const recentViewApi = {
+  trackView: (productId: number, token: string) =>
+    request<ApiResponse>(`/api/recent-views/track/${productId}`, { method: 'POST' }, token),
+
+  getRecentViews: (token: string) =>
+    request<ApiResponse>(`/api/recent-views/`, { method: 'GET' }, token),
+};
+
 export const cartApi = {
   getCart: (token: string) =>
     request<CartData>('/api/cart', { method: 'GET' }, token),

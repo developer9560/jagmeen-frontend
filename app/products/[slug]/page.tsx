@@ -5,11 +5,14 @@ import { useParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductDetailView from '@/components/sections/ProductDetailView';
+import RecentlyViewed from '@/components/sections/RecentlyViewed';
 import ProductCard from '@/components/ui/ProductCard';
-import { productApi } from '@/lib/api';
+import { productApi, recentViewApi } from '@/lib/api';
 import type { ProductCardData, ProductDetailData } from '@/types/product';
 import Link from 'next/link';
 import DoodleProductCard from '@/components/ui/DoodleProductCard';
+import { useAuth } from '@/context/AuthContext';
+import { getToken } from '@/lib/auth-storage';
 
 
 
@@ -18,6 +21,7 @@ import DoodleProductCard from '@/components/ui/DoodleProductCard';
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const { isAuthenticated } = useAuth();
 
   const [product, setProduct] = useState<ProductDetailData | null>(null);
   const [similarProducts, setSimilarProducts] = useState<ProductCardData[]>([]);
@@ -38,9 +42,17 @@ export default function ProductDetailPage() {
           setProduct(fetchedProduct);
           setError(null);
           
-          // Track view in background
+          // Track product view (existing analytics)
           if (fetchedProduct?.id) {
             productApi.trackProductView(fetchedProduct.id).catch(console.error);
+          }
+
+          // Track in recent views (only for logged-in users)
+          if (fetchedProduct?.id && isAuthenticated) {
+            const token = getToken();
+            if (token) {
+              recentViewApi.trackView(fetchedProduct.id, token).catch(console.error);
+            }
           }
 
           productApi
@@ -133,6 +145,8 @@ export default function ProductDetailPage() {
                 </div>
               </section>
             )}
+            {/* Recently Viewed — only for logged-in users */}
+            <RecentlyViewed currentProductId={product?.id} />
           </>
         )}
       </main>
