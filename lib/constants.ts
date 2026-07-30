@@ -311,12 +311,12 @@ export const FOOTER_LINKS = {
     { label: 'Contact Us', href: '/contact' },
     // { label: 'Western Wear', href: '/western-wear' },
     { label: 'Return & Exchange', href: '/return-exchange' },
-    { label: 'Delivery Policy', href: '/delivery-policy' },
+    { label: 'Delivery Policy', href: '/shipping' },
    
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Terms of Service', href: '/terms-of-service' },
+    { label: 'Terms of Service', href: '/term-conditions' },
   ]
 };
 
