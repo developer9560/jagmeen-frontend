@@ -11,6 +11,7 @@ import { productApi, recentViewApi } from '@/lib/api';
 import type { ProductCardData, ProductDetailData } from '@/types/product';
 import Link from 'next/link';
 import DoodleProductCard from '@/components/ui/DoodleProductCard';
+import { ChevronDown } from "lucide-react";
 import { useAuth } from '@/context/AuthContext';
 import { getToken } from '@/lib/auth-storage';
 
@@ -28,20 +29,23 @@ export default function ProductDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Number of products visible initially
+  const [visibleProducts, setVisibleProducts] = useState(4);
   useEffect(() => {
     let cancelled = false;
 
     async function fetchProduct() {
       if (!slug) return;
-      
+
       try {
         setIsLoading(true);
         const response = await productApi.getProductBySlug(slug);
         if (!cancelled) {
           const fetchedProduct = response.data as unknown as ProductDetailData;
           setProduct(fetchedProduct);
+          setVisibleProducts(4);
           setError(null);
-          
+
           // Track product view (existing analytics)
           if (fetchedProduct?.id) {
             productApi.trackProductView(fetchedProduct.id).catch(console.error);
@@ -83,7 +87,11 @@ export default function ProductDetailPage() {
     };
   }, [slug]);
 
-  
+  const loadMoreProducts = () => {
+    setVisibleProducts((prev) =>
+      Math.min(prev + 4, similarProducts.length)
+    );
+  };
 
   return (
     <>
@@ -114,7 +122,7 @@ export default function ProductDetailPage() {
             <p className="text-muted mb-8 max-w-md">
               {error || "We couldn't find the product you're looking for. It might have been removed or is temporarily unavailable."}
             </p>
-            <Link 
+            <Link
               href="/"
               className="bg-primary text-white text-xs tracking-[0.2em] uppercase font-bold px-8 py-4 hover:bg-gold transition-colors inline-block"
             >
@@ -127,21 +135,45 @@ export default function ProductDetailPage() {
             {similarProducts.length > 0 && (
               <section className="bg-white py-12 md:py-20 border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                  <div className="flex items-end justify-center gap-4 mb-8">
-                    <div>
-                      <h2 className="font-heading  text-3xl md:text-4xl text-primary uppercase">
-                        You May Also Like
-                      </h2>
-                    </div>
-                    {/* <Link href="/products" className="text-xs uppercase tracking-widest font-bold text-primary hover:text-gold">
-                      View All
-                    </Link> */}
+
+                  <div className="flex justify-center mb-8">
+                    <h2 className="font-heading text-3xl md:text-4xl text-primary uppercase">
+                      You May Also Like
+                    </h2>
                   </div>
+
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-                    {similarProducts.map((item) => (
-                      <DoodleProductCard key={item.id} product={item} />
-                    ))}
+                    {similarProducts
+                      .slice(0, visibleProducts)
+                      .map((item) => (
+                        <DoodleProductCard
+                          key={item.id}
+                          product={item}
+                        />
+                      ))}
                   </div>
+
+                  {visibleProducts < similarProducts.length && (
+                    <div className="flex justify-center mt-12">
+
+                      <button
+                        onClick={loadMoreProducts}
+                        className="group flex flex-col items-center"
+                      >
+                        <ChevronDown
+                          size={40}
+                          strokeWidth={1.5}
+                          className="transition-all duration-300 group-hover:translate-y-1"
+                        />
+
+                        <span className="text-xs tracking-[0.3em] uppercase mt-2">
+                          Load More
+                        </span>
+                      </button>
+
+                    </div>
+                  )}
+
                 </div>
               </section>
             )}
