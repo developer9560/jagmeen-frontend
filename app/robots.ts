@@ -7,6 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/cart', '/account', '/checkout'],
     },
-    sitemap: 'https://jagmeenfashion.com/sitemap.xml',
+    sitemap: [
+      'https://jagmeenfashion.com/sitemap.xml',
+      'https://jagmeenfashion.com/main-sitemap.xml',
+    ],
   }
 }
