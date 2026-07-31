@@ -89,7 +89,7 @@ export default function DoodleBestSeller() {
               {Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className="snap-start flex-shrink-0 basis-[calc(48%-1.5rem)] sm:basis-[calc(32.5%-1.333rem)] md:basis-[calc(23.75%-1.25rem)]"
+                  className="snap-start flex-shrink-0 basis-[calc(65%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] md:basis-[calc(25%-0.75rem)]"
                 >
                   <FeaturedProductSkeleton />
                 </div>
@@ -133,7 +133,7 @@ export default function DoodleBestSeller() {
                   <div
                     key={product.id}
                     data-carousel-item
-                    className="snap-start flex-shrink-0 basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] md:basis-[calc(25%-0.75rem)]"
+                    className="snap-start flex-shrink-0 basis-[calc(65%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] md:basis-[calc(25%-0.75rem)]"
                   >
                     <DoodleProductCard product={product} index={index} />
                   </div>

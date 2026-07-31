@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL, landingPages } from '@/lib/seo';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default async function sitemap2(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,

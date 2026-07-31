@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
+import DoodleProductCard from '@/components/ui/DoodleProductCard';
 import { productApi } from '@/lib/api';
 import type { FeaturedProductsData, ProductCardData } from '@/types/product';
 
@@ -79,7 +80,7 @@ export default function ProductsPage() {
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {products.map((p) => (
-                    <ProductCard key={p.id} product={p} />
+                    <DoodleProductCard key={p.id} product={p} />
                   ))}
                 </div>
 

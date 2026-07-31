@@ -127,13 +127,13 @@ export default function VideoHeroSection({ videos }: VideoHeroSectionProps) {
       <div className="absolute inset-0 bg-black/10 z-10 cursor-default" />
 
       {/* Title */}
-      <div className="absolute inset-0 flex flex-col items-center justify-end md:justify-center pb-24 md:pb-0 p-4 text-center pointer-events-none z-20">
+      {/* <div className="absolute inset-0 flex flex-col items-center justify-end md:justify-center pb-24 md:pb-0 p-4 text-center pointer-events-none z-20">
         {video.title && video.title.trim().length > 1 && (
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-heading font-bold text-white uppercase tracking-widest drop-shadow-lg opacity-90">
             {video.title}
           </h1>
         )}
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -79,7 +79,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
             alt={`${product.name} - buy online at Jagmeen Fashion`}
             fill
             quality={70}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 640px) 65vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-700 ease-out"
             onError={() => setImageError(true)}
           />
@@ -139,7 +139,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
           onClick={() => router.push(productHref)}
           className="text-left w-full hover:opacity-80 transition-opacity"
         >
-          <h3 className="font-heading text-center text-sm md:text-md text-primary leading-snug line-clamp-2 ">
+          <h3 className="font-heading text-center text-sm md:text-md text-primary leading-snug line-clamp-2 uppercase ">
             {product.name}
           </h3>
         </button>
