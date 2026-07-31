@@ -8,7 +8,8 @@ import "./globals.css";
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
 const siteUrl = "https://jagmeenfashion.com";
-const siteName = "Jagmeen Fashion";
+const siteName = "Jagmeen";
+const legalBusinessName = "Jagmeen Fashion";
 const supportEmail = "jagmeensupportteam@gmail.com";
 const supportPhone = "+91-8809578544";
 
@@ -31,6 +32,7 @@ const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "ClothingStore",
   name: siteName,
+  alternateName: legalBusinessName,
   url: siteUrl,
   logo: `${siteUrl}/jagmeen_logo.png`,
   image: `${siteUrl}/jagmeen_logo.png`,
@@ -59,6 +61,7 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteName,
+  alternateName: legalBusinessName,
   url: siteUrl,
   logo: `${siteUrl}/jagmeen_logo.png`,
   contactPoint: [
@@ -81,6 +84,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: siteName,
+  alternateName: legalBusinessName,
   url: siteUrl,
   potentialAction: {
     "@type": "SearchAction",
@@ -129,12 +133,13 @@ const websiteJsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Jagmeen Fashion - Women & Men Clothing Online India",
-    template: "%s | Jagmeen Fashion",
+    default: "Jagmeen - Women & Men Clothing Online India",
+    template: "%s | Jagmeen",
   },
   description:
-    "Shop Western and Indo-Western clothing for women and men at Jagmeen Fashion. Quality garments, fair prices, and delivery across India.",
+    "Shop Western and Indo-Western clothing for women and men at Jagmeen. Quality garments, fair prices, and delivery across India.",
   keywords: [
+    "Jagmeen",
     "Jagmeen Fashion",
     "online clothing store India",
     "Western wear India",
@@ -147,16 +152,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName,
-    title: "Jagmeen Fashion - Clothing Online India",
+    title: "Jagmeen - Clothing Online India",
     description:
-      "Discover quality Western and Indo-Western fashion from Jagmeen Fashion, based in Faridabad, Haryana.",
+      "Discover quality Western and Indo-Western fashion from Jagmeen, based in Faridabad, Haryana.",
     url: siteUrl,
     images: [{ url: "/jagmeen_logo.png", width: 1200, height: 630, alt: siteName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jagmeen Fashion - Clothing Online India",
-    description: "Shop quality Western and Indo-Western clothing online at Jagmeen Fashion.",
+    title: "Jagmeen - Clothing Online India",
+    description: "Shop quality Western and Indo-Western clothing online at Jagmeen.",
     images: ["/jagmeen_logo.png"],
   },
   robots: { index: true, follow: true },

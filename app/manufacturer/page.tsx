@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Sparkles, Heart, Award, Users, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Jagmeen Fashion - Garments Maufacturer in Faridabad',
+  title: 'Jagmeen Fashion - Garment Manufacturer in Faridabad',
   description:
     'Jagmeen Fashion is in the business of manufacturing and export of woven garments. The company is based in India.',
   keywords: [
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     'Western wear manufacturer India',
     'Indo-Western apparel manufacturer',
   ],
-  alternates: { canonical: 'https://jagmeenfashion.com/profile' },
+  alternates: { canonical: 'https://jagmeenfashion.com/manufacturer' },
   openGraph: {
-    title: 'Profile - Jagmeen Fashion',
+    title: 'Jagmeen Fashion - Garment Manufacturer in Faridabad',
     description:
       'Jagmeen Fashion is in the business of manufacturing and export of woven garments. The company based in India',
-    url: 'https://jagmeenfashion.com/profile',
+    url: 'https://jagmeenfashion.com/manufacturer',
     type: 'website',
   },
 };
@@ -50,7 +50,7 @@ export default function ManufacturePage() {
 
             <p className="mt-4 text-sm ">
               Jagmeen Fashion is launched its own e-commerce brand  
-              <span className="font-bold"> "Jagmeen" </span> in 2026 it is a fashion & lifestyle brand in India.
+              <span className="font-bold"> &quot;Jagmeen&quot; </span> in 2026 it is a fashion & lifestyle brand in India.
             </p>
                 <p className="mt-4 text-sm">
               Jagmeen is worked in Woven Fabrics. Its categories are Womens, Mens and Kids wear.

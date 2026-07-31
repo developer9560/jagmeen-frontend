@@ -1,7 +1,7 @@
 import ClientPage from './ClientPage';
 import type { Metadata } from 'next';
 
-const siteUrl = 'https://jagmeenfashion.com';
+const siteUrl = 'https://jagmeenfashion.com/men';
 const siteName = 'Jagmeen Fashion';
 
 export const metadata: Metadata = {

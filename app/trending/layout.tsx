@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   description:
     'Shop featured Jagmeen Fashion products online. Explore selected Western and Indo-Western styles with delivery across India.',
   keywords: ['featured products Jagmeen Fashion', 'trending clothes India', 'featured fashion online India'],
-  alternates: { canonical: `${SITE_URL}/featured` },
+  alternates: { canonical: `${SITE_URL}/trending` },
   openGraph: {
     title: `Featured Products Online India - ${SITE_NAME}`,
     description: 'Explore selected Jagmeen Fashion styles online.',
-    url: `${SITE_URL}/featured`,
+    url: `${SITE_URL}/trending`,
     type: 'website',
   },
 };
