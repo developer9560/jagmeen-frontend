@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL, landingPages } from '@/lib/seo';
+import { SITE_URL } from '@/lib/seo';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
@@ -55,15 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
   ];
 
-  const landingUrls: MetadataRoute.Sitemap = Object.values(landingPages).map((page) => ({
-    url: `${SITE_URL}/${page.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: page.slug.includes('manufacturer') ? 0.75 : 0.86,
-  }));
-
   return [
     ...staticUrls,
-    ...landingUrls,
   ];
 }
