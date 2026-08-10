@@ -1,9 +1,9 @@
 export default function ShippingPolicy() {
     return (
         <main className="bg-white min-h-screen">
-            <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 lg:px-12">
+            <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 lg:px-12 text-center">
                 {/* Heading */}
-                <div className="mb-10 border-b pb-6">
+                <div className="mb-10 border-b pb-6 items-center justify-center">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
                         Shipping Policy
                     </h1>
@@ -19,24 +19,18 @@ export default function ShippingPolicy() {
 
                     <h2>IMPORTANT INFORMATION</h2>
 
-                    <p>
+                    <p className="text-justify">
                         At Jagmeen we make-to-order. We typically take 3-7 working days to
                         process all orders and an additional 2-3 days for shipping within
                         India. Free shipping within India.
-                    </p>
-
-                    <p>
+                   
                         Our working days are Monday - Friday (9:30am - 6:30pm). No orders
                         are processed over the weekends or on public holidays according to
                         the Indian calendar.
-                    </p>
-
-                    <p>
+                  
                         Please make sure that your shipping address is correct, as we will
                         not be able to redirect orders once they are dispatched to you.
-                    </p>
-
-                    <p>
+                   
                         We partner with third party delivery services to send out orders. We
                         ship via Shiprocket, Xpressbees, Shadow fax, Ecom express, Bluedart,
                         DHL, DTDC, Overseas Logistics, Shree Anjani courier services,
@@ -44,24 +38,18 @@ export default function ShippingPolicy() {
                         delivery pin code. Third party delivery partners can be added at our
                         discretion. You might receive delivery based communication on our
                         behalf via our logistic partners.
-                    </p>
-
-                    <p>
+                    
                         Free Shipping in India is only applicable on orders above Rs.2000.
-                    </p>
-
-                    <p>
+                  
                         We are not responsible for any delays caused by customs clearance
                         processes.
-                    </p>
-
-                    <p>
+                   
                         All orders will require a signature upon receipt.
                     </p>
 
                     <h2>INSURANCE</h2>
 
-                    <p>
+                    <p className="text-justify">
                         Jagmeenfashion.com ensures each purchase during the time it is in
                         transit until it is delivered to you. We require a signature for any
                         goods delivered, at which point responsibility for your purchased
@@ -74,7 +62,7 @@ export default function ShippingPolicy() {
 
                     <h2>DUTIES & TAXES</h2>
 
-                    <p>
+                    <p className="text-justify">
                         All prices displayed on our website are in Indian rupees (INR).
                         Applicable GST is included or charged at checkout as per Indian tax
                         laws. No additional customs duties are applicable on orders

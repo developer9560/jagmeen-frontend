@@ -216,7 +216,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleAddToCart}
                   disabled={isAddingToCart || !currentSize}
-                  className="w-full h-14 text-black text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold  border-2 cursor-pointer hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-14 text-black text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold  border-1 cursor-pointer hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   <ShoppingBag size={18} />
                   {isAddingToCart ? 'Adding...' : 'Add to Cart'}
@@ -225,7 +225,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleBuyItNow}
                   disabled={isAddingToCart || !currentSize}
-                  className="w-full h-14 border-2  cursor-pointer text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-14 border-1  cursor-pointer text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   Buy It Now
                 </button>
