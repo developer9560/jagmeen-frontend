@@ -1,3 +1,5 @@
+import Footer from "@/components/layout/Footer";
+
 export default function ReturnExchangePolicy() {
     return (
         <main className="bg-white min-h-screen">
@@ -121,6 +123,7 @@ export default function ReturnExchangePolicy() {
 
                 </div>
             </div>
+            <Footer/>
         </main>
     );
 }

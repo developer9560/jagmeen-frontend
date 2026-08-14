@@ -312,6 +312,7 @@ export const FOOTER_LINKS = {
     // { label: 'Western Wear', href: '/western-wear' },
     { label: 'Return & Exchange', href: '/return-exchange' },
     { label: 'Delivery Policy', href: '/shipping' },
+    { label: 'Company Profile', href: '/profile' },
    
   ],
   legal: [

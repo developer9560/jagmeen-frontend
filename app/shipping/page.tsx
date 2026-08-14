@@ -1,3 +1,5 @@
+import Footer from "@/components/layout/Footer";
+
 export default function ShippingPolicy() {
     return (
         <main className="bg-white min-h-screen">
@@ -73,6 +75,7 @@ export default function ShippingPolicy() {
 
                 </div>
             </div>
+            <Footer />
         </main>
     );
 }

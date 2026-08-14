@@ -1,3 +1,5 @@
+
+import Footer from "@/components/layout/Footer";
 export default function TermsConditions() {
     return (
         <main className="bg-white min-h-screen">
@@ -249,6 +251,7 @@ export default function TermsConditions() {
 
                 </div>
             </div>
+            <Footer />
         </main>
     );
 }

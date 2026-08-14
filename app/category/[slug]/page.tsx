@@ -9,6 +9,7 @@ import { productApi } from '@/lib/api';
 import type { ProductCardData, CategoryProductsData } from '@/types/product';
 import Link from 'next/link';
 import { getLandingPage, titleFromSlug } from '@/lib/seo';
+import DoodleProductCard from '@/components/ui/DoodleProductCard';
 
 export default function CategoryPage() {
   const params = useParams();
@@ -159,7 +160,7 @@ export default function CategoryPage() {
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {products.map((p) => (
-                    <ProductCard key={p.id} product={p} />
+                    <DoodleProductCard key={p.id} product={p} />
                   ))}
                 </div>
 
