@@ -106,7 +106,7 @@ export default async function Home() {
     <>
       <Header />
 
-      <main className="flex-1 flex flex-col w-full md:pb-20 overflow-hidden ">
+      <main className="flex-1 flex flex-col w-full bg-white md:pb-20 overflow-hidden ">
         {/* Video section — shows only if a video is available for this device */}
         <VideoHeroSection videos={videos} />
         {/* Home banner — always visible */}

@@ -85,7 +85,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
           />
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-cream via-white to-rose/20 p-6">
-            <div className="w-20 h-28 border border-gold/30 rounded-t-full rounded-b-md opacity-60" />
+            <div className="w-20 h-28 border border-white rounded-t-full rounded-b-md opacity-60" />
             <span className="font-heading  text-primary/25 text-lg mt-6 text-center line-clamp-2">
               {product.name}
             </span>
@@ -132,7 +132,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
       </div>
 
       {/* Details */}
-      <div className="relative p-4 md:p-5 border-t border-transparent group-hover:border-gold/30 transition-colors duration-300 border-gold/30">
+      <div className="relative p-4 md:p-5 border-t border-transparent group-hover:border-white transition-colors duration-300 border-white/30">
 
         <button
           type="button"
