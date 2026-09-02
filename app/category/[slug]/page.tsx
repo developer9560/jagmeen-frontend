@@ -58,7 +58,7 @@ export default function CategoryPage() {
   return (
     <>
       <Header />
-      <main className="flex-1 bg-neutral-50/50">
+      <main className="flex-1 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 lg:py-12 flex flex-col md:flex-row gap-8">
           
           {/* Mobile Filter Toggle */}

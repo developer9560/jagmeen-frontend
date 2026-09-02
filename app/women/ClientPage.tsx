@@ -8,6 +8,7 @@ import { productApi } from '@/lib/api';
 import type { ProductCardData, CategoryProductsData } from '@/types/product';
 import Link from 'next/link';
 import { getLandingPage, titleFromSlug } from '@/lib/seo';
+import DoodleProductCard from '@/components/ui/DoodleProductCard';
 
 type Props = { slug: string };
 
@@ -56,7 +57,7 @@ export default function ClientPage({ slug }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1 bg-neutral-50/50">
+      <main className="flex-1 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 lg:py-12 flex flex-col md:flex-row gap-8">
           {/* Mobile Filter Toggle */}
           <div className="md:hidden flex items-center justify-between mb-4 bg-white p-4 rounded-sm shadow-sm border border-gray-100">
@@ -157,7 +158,7 @@ export default function ClientPage({ slug }: Props) {
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {products.map((p) => (
-                    <ProductCard key={p.id} product={p} />
+                    <DoodleProductCard key={p.id} product={p} />
                   ))}
                 </div>
 
