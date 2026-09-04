@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
                 {/* Content */}
                 <div className="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-8 prose-li:text-gray-700">
 
-                    <h2>WHAT PERSONAL DATA WE COLLECT AND WHY WE COLLECT IT</h2>
+                    <h2 className="font-bold text-2xl p-4">WHAT PERSONAL DATA WE COLLECT AND WHY WE COLLECT IT</h2>
 
                     <p className="text-justify">
                         We will ask for your name, email address, billing and shipping
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
                         our store, new products and other updates.
                     </p>
 
-                    <h2>CONSENT</h2>
+                    <h2 className="font-bold text-2xl p-4">CONSENT</h2>
 
                     <p className="text-justify">
                         Your use of this website signifies your consent to the collection,
@@ -61,14 +61,14 @@ export default function PrivacyPolicy() {
                         us of any changes to your preferences.
                     </p>
 
-                    <h2>DISCLOSURE</h2>
+                    <h2 className="font-bold text-2xl p-4">DISCLOSURE</h2>
 
                     <p className="text-justify">
                         We may disclose your personal information if we are required by law
                         to do so or if you violate our Terms of Service.
                     </p>
 
-                    <h2>THIRD-PARTY SERVICES</h2>
+                    <h2 className="font-bold text-2xl p-4">THIRD-PARTY SERVICES</h2>
 
                     <p className="text-justify">
                         In general, the third-party providers used by us will only collect,
@@ -96,7 +96,7 @@ export default function PrivacyPolicy() {
                         this Privacy Policy or our website&apos;s Terms of Service.
                     </p>
 
-                    <h2>LINKS</h2>
+                    <h2 className="font-bold text-2xl p-4">LINKS</h2>
 
                     <p className="text-justify">
                         When you click on links on our store, they may direct you away from
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
                         sites and encourage you to read their privacy statements.
                     </p>
 
-                    <h2>SECURITY</h2>
+                    <h2 className="font-bold text-2xl p-4">SECURITY</h2>
 
                     <p className="text-justify">
                         To protect your personal information, we take reasonable precautions
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
                         destroyed.
                     </p>
 
-                    <h2>COOKIES</h2>
+                    <h2 className="font-bold text-2xl p-4">COOKIES</h2>
 
                     <p className="text-justify">
                         Our cookies do not contain any personal information about you and are
@@ -125,7 +125,7 @@ export default function PrivacyPolicy() {
                         site without cookies enabled.
                     </p>
 
-                    <h2>AGE OF CONSENT</h2>
+                    <h2 className="font-bold text-2xl p-4">AGE OF CONSENT</h2>
 
                     <p className="text-justify">
                         By using this site, you represent that you are at least the age of
@@ -135,7 +135,7 @@ export default function PrivacyPolicy() {
                         this site.
                     </p>
 
-                    <h2>CHANGES TO THIS PRIVACY POLICY</h2>
+                    <h2 className="font-bold text-2xl p-4">CHANGES TO THIS PRIVACY POLICY</h2>
 
                     <p className="text-justify">
                         We reserve the right to modify this privacy policy at any time, so
@@ -151,7 +151,7 @@ export default function PrivacyPolicy() {
                         continue to sell products to you.
                     </p>
 
-                    <h2>QUESTIONS AND CONTACT INFORMATION</h2>
+                    <h2 className="font-bold text-2xl p-4">QUESTIONS AND CONTACT INFORMATION</h2>
 
                     <p className="text-justify">
                         If you would like to: access, correct, amend or delete any personal

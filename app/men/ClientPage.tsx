@@ -168,8 +168,6 @@ export default function ClientPage({ slug }: Props) {
                   <span className="text-sm">Page {pagination ? pagination.page : pageNum} of {pagination ? pagination.total_pages : 1}</span>
                   <button disabled={pagination ? !pagination.has_next : true} onClick={() => setPageNum((s) => s + 1)} className="px-4 py-2 border rounded">Next</button>
                 </div>
-
-                
               </>
             )}
           </section>

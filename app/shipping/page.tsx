@@ -19,7 +19,7 @@ export default function ShippingPolicy() {
                 {/* Content */}
                 <div className="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-8 prose-li:text-gray-700">
 
-                    <h2>IMPORTANT INFORMATION</h2>
+                    <h2 className="font-bold text-2xl p-4">IMPORTANT INFORMATION</h2>
 
                     <p className="text-justify">
                         At Jagmeen we make-to-order. We typically take 3-7 working days to
@@ -49,7 +49,7 @@ export default function ShippingPolicy() {
                         All orders will require a signature upon receipt.
                     </p>
 
-                    <h2>INSURANCE</h2>
+                    <h2 className="font-bold text-2xl p-4">INSURANCE</h2>
 
                     <p className="text-justify">
                         Jagmeenfashion.com ensures each purchase during the time it is in
@@ -62,7 +62,7 @@ export default function ShippingPolicy() {
                         transfer of responsibility in the same way.
                     </p>
 
-                    <h2>DUTIES & TAXES</h2>
+                    <h2 className="font-bold text-2xl p-4">DUTIES & TAXES</h2>
 
                     <p className="text-justify">
                         All prices displayed on our website are in Indian rupees (INR).

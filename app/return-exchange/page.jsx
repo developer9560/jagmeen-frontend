@@ -19,7 +19,7 @@ export default function ReturnExchangePolicy() {
                 {/* Content */}
                 <div className="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-8 prose-li:text-gray-700 text-center">
 
-                    <h2 >RETURN & EXCHANGE POLICY</h2>
+                    <h2 className="font-bold text-2xl " >RETURN & EXCHANGE POLICY</h2>
 
                     <p className="text-justify">
                         At Jagmeen, we want to make sure you are completely satisfied with
@@ -92,7 +92,7 @@ export default function ReturnExchangePolicy() {
                         color will be accurate.
                     </p>
 
-                    <h2>CONDITIONS FOR RETURN AND EXCHANGE</h2>
+                    <h2 className="font-bold text-2xl p-4">CONDITIONS FOR RETURN AND EXCHANGE</h2>
 
                     <p className="text-justify">
                         Our Return and Exchange Policy applies only if merchandise is
