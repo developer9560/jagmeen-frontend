@@ -115,14 +115,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           {/* Right Column - Product Info */}
           <div className="flex flex-col lg:col-span-4 lg:pl-4">
             {/* Title & Pricing */}
-            <h1 className="  text-xl md:text-2xl text-primary leading-tight mb-4">
+            <h1 className="font-semibold text-xl md:text-2xl text-primary leading-tight mb-4">
               {product.name.toUpperCase()}
             </h1>
 
             <div className="flex items-end gap-4 mb-8">
               {currentSize ? (
                 <>
-                  <span className="text-xl md:text-2xl font-semibold text-primary tracking-wide">
+                  <span className="text-xl md:text-2xl text-primary tracking-wide">
                     {formatPrice(currentPrice)}
                   </span>
                   {currentMrp > currentPrice && (
@@ -148,7 +148,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             {product.sizes && product.sizes.length > 0 && (
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <p className="text-sm font-semibold text-primary uppercase tracking-widest">Select Size</p>
+                  <p className="text-sm font-semibold text-primary uppercase tracking-widest"> Size</p>
                   {product.size_chart && (
                     <button 
                       onClick={() => setShowSizeChart(true)}
@@ -163,7 +163,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     <button
                       key={s.id || idx}
                       onClick={() => setSelectedSizeIdx(idx)}
-                      className={`h-12 min-w-[3rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${selectedSizeIdx === idx
+                      className={`h-10 min-w-[1.5rem] px-4 border flex items-center justify-center text-sm font-medium transition-colors ${selectedSizeIdx === idx
                         ? 'border-primary  text-black'
                         : 'border-gray-200 text-charcoal '
                         }`}
@@ -181,21 +181,21 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
             {/* Actions */}
             <div className="flex flex-col gap-2 sm:gap-4 mb-10">
-              <div className="flex items-center  h-14 flex-shrink-0   overflow-hidden">
+              <div className="flex items-center  h-10 flex-shrink-0   overflow-hidden">
                 <div className="  flex items-center justify-center border border-gray-200 h-full" >
 
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-red-300 transition-colors "
+                    className="w-8 sm:w-8 h-full flex items-center justify-center text-primary hover:text-red-300 transition-colors "
                   >
                     -
                   </button>
-                  <span className="w-8 sm:w-12 h-full flex items-center justify-center text-primary font-semibold text-sm">
+                  <span className="w-8 sm:w-8 h-full flex items-center justify-center text-primary font-semibold text-sm">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 sm:w-12 h-full flex items-center justify-center text-primary hover:text-gold transition-colors"
+                    className="w-8 sm:w-8 h-full flex items-center justify-center text-primary hover:text-red-400 transition-colors"
                   >
                     +
                   </button>
@@ -205,7 +205,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleToggleWishlist}
                   disabled={isTogglingWishlist}
-                  className={`hidden md:flex w-14 h-14 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-red-300'
+                  className={`hidden md:flex w-10 h-10 border items-center justify-center transition-colors flex-shrink-0 ${isWishlisted ? 'border-rose bg-rose/5 text-rose' : 'border-gray-200 text-primary hover:border-red-300'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   <Heart size={20} className={isWishlisted ? 'fill-rose text-rose' : ''} />
@@ -216,7 +216,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleAddToCart}
                   disabled={isAddingToCart || !currentSize}
-                  className="w-full h-14 text-black text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold  border-1 cursor-pointer hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-12 text-black text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold  border-1 cursor-pointer hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   <ShoppingBag size={18} />
                   {isAddingToCart ? 'Adding...' : 'Add to Cart'}
@@ -225,7 +225,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <button
                   onClick={handleBuyItNow}
                   disabled={isAddingToCart || !currentSize}
-                  className="w-full h-14 border-1  cursor-pointer text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
+                  className="w-full h-12 border-1  cursor-pointer text-primary text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] uppercase font-bold hover:border-red-500 transition-colors flex items-center justify-center gap-2 sm:gap-3 disabled:bg-gray-400 disabled:cursor-not-allowed px-2"
                 >
                   Buy It Now
                 </button>
@@ -255,6 +255,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
         </div>
               {/* Accordions below gallery */}
+
+
+              
             <div className="mt-8 border-t border-gray-200">
               {/* Product Details Accordion */}
               <div className="border-b border-gray-200">

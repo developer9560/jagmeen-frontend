@@ -84,15 +84,15 @@ export default function ProfilePage() {
         <div className="max-w-4xl mx-auto">
           {/* Section heading */}
           <div className="mb-8 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-600 mb-2">
+            {/* <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-600 mb-2">
               Company Documents
-            </p>
+            </p> */}
             <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
               Our Company Profile
             </h2>
-            <p className="mt-3 text-base leading-7 text-slate-500">
+            {/* <p className="mt-3 text-base leading-7 text-slate-500">
               Browse through our company profile below.
-            </p>
+            </p> */}
           </div>
 
           {/* PDF rendered as vertical image gallery */}

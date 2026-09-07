@@ -86,7 +86,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-cream via-white to-rose/20 p-6">
             <div className="w-20 h-28 border border-white rounded-t-full rounded-b-md opacity-60" />
-            <span className="font-heading  text-primary/25 text-lg mt-6 text-center line-clamp-2">
+            <span className="font-semibold  text-primary/25 text-lg mt-6 text-center line-clamp-2">
               {product.name}
             </span>
           </div>
@@ -139,7 +139,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
           onClick={() => router.push(productHref)}
           className="text-left w-full hover:opacity-80 transition-opacity"
         >
-          <h3 className="font-heading text-center text-sm md:text-md text-primary leading-snug line-clamp-2 uppercase ">
+          <h3 className="font-semibold text-center text-sm md:text-md text-primary leading-snug line-clamp-2 uppercase ">
             {product.name}
           </h3>
         </button>
@@ -149,7 +149,7 @@ export default function DoodleProductCard({ product, index = 0 }: FeaturedProduc
         <div className="flex items-center justify-center gap-2.5">
           {product.sizes && product.sizes.length > 0 ? (
             <>
-              <span className="text-base text-center md:text-md font-semibold text-primary tracking-wide">
+              <span className=" text-base text-center md:text-md font-heading text-primary tracking-wide">
                 {formatPrice(product.sizes[0].price)}.00
               </span>
               {product.sizes[0].mrp > product.sizes[0].price && (
