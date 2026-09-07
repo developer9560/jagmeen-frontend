@@ -78,7 +78,7 @@ export default function InfiniteProductGrid({
   }, [loadMore, initialLoad]);
 
   return (
-    <section className="bg-cream/30 py-6 md:py-8 min-h-screen">
+    <section className="bg-white py-6 md:py-8 min-h-screen">
       <div className="w-full mx-auto px-4 md:px-8">
         
 
