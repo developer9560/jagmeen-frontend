@@ -50,7 +50,7 @@ export default function RecentlyViewed({ currentProductId }: RecentlyViewedProps
   if (!isAuthenticated || (!loading && products.length === 0)) return null;
 
   return (
-    <section className="bg-[#FAF8F5] py-12 md:py-16 border-t border-gray-100">
+    <section className="bg-white py-12 md:py-16 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col items-center justify-center mb-8">
           <h2 className="font-heading text-2xl md:text-3xl text-primary uppercase tracking-widest">

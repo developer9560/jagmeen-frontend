@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { ProductImage } from '@/types/product';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+
+const SCALE = 2.5; // zoom scale factor
 
 interface ProductGalleryProps {
   images: ProductImage[];
@@ -17,96 +19,149 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   const [imageError, setImageError] = useState<Record<number, boolean>>({});
   const [zoomed, setZoomed] = useState(false);
 
-  // Pan state
-  const [panX, setPanX] = useState(0);
-  const [panY, setPanY] = useState(0);
+  // Use refs for pan so wheel/drag handlers never capture stale values
+  const panRef = useRef({ x: 0, y: 0 });
+  const [panDisplay, setPanDisplay] = useState({ x: 0, y: 0 }); // triggers re-render
+
   const isDragging = useRef(false);
   const dragStart = useRef({ x: 0, y: 0 });
-  const panStart = useRef({ x: 0, y: 0 });
+  const panAtDragStart = useRef({ x: 0, y: 0 });
+  const zoomed$ = useRef(false); // mirror of zoomed state for use inside closures
+
+  const fullscreenRef = useRef<HTMLDivElement>(null);
 
   const activeImage = sortedImages[activeIndex];
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % sortedImages.length);
-    resetZoom();
-  };
+  // ─── Clamp helper ──────────────────────────────────────────────────────────
+  // When zoomed at SCALE, the image extends beyond viewport on each side by:
+  // maxPan = (SCALE - 1) / 2 * viewportDimension
+  // We keep pan within [-maxPan, maxPan] so the image edge never passes center.
+  const clamp = useCallback((val: number, viewportDim: number) => {
+    const maxPan = ((SCALE - 1) / 2) * viewportDim;
+    return Math.max(-maxPan, Math.min(maxPan, val));
+  }, []);
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + sortedImages.length) % sortedImages.length);
-    resetZoom();
-  };
-
-  const resetZoom = () => {
-    setZoomed(false);
-    setPanX(0);
-    setPanY(0);
-  };
-
-  const handleImageClick = useCallback(
-    (e: React.MouseEvent) => {
-      // If we were dragging, don't toggle zoom
-      if (isDragging.current) return;
-      if (!zoomed) {
-        setZoomed(true);
-        setPanX(0);
-        setPanY(0);
-      } else {
-        resetZoom();
-      }
+  const applyPan = useCallback(
+    (rawX: number, rawY: number) => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const cx = clamp(rawX, vw);
+      const cy = clamp(rawY, vh);
+      panRef.current = { x: cx, y: cy };
+      setPanDisplay({ x: cx, y: cy });
     },
-    [zoomed]
+    [clamp]
   );
 
-  // Mouse drag handlers
+  // ─── Reset ─────────────────────────────────────────────────────────────────
+  const resetZoom = useCallback(() => {
+    setZoomed(false);
+    zoomed$.current = false;
+    panRef.current = { x: 0, y: 0 };
+    setPanDisplay({ x: 0, y: 0 });
+  }, []);
+
+  // ─── Navigation ────────────────────────────────────────────────────────────
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % sortedImages.length);
+    resetZoom();
+  }, [sortedImages.length, resetZoom]);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + sortedImages.length) % sortedImages.length);
+    resetZoom();
+  }, [sortedImages.length, resetZoom]);
+
+  // ─── Body scroll lock while fullscreen ─────────────────────────────────────
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isFullscreen]);
+
+  // ─── Non-passive wheel listener ────────────────────────────────────────────
+  // React synthetic onWheel is passive — cannot call preventDefault().
+  // We attach manually with { passive: false } to always block page scroll.
+  useEffect(() => {
+    const el = fullscreenRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault(); // always block page scroll when fullscreen is open
+      if (!zoomed$.current) return;
+      const newX = panRef.current.x - e.deltaX * 0.4;
+      const newY = panRef.current.y - e.deltaY * 0.4;
+      applyPan(newX, newY);
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleWheel);
+  }, [isFullscreen, applyPan]); // re-attach when fullscreen opens (ref becomes non-null)
+
+  // ─── Click to zoom / unzoom ────────────────────────────────────────────────
+  const handleImageClick = useCallback(() => {
+    if (isDragging.current) return; // was a drag, not a click
+    if (!zoomed$.current) {
+      setZoomed(true);
+      zoomed$.current = true;
+      panRef.current = { x: 0, y: 0 };
+      setPanDisplay({ x: 0, y: 0 });
+    } else {
+      resetZoom();
+    }
+  }, [resetZoom]);
+
+  // ─── Mouse drag ────────────────────────────────────────────────────────────
   const onMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      if (!zoomed) return;
+      if (!zoomed$.current) return;
+      e.preventDefault();
       isDragging.current = false;
       dragStart.current = { x: e.clientX, y: e.clientY };
-      panStart.current = { x: panX, y: panY };
+      panAtDragStart.current = { ...panRef.current };
 
       const onMouseMove = (ev: MouseEvent) => {
         const dx = ev.clientX - dragStart.current.x;
         const dy = ev.clientY - dragStart.current.y;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+        if (!isDragging.current && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
           isDragging.current = true;
         }
-        setPanX(panStart.current.x + dx);
-        setPanY(panStart.current.y + dy);
+        applyPan(panAtDragStart.current.x + dx, panAtDragStart.current.y + dy);
       };
 
       const onMouseUp = () => {
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('mouseup', onMouseUp);
-        // Reset drag flag after short delay so click handler can check it
         setTimeout(() => { isDragging.current = false; }, 10);
       };
 
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('mouseup', onMouseUp);
     },
-    [zoomed, panX, panY]
+    [applyPan]
   );
 
-  // Touch drag handlers
+  // ─── Touch drag ────────────────────────────────────────────────────────────
   const onTouchStart = useCallback(
     (e: React.TouchEvent) => {
-      if (!zoomed) return;
+      if (!zoomed$.current) return;
       isDragging.current = false;
       const touch = e.touches[0];
       dragStart.current = { x: touch.clientX, y: touch.clientY };
-      panStart.current = { x: panX, y: panY };
+      panAtDragStart.current = { ...panRef.current };
 
       const onTouchMove = (ev: TouchEvent) => {
         const t = ev.touches[0];
         const dx = t.clientX - dragStart.current.x;
         const dy = t.clientY - dragStart.current.y;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+        if (!isDragging.current && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
           isDragging.current = true;
           ev.preventDefault();
         }
-        setPanX(panStart.current.x + dx);
-        setPanY(panStart.current.y + dy);
+        applyPan(panAtDragStart.current.x + dx, panAtDragStart.current.y + dy);
       };
 
       const onTouchEnd = () => {
@@ -118,8 +173,20 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
       window.addEventListener('touchmove', onTouchMove, { passive: false });
       window.addEventListener('touchend', onTouchEnd);
     },
-    [zoomed, panX, panY]
+    [applyPan]
   );
+
+  // ─── Keyboard: Escape closes fullscreen ────────────────────────────────────
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+        resetZoom();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isFullscreen, resetZoom]);
 
   if (!sortedImages.length) {
     return (
@@ -129,6 +196,11 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
       </div>
     );
   }
+
+  // translate BEFORE scale so pan values are in screen pixels (intuitive 1:1 movement)
+  const transformStyle = zoomed
+    ? `translate(${panDisplay.x}px, ${panDisplay.y}px) scale(${SCALE})`
+    : 'translate(0px, 0px) scale(1)';
 
   return (
     <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8 h-full">
@@ -186,9 +258,14 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
         )}
       </div>
 
-      {/* Fullscreen Modal with Pan-to-Move */}
+      {/* ── Fullscreen Modal ─────────────────────────────────────────────────── */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-white flex flex-col justify-center items-center">
+        <div
+          ref={fullscreenRef}
+          className="fixed inset-0 z-[9999] bg-white"
+          style={{ touchAction: 'none' }}
+        >
+          {/* Image container — overflow:hidden so image stays clipped to viewport */}
           {!imageError[activeIndex] && activeImage?.image_url && (
             <div
               className="absolute inset-0 overflow-hidden"
@@ -201,11 +278,10 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  transform: zoomed
-                    ? `scale(2.5) translate(${panX / 2.5}px, ${panY / 2.5}px)`
-                    : 'scale(1) translate(0px, 0px)',
-                  transition: isDragging.current ? 'none' : 'transform 0.4s ease-out',
+                  transform: transformStyle,
+                  transition: isDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)',
                   transformOrigin: 'center center',
+                  willChange: 'transform',
                 }}
               >
                 <Image
@@ -220,14 +296,12 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             </div>
           )}
 
-          {/* Hint text */}
-          {zoomed && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full pointer-events-none z-50 tracking-wider">
-              Drag to move • Click to zoom out
-            </div>
-          )}
+          {/* Hint */}
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-4 py-1.5 rounded-full pointer-events-none z-50 tracking-wider select-none">
+            {zoomed ? 'Scroll / drag to pan • Click to zoom out' : 'Click to zoom in'}
+          </div>
 
-          {/* Controls - Bottom Center */}
+          {/* Controls */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
             {sortedImages.length > 1 && (
               <button
@@ -262,3 +336,4 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
     </div>
   );
 }
+
