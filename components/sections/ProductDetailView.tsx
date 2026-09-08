@@ -28,8 +28,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false);
   const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
+  const [selectedColorIdx, setSelectedColorIdx] = useState(0);
+  const [openCustomSections, setOpenCustomSections] = useState<Record<number, boolean>>({});
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const toggleCustomSection = (idx: number) => {
+    setOpenCustomSections(prev => ({ ...prev, [idx]: !(prev[idx] ?? (idx === 0)) }));
+  };
 
   const { addToCart } = useCart();
   const { checkIsWishlisted, toggleWishlist } = useWishlist();
@@ -38,22 +44,26 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const isWishlisted = checkIsWishlisted(product.id);
 
   const currentSize = product.sizes && product.sizes.length > 0 ? product.sizes[selectedSizeIdx] : null;
+  const currentColor = product.colors && product.colors.length > 0 ? product.colors[selectedColorIdx] : null;
+  
   const currentPrice = currentSize ? currentSize.price : 0;
   const currentMrp = currentSize ? currentSize.mrp : 0;
   const discount = currentPrice > 0 ? getDiscountPercent(currentPrice, currentMrp) : 0;
 
+  // Combine size and color into a descriptive string (e.g. "M / Royal Blue")
+  const variantString = [currentSize?.size, currentColor?.name].filter(Boolean).join(' / ') || undefined;
 
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
-    await addToCart(product.id, quantity, currentSize?.size);
+    await addToCart(product.id, quantity, variantString);
     setIsAddingToCart(false);
   };
 
   const handleBuyItNow = async () => {
-    if (!currentSize) return;
+    if (!currentSize && (!product.sizes || product.sizes.length > 0)) return;
 
     setIsAddingToCart(true);
-    const added = await addToCart(product.id, quantity, currentSize.size);
+    const added = await addToCart(product.id, quantity, variantString);
     setIsAddingToCart(false);
 
     if (added) {
@@ -142,6 +152,36 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8">
                 {product.summary}
               </p>
+            )}
+
+            {/* Colors Selection */}
+            {product.colors && product.colors.length > 0 && (
+              <div className="mb-6">
+                <div className="flex justify-between items-center mb-3">
+                  <p className="text-sm font-semibold text-primary uppercase tracking-widest">
+                    Color: <span className="font-normal text-charcoal/80 capitalize">{product.colors[selectedColorIdx]?.name || ''}</span>
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {product.colors.map((colorObj, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedColorIdx(idx)}
+                      className={`h-10 px-4 border flex items-center gap-2.5 text-sm font-medium transition-all ${
+                        selectedColorIdx === idx
+                          ? 'border-primary text-black bg-cream/30 '
+                          : 'border-gray-200 text-charcoal hover:border-gray-400'
+                      }`}
+                    >
+                      <span
+                        className="w-4 h-4 rounded-full border border-gray-300 shadow-sm flex-shrink-0"
+                        style={{ backgroundColor: colorObj.code || '#CCCCCC' }}
+                      />
+                      <span>{colorObj.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
 
             {/* Sizes Selection */}
@@ -259,6 +299,38 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
               
             <div className="mt-8 border-t border-gray-200">
+              {/* Dynamic Custom Headings & Line-by-Line Content Accordions */}
+              {product.custom_sections && product.custom_sections.length > 0 && (
+                product.custom_sections.map((sec, secIdx) => {
+                  const isOpen = openCustomSections[secIdx] ?? (secIdx === 0);
+                  return (
+                    <div key={secIdx} className="border-b border-gray-200">
+                      <button
+                        onClick={() => toggleCustomSection(secIdx)}
+                        className="w-full py-4 flex justify-between items-center text-sm tracking-[0.15em] uppercase font-bold text-primary hover:text-gold transition-colors text-left"
+                      >
+                        {sec.heading}
+                        <span className="text-xl font-light ml-2">{isOpen ? '-' : '+'}</span>
+                      </button>
+                      {isOpen && (
+                        <div className="pb-6 text-sm text-charcoal/80 leading-relaxed animate-fade-in">
+                          <ol className="space-y-2 list-none pl-0">
+                            {sec.points.map((pt, ptIdx) => (
+                              <li key={ptIdx} className="flex gap-2.5 items-start">
+                                <span className="font-bold text-primary text-xs bg-cream/60 px-2 py-0.5 rounded shrink-0 mt-0.5">
+                                  {ptIdx + 1}
+                                </span>
+                                <span className="flex-1 text-charcoal/90">{pt}</span>
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })
+              )}
+
               {/* Product Details Accordion */}
               <div className="border-b border-gray-200">
                 <button

@@ -247,7 +247,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             alt={`${productName} product image ${activeIndex + 1} - Jagmeen Fashion`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            className="object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             priority
             onError={() => setImageError((prev) => ({ ...prev, [activeIndex]: true }))}
           />

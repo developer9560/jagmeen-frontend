@@ -1,3 +1,13 @@
+export interface ProductColor {
+  name: string;
+  code: string;
+}
+
+export interface ProductCustomSection {
+  heading: string;
+  points: string[];
+}
+
 export interface ProductSize {
   id: number;
   product_id: number;
@@ -15,6 +25,8 @@ export interface ProductCardData {
   is_best_seller: boolean;
   summary: string;
   sizes?: ProductSize[];
+  colors?: ProductColor[];
+  custom_sections?: ProductCustomSection[];
 }
 
 export interface PaginationMeta {
@@ -58,6 +70,8 @@ export interface ProductDetailData {
   product_details: Record<string, any> | string | null;
   size_chart?: string | null;
   keywords?: string[];
+  colors?: ProductColor[];
+  custom_sections?: ProductCustomSection[];
   is_featured: boolean;
   view_count: number;
   sale: number;
