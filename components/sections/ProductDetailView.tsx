@@ -23,6 +23,7 @@ interface ShareButtonProps {
 
 export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [quantity, setQuantity] = useState(1);
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isShippingOpen, setIsShippingOpen] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -147,10 +148,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             </div>
 
 
-             {/* Summary */}
+             {/* Summary / Intro */}
             {product.summary && (
-              <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8">
-                {product.summary}
+              <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8 whitespace-pre-line">
+                {product.summary.split('\n\n')[0]}
               </p>
             )}
 
@@ -299,6 +300,23 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
               
             <div className="mt-8 border-t border-gray-200">
+              {/* DESCRIPTION Accordion (Preserves exact line breaks, spacing, paragraphs, and key-values) */}
+              {(product.description) && (
+                <div className="border-b border-gray-200">
+                  <button
+                    onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
+                    className="w-full py-4 flex justify-between items-center text-sm tracking-[0.15em] uppercase font-bold text-primary hover:text-gold transition-colors text-left"
+                  >
+                    Description
+                    <span className="text-xl font-light ml-2">{isDescriptionOpen ? '-' : '+'}</span>
+                  </button>
+                  {isDescriptionOpen && (
+                    <div className="pb-6 text-sm md:text-base text-charcoal/85 leading-relaxed whitespace-pre-line tracking-wide font-normal animate-fade-in">
+                      {product.description}
+                    </div>
+                  )}
+                </div>
+              )}
               {/* Dynamic Custom Headings & Line-by-Line Content Accordions */}
               {product.custom_sections && product.custom_sections.length > 0 && (
                 product.custom_sections.map((sec, secIdx) => {

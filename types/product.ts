@@ -67,6 +67,7 @@ export interface ProductDetailData {
   slug: string;
   name: string;
   summary: string | null;
+  description?: string | null;
   product_details: Record<string, any> | string | null;
   size_chart?: string | null;
   keywords?: string[];
