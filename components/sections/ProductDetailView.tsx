@@ -8,6 +8,7 @@ import { formatPrice, getDiscountPercent } from '@/lib/format';
 import { Heart, ShoppingBag, Truck, Shield, RotateCcw, X ,Share2Icon} from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
+import { SiH3 } from '@icons-pack/react-simple-icons';
 
 interface ProductDetailViewProps {
   product: ProductDetailData;
@@ -130,14 +131,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               {product.name.toUpperCase()}
             </h1>
 
-            <div className="flex items-end gap-4 mb-8">
+            <div className="flex items-end gap-4 ">
               {currentSize ? (
                 <>
-                  <span className="text-xl md:text-2xl text-primary tracking-wide">
-                    {formatPrice(currentPrice)}
+                  <span className="text-xl md:text-2xl text-primary pr-2 tracking-wide">
+                    {formatPrice(currentPrice)}.00
                   </span>
                   {currentMrp > currentPrice && (
-                    <span className="text-lg text-muted line-through mb-1">{formatPrice(currentMrp)}</span>
+                    <span className="text-lg text-muted line-through mb-1">{formatPrice(currentMrp)}.00</span>
                   )}
                 </>
               ) : (
@@ -146,8 +147,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 </span>
               )}
             </div>
-
-
+            <h3 className='mb-6 text-sm text-muted' >
+              MRP included of all taxes.
+            </h3>
              {/* Summary / Intro */}
             {product.summary && (
               <p className="text-charcoal/80 text-sm md:text-base leading-relaxed mb-8 whitespace-pre-line">

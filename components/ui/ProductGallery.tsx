@@ -238,7 +238,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
 
       {/* Main Image */}
       <div
-        className="relative w-full h-full aspect-[3/4]   bg-cream overflow-hidden group cursor-[url('/plus.png')_24_24,_zoom-in] order-1 md:order-2"
+        className="relative w-full h-full aspect-[3/4] bg-cream overflow-hidden group cursor-[url('/plus.png')_24_24,_zoom-in] order-1 md:order-2"
         onClick={() => setIsFullscreen(true)}
       >
         {!imageError[activeIndex] && activeImage?.image_url ? (
